@@ -1,63 +1,60 @@
-        $(".preloader ").fadeOut();
-				
-        $("#admin_login_btn").click(function() { 
-            alert("reached");
+$("#admin_login_btn").click(function () {
 
-            $("form[name='login_form']").validate({    
-              rules:{
-                'email': {
-                  required: true,
-                  email:true
-                },
-                'pwd': {
-                  required: true
-                }
-              },
-              messages:{
-                'email':{
-                  required: "<span style='color:red;'>Email is required!</span>",
-                  email: "<span style='color:red;'>Enter valid email id</span>"
-                },
-                'pwd':{
-                  required: "<span style='color:red;'>Password is required!</span>",
-                }
-              },
-              submitHandler:function(form){
-                $email = $("#email").val();
-                $password = $("#pwd").val();
+    var email = $("#email").val();
+    var pass = $("#pwd").val();
+    var type = "";
 
+    var email_regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    var password_regex1 = /([a-z].*[A-Z])|([A-Z].*[a-z])([0-9])+([!,%,&,@,#,$,^,*,?,_,~])/;
+    var password_regex2 = /([0-9])/;
+    var password_regex3 = /([!,%,&,@,#,$,^,*,?,_,~])/;
 
-                $("#loading").css("display", "block");
-                $("#admin_login_btn").css("display","none");
+    if (email_regex.test(email) == false) {
+        alert("Please Enter Correct Email");
+        return false;
+    }
+    // else if (pass.length < 4 || password_regex1.test(pass) == false || password_regex2.test(pass) == false || password_regex3.test(pass) == false) {
+    //     alert("Please Enter Your Password");
+    //     return false;
+    // }
+    else {
+        $("#admin_login_btn").attr("disabled", true);
+        $.ajax({
+            'url': 'http://localhost/Financial_app/public/signInProcess',
+            'type': 'POST',
+            'data': { 'email': email, 'password': pass },
+            success: function (result) {
 
-                $("#admin_login_btn").attr("disabled",true);
-                $.ajax({
-                    'url':'http://localhost/Financial_app/public/signInProcess',
-                    'type':'POST',
-                    'data':{'user_type': $type, 'email': $email, 'password': $password},
-                    success:function(result) {
-					
-						console.log(result);						
-                        $result = JSON.parse(result);
-                        
-                        if($result.status == true) {
-						
-                            $("#alertmessage").html('<div class="sufee-alert alert with-close alert-success alert-dismissible fade show" id="alertmessage">' + $result.message + '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></div>');
-                            setTimeout(function(){
-                                window.location.href = "{{ url }}/dashboard";
-                            },50); 
-                        }
-                        else{
-                             $("#alertmessage").html('<div class="sufee-alert alert with-close alert-danger alert-dismissible fade show" id="alertmessage">' + $result.message + '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></div>');
-                            setTimeout(function(){
-                                $("#alertmessage").html("");
-                            },1000);
-                            $("#admin_login_btn").attr("disabled",false);
-                            $("#loading").css("display","none");
-                            $("#admin_login_btn").css("display","block");
-                        }
+                $result = JSON.parse(result);
+                $result = $result[0];
+                if ($result.id) {
+
+                    if ($result.user_type == 1) {
+                        setTimeout(function () {
+                            window.location.href = "http://localhost/Financial_app/public/Admin_dashboard";
+                        }, 50);
+
+                    } else if ($result.user_type == 2) {
+                        setTimeout(function () {
+                            window.location.href = "http://localhost/Financial_app/public/Rm_dashboard";
+                        }, 50);
+
+                    } else if ($result.user_type == 3) {
+                        setTimeout(function () {
+                            window.location.href = "http://localhost/Financial_app/public/Cw_dashboard";
+                        }, 50);
+
+                    } else if ($result.user_type == 4) {
+                        setTimeout(function () {
+                            window.location.href = "http://localhost/Financial_app/public/Client_dashboard";
+                        }, 50);
+
                     }
-                });
-              }
-          });
+                }
+                else {
+                    alert("Sorry! No account associated with the provided credentials");
+                }
+            }
         });
+    }
+});

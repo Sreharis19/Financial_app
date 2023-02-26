@@ -1,4 +1,6 @@
-<?php namespace App\Controllers;
+<?php
+
+namespace App\Controllers;
 
 use App\Models\AuthModel;
 
@@ -10,13 +12,16 @@ class Home extends BaseController
 		return view('login');
 	}
 
-	public function signInProcess($data)
+	public function signInProcess()
 	{
+		$baseUrl = '';
+		$data = $this->request->getPost();
 		$AuthModel = new AuthModel();
-		$result = $AuthModel->userLogin();
-		return($result);
+		$result = $AuthModel->getUserByEmail($data);
+		$this->setSessionData('user', $result);
+
+
+		echo json_encode(array($result));
+		exit(0);
 	}
-
-
-
 }
