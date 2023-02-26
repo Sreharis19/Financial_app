@@ -2,14 +2,14 @@
 
 namespace App\Controllers;
 
-use App\Models\Client_Management;
+use App\Models\Posts_Management;
 
-class Rm_Client extends BaseController
+class Rm_Post extends BaseController
 {
     public function index()
     {
-        $ClientModel = new Client_Management();
-        $result['clients'] = $ClientModel->getClients();
+        $PostModel = new Posts_Management();
+        $result['posts'] = $PostModel->getPosts();
 
         $arr = (array) $result;
 
@@ -20,7 +20,7 @@ class Rm_Client extends BaseController
         echo view('rm/sidebar');
 
         // Load the dashboard view
-        echo view('rm/Rm_Client_List', $arr);
+        echo view('rm/Rm_Post_List', $arr);
 
         // Load the footer view
         echo view('rm/footer');
@@ -34,8 +34,15 @@ class Rm_Client extends BaseController
         $request = \Config\Services::request();
         $id = $request->getGet('id');
 
+        
+
+
         $ClientModel = new Client_Management();
         $result['client'] = $ClientModel->getClientById($id);
+
+        // echo"<pre>";
+        // print_r($result['client']);
+        // exit();
 
         // Load the header view
         echo view('rm/header');

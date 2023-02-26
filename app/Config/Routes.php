@@ -33,6 +33,8 @@ $routes->get('/', 'Home::index');
 $routes->post('/signInProcess', 'Home::signInProcess');
 $routes->get('/Rm_dashboard', 'Rm_Dashboard::index');
 $routes->get('/Rm_Client_List', 'Rm_Client::index');
+$routes->get('/Rm_Client_View', 'Rm_Client::view');
+$routes->get('/Rm_Post_List', 'Rm_Post::index');
 
 /*
  * --------------------------------------------------------------------
