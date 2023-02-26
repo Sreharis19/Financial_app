@@ -34,7 +34,7 @@ class Posts_Management extends Model
         $users = $query->getResult();
 
         foreach ($users as $user) {
-            $allproducts_query = $this->db->table('customer_profile')
+            $allproducts_query = $this->db->table('user_profile')
                 ->select('user_products_ids')
                 ->where('user_id', $user->id)
                 ->get();

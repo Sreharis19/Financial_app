@@ -37,7 +37,7 @@ class Rm_Post extends BaseController
         
 
 
-        $ClientModel = new Client_Management();
+        $ClientModel = new Posts_Management();
         $result['client'] = $ClientModel->getClientById($id);
 
         // echo"<pre>";
