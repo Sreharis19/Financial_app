@@ -98,7 +98,7 @@
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Inventory &amp; Content</span></li>
             <!-- Cards -->
             <li class="menu-item">
-              <a href="rm_postlist.html" class="menu-link">
+              <a href="<?php echo base_url(); ?>/public/Rm_Post_List" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div data-i18n="Basic">Posts</div>
               </a>

@@ -54,6 +54,7 @@
   <script src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.html5.min.js"></script>
   <script src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.print.min.js"></script>
   <script src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.colVis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
 
 
   <script>
@@ -65,6 +66,13 @@
 
       table.buttons().container()
         .appendTo('#datatable_wrapper .col-md-6:eq(0)');
+
+        var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+        removeItemButton: true,
+        maxItemCount: 3,
+        searchResultLimit: 5,
+        renderChoiceLimit: 5
+      });
     });
   </script>
   <!-- endbuild -->
