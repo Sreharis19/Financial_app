@@ -40,9 +40,15 @@ class BaseController extends Controller
 		// Preload any models, libraries, etc, here.
 		//--------------------------------------------------------------------
 		// E.g.:
-		$this->session = \Config\Services::session();
-		$this->validation =  \Config\Services::validation();
+		// $this->validation =  \Config\Services::validation();
 
 	}
+
+	protected function setSessionData($key, $value)
+{
+    $session = \Config\Services::session();
+    $session->set($key, $value);
+}
+
 
 }

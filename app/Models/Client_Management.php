@@ -1,0 +1,71 @@
+<?php
+
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+
+class Client_Management extends Model
+{
+    protected $table = 'user_master';
+
+    protected $allowedFields = ['name', 'email', 'phone', 'address'];
+
+    public function getClients()
+
+    {
+        $query = $this->db->table('user_master')
+            ->select('id, first_name, user_email, user_status')
+            ->where('user_type', 4)
+            ->get();
+
+        $users = $query->getResult();
+
+        foreach ($users as $user) {
+            $allproducts_query = $this->db->table('customer_profile')
+                ->select('user_products_ids')
+                ->where('user_id', $user->id)
+                ->get();
+
+            $all_products = $allproducts_query->getResult();
+
+            $product_ids = explode('#', $all_products[0]->user_products_ids);
+            foreach ($product_ids as $product_id) {
+                $i = 0;
+                $products_query = $this->db->table('products')
+                    ->select('product_name')
+                    ->where('product_id', $product_id)
+                    ->get();
+
+                $data[] = $products_query->getResult();
+                $user -> products = array_column($data, 0, 'product_name');
+            }
+        }
+
+
+        return $users;
+    }
+
+    public function getClientById($id)
+    {
+        return $this->find($id);
+    }
+
+    public function addClient($data)
+    {
+        $this->insert($data);
+        return $this->insertID();
+    }
+
+    public function updateClient($id, $data)
+    {
+        $this->update($id, $data);
+        return $this->affectedRows();
+    }
+
+    public function deleteClient($id)
+    {
+        $this->delete($id);
+        return $this->affectedRows();
+    }
+}
