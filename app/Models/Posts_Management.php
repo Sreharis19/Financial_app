@@ -35,6 +35,18 @@ class Posts_Management extends Model
         return $posts;
     }
 
+    public function getPostsForCw($userId)
+    {
+        $query = $this->db->table('cw_posts')
+            ->select('_id, post_title, post_content, post_slug, post_status')
+            ->where('created_by', $userId)
+            ->get();
+
+        $posts = $query->getResult();
+
+        return $posts;
+    }
+
     public function getPostBySlug($id)
     {
 
@@ -56,5 +68,13 @@ class Posts_Management extends Model
         $post[0]->product_name = $post[0]->product_name[0];
 
         return $post[0];
+    }
+
+    public function createPost(){
+
+    }
+
+    public function updatePost(){
+        
     }
 }
