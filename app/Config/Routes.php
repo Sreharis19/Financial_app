@@ -33,6 +33,8 @@ $routes->get('/', 'Home::index');
 $routes->get('/login', 'Home::index');
 $routes->post('/signInProcess', 'Home::signInProcess');
 $routes->get('/logout', 'Home::logOut');
+
+// rm starts here
 $routes->get('/Rm_dashboard', 'Rm_Dashboard::index');
 $routes->get('/Rm_Client_List', 'Rm_Client::index');
 $routes->get('/Rm_Client_View', 'Rm_Client::view');
@@ -43,6 +45,20 @@ $routes->post('/Rm_SendPost', 'Rm_Post::Rm_SendPost');
 $routes->get('/step1', 'Rm_Chat::step1');
 $routes->get('/Rm_DirectChat', 'Rm_Chat::directChat');
 $routes->post('/Save_ChatMessage', 'Rm_Chat::Save_ChatMessage');
+$routes->get('/Rm_Support', 'Rm_Support::index');
+$routes->post('/Rm_SendSupport', 'Rm_Support::Save_Ticket');
+$routes->post('/Delete_Ticket', 'Rm_Support::Delete_Ticket');
+// rm ends here
+
+//cw starts here
+$routes->get('/Cw_dashboard', 'Cw_Dashboard::index');
+$routes->get('/Cw_Post_List', 'Cw_Post::index');
+$routes->get('/Cw_Post_View', 'Cw_Post::view');
+$routes->get('/Cw_Add_Post', 'Cw_Post::Create_Post_view');
+$routes->get('/Cw_Post_Edit', 'Cw_Post::Update_Post_view');
+$routes->get('/Cw_Support', 'Cw_Support::index');
+$routes->post('/Cw_SendSupport', 'Cw_Support::Save_Ticket');
+$routes->post('/Delete_Ticket', 'Cw_Support::Delete_Ticket');
 
 /*
  * --------------------------------------------------------------------

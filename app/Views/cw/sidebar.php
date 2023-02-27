@@ -76,7 +76,7 @@
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
             <li class="menu-item">
-              <a href="<?php echo base_url(); ?>/public/Rm_dashboard" class="menu-link">
+              <a href="<?php echo base_url(); ?>/public/Cw_dashboard" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
               </a>
@@ -84,21 +84,11 @@
 
             <!-- Layouts -->
 
-            <li class="menu-header small text-uppercase">
-              <span class="menu-header-text">User Management</span>
-            </li>
-             <li class="menu-item">
-              <a href="<?php echo base_url(); ?>/public/Rm_Client_List" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                <div>Clients</div>
-              </a>
-            </li>
-            
             <!-- Inventory & Content -->
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Inventory &amp; Content</span></li>
             <!-- Cards -->
             <li class="menu-item">
-              <a href="<?php echo base_url(); ?>/public/Rm_Post_List" class="menu-link">
+              <a href="<?php echo base_url(); ?>/public/Cw_Post_List" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div data-i18n="Basic">Posts</div>
               </a>
@@ -140,7 +130,7 @@
 
             <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
               <div class="align-items-center">
-                  <h5 style="align-items: center;">CUSTOMER RELATION DASHBOARD</h5>
+                  <h5 style="align-items: center;">CONTENT WRITER DASHBOARD</h5>
                 </div>
               <ul class="navbar-nav flex-row align-items-center ms-auto">
                 <!-- User -->
