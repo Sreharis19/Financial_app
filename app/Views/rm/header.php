@@ -42,6 +42,7 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>/public/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
     <link rel="stylesheet" href="<?php echo base_url(); ?>/public/assets/vendor/libs/apex-charts/apex-charts.css" />
+    <link rel="stylesheet" href="<?php echo base_url(); ?>/public/assets/css/directChat.css" />
 
     <!-- Page CSS -->
 

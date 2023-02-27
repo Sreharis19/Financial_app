@@ -103,12 +103,12 @@
                 <div data-i18n="Basic">Posts</div>
               </a>
             </li>
-            <li class="menu-item">
+            <!-- <li class="menu-item">
               <a href="rm_chat.html" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div data-i18n="Basic">Chat</div>
               </a>
-            </li>
+            </li> -->
             <!-- Misc -->
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>
             <li class="menu-item">
@@ -186,7 +186,7 @@
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="auth-login-basic.html">
+                      <a class="dropdown-item" href="<?php echo base_url(); ?>/public/logout">
                         <i class="bx bx-power-off me-2"></i>
                         <span class="align-middle">Log Out</span>
                       </a>

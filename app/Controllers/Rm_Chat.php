@@ -5,22 +5,25 @@ namespace App\Controllers;
 use App\Models\Posts_Management;
 use App\Models\Client_Management;
 use App\Models\Rm_SendPost;
+use App\Models\Rm_ChatModel;
 
-class Rm_Post extends BaseController
+class Rm_Chat extends BaseController
 {
-    public function index()
+    public function step1()
     {
         $session = session();
 
         $data = $session->get('user');
 
         $params = [
-            'user_type' => 4,
             'product_id' => $data->profile->user_products_ids,
         ];
+        $request = \Config\Services::request();
+        $id = $request->getGet('id');
 
         $PostModel = new Posts_Management();
         $result['posts'] = $PostModel->getPosts($params);
+        $result['userId'] = $id;
 
         $arr = (array) $result;
 
@@ -31,60 +34,40 @@ class Rm_Post extends BaseController
         echo view('rm/sidebar');
 
         // Load the dashboard view
-        echo view('rm/Rm_Post_List', $arr);
+        echo view('rm/Rm_DirectChat_Step1', $arr);
 
         // Load the footer view
         echo view('rm/footer');
     }
 
-    public function view()
+    public function directChat()
     {
 
         $request = \Config\Services::request();
-        $id = $request->getGet('id');
+        $pid = $request->getGet('pid');
+        $user = $request->getGet('user');
 
-        $PostModel = new Posts_Management();
-        $result['post'] = $PostModel->getPostBySlug($id);
 
-         // echo"<pre>";
-        // print_r($post[0]);exit();
-        // Load the header view
-        echo view('rm/header');
-
-        // Load the sidebar view
-        echo view('rm/sidebar');
-
-        // Load the dashboard view
-        echo view('rm/Rm_Post_View', $result);
-
-        // Load the footer view
-        echo view('rm/footer');
-    }
-
-    public function SendTo()
-    {
         $session = session();
 
-        $request = \Config\Services::request();
-        $id = $request->getGet('id');
+        // Check if user is not logged in
+        if (!$session->get('user')) {
+            // Redirect user to login controller
+            return redirect()->to('../../public/login');
+        }
 
         $data = $session->get('user');
 
-        $params = [
-            'user_type' => 4,
-            'product_id' => $data->profile->user_products_ids,
-        ];
+        $ChatModel = new Rm_ChatModel();
+        $result['chats'] = $ChatModel->getChatHistory($data->id, $user, $pid);
 
         $ClientModel = new Client_Management();
-        $result['clients'] = $ClientModel->getClients($params);
+        $result['client'] = $ClientModel->getClientById($user);
 
-        $PostModel = new Posts_Management();
-        $result['post'] = $PostModel->getPostBySlug($id);
-
-        $arr = (array) $result;
-
+        $result['rm_id'] = $data->id;
+        $result['cw_post_id'] = $pid;
         //  echo"<pre>";
-        // print_r($arr);exit();
+        // print_r($result);exit();
         // Load the header view
         echo view('rm/header');
 
@@ -92,10 +75,21 @@ class Rm_Post extends BaseController
         echo view('rm/sidebar');
 
         // Load the dashboard view
-        echo view('rm/Rm_Post_SendTo', $result);
+        echo view('rm/Rm_DirectChat', $result);
 
         // Load the footer view
         echo view('rm/footer');
+    }
+
+    public function Save_ChatMessage()
+    {
+        $data = $this->request->getPost();
+
+        $ChatModel = new Rm_ChatModel();
+        $result = $ChatModel->saveMessage($data);
+        echo json_encode(array($result));
+		exit(0);
+       
     }
 
     public function Rm_SendPost(){

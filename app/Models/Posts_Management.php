@@ -9,12 +9,25 @@ class Posts_Management extends Model
 {
     protected $table = 'cw_posts';
 
-    public function getPosts()
-
+    public function getPosts($data)
     {
+        $productId_query = "";
+        $AndQueryBuild = " OR product_id =";
+
+        $product_ids = explode('#', $data['product_id']);
+
+        foreach ($product_ids as $key => $product_id) {
+
+            if($key == 0){
+                $productId_query .= $product_id;
+            }else{
+                $productId_query .=  $AndQueryBuild.$product_id;
+            }
+
+        }
         $query = $this->db->table('cw_posts')
-            ->select('post_title, post_content, post_slug, post_status')
-            ->where('product_id', 1)
+            ->select('_id, post_title, post_content, post_slug, post_status')
+            ->where('product_id', $productId_query)
             ->get();
 
         $posts = $query->getResult();
@@ -22,37 +35,26 @@ class Posts_Management extends Model
         return $posts;
     }
 
-    public function getClientById($id)
+    public function getPostBySlug($id)
     {
 
 
-        $query = $this->db->table('user_master')
-            ->select('id, first_name, last_name, user_email, user_status, user_contact')
-            ->where('user_type', 4)
+        $query = $this->db->table('cw_posts')
+            ->select('_id, product_id, post_title, post_content, post_slug, post_status, post_image')
+            ->where('post_slug', $id)
             ->get();
 
-        $users = $query->getResult();
+        $post = $query->getResult();
 
-        foreach ($users as $user) {
-            $allproducts_query = $this->db->table('customer_profile')
-                ->select('user_products_ids')
-                ->where('user_id', $user->id)
-                ->get();
+        $products_query = $this->db->table('products')
+            ->select('product_name')
+            ->where('product_id', $post[0]->product_id)
+            ->get();
 
-            $all_products = $allproducts_query->getResult();
+        $data = $products_query->getResult();
+        $post[0]->product_name = array_column($data, 'product_name');
+        $post[0]->product_name = $post[0]->product_name[0];
 
-            $product_ids = explode('#', $all_products[0]->user_products_ids);
-            foreach ($product_ids as $key => $product_id) {
-                $products_query = $this->db->table('products')
-                    ->select('product_id, product_name')
-                    ->where('product_id', $product_id)
-                    ->get();
-
-                $user->product[$key] = $products_query->getResult();
-            }
-            
-        }
-
-        return $user;
+        return $post[0];
     }
 }

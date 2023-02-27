@@ -8,10 +8,22 @@ class Rm_Client extends BaseController
 {
     public function index()
     {
+        $session = session();
+
+        $data = $session->get('user');
+
+        $params = [
+            'user_type' => 4,
+            'product_id' => $data->profile->user_products_ids,
+        ];
+
         $ClientModel = new Client_Management();
-        $result['clients'] = $ClientModel->getClients();
+        $result['clients'] = $ClientModel->getClients($params);
 
         $arr = (array) $result;
+        // echo "<pre>";
+        // print_r($arr);
+        // exit();
 
         // Load the header view
         echo view('rm/header');
