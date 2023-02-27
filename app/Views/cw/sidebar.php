@@ -103,7 +103,7 @@
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>
             <li class="menu-item">
               <a
-                href="<?php echo base_url(); ?>/public/Rm_Support"
+                href="<?php echo base_url(); ?>/public/Cw_Support"
                 class="menu-link"
               >
                 <i class="menu-icon tf-icons bx bx-support"></i>
