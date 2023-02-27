@@ -37,7 +37,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <button title="chat" type="button" class="btn rounded-pill btn-secondary">
+                                    <button title="chat" type="button" onclick="location.href = '<?php echo base_url(); ?>/public/step1?id=<?= $client->id ?>';" class="btn rounded-pill btn-secondary">
                                         <span class="tf-icons bx bxs-chat"></span>&nbsp; Chat
                                     </button>
                                 </td>

@@ -37,6 +37,12 @@ $routes->get('/Rm_dashboard', 'Rm_Dashboard::index');
 $routes->get('/Rm_Client_List', 'Rm_Client::index');
 $routes->get('/Rm_Client_View', 'Rm_Client::view');
 $routes->get('/Rm_Post_List', 'Rm_Post::index');
+$routes->get('/Rm_Post_View', 'Rm_Post::view');
+$routes->get('/Rm_Post_SendTo', 'Rm_Post::SendTo');
+$routes->post('/Rm_SendPost', 'Rm_Post::Rm_SendPost');
+$routes->get('/step1', 'Rm_Chat::step1');
+$routes->get('/Rm_DirectChat', 'Rm_Chat::directChat');
+$routes->post('/Save_ChatMessage', 'Rm_Chat::Save_ChatMessage');
 
 /*
  * --------------------------------------------------------------------
