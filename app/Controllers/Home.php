@@ -6,8 +6,8 @@ use App\Models\AuthModel;
 
 class Home extends BaseController
 {
-	public function index()
-	{
+
+	public function checkSession(){
 		// Load the session library
         $session = session();
 
@@ -30,6 +30,10 @@ class Home extends BaseController
 			}
         }
 
+	}
+	public function index()
+	{
+		$this->checkSession();
 		$data['title'] = "Login";
 		return view('login');
 	}

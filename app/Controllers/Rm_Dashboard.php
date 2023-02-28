@@ -3,13 +3,16 @@
 namespace App\Controllers;
 
 use App\Models\RelationManager_Dashboard;
-use App\Controllers\Home;
+
 
 
 class Rm_Dashboard extends BaseController
 {
+
     public function index()
     {
+        $HomeController = new \App\Controllers\Home();
+        $HomeController->checkSession();
         // Load the session library
         $session = session();
 
@@ -17,9 +20,22 @@ class Rm_Dashboard extends BaseController
         if (!$session->get('user')) {
             // Redirect user to login controller
             return redirect()->to('../../public/login');
-        }
+        }else{
+            $data = $session->get('user');
 
-        $data = $session->get('user');
+            if($data->id !== 2 ){
+                if($data->user_type == 1){
+                    return redirect()->to('../../public/Rm_dashboard');
+    
+                }else if($data->user_type == 3){
+                    return redirect()->to('../../public/Rm_dashboard');
+    
+                }else if($data->user_type == 4){
+                    return redirect()->to('../../public/Rm_dashboard');
+    
+                }
+            }
+        }
 
         $params = [
             'user_type' => $data->user_type,
