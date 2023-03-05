@@ -63,6 +63,7 @@ $routes->post('/Delete_Ticket', 'Cw_Support::Delete_Ticket');
 
 //client starts here
 $routes->get('/Client_dashboard', 'Client_Dashboard::index');
+$routes->get('/Client_Rm_List', 'Client_Rm::index');
 
 
 

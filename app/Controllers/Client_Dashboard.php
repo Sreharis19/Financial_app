@@ -32,7 +32,6 @@ class Client_Dashboard extends BaseController
     
                 }else if($data->user_type == 4){
                     return redirect()->to('../../public/Client_dashboard');
-    
                 }
             }
         }

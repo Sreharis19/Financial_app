@@ -48,7 +48,6 @@ $("#admin_login_btn").click(function () {
                         setTimeout(function () {
                             window.location.href = "http://localhost/Financial_app/public/Client_dashboard";
                         }, 50);
-
                     }
                 }
                 else {

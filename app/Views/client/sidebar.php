@@ -90,13 +90,20 @@
              <li class="menu-item">
               <a href="<?php echo base_url(); ?>/public/Client_Rm_List" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                <div>Clients</div>
+                <div>Relationship Manager</div>
               </a>
             </li>
             
             <!-- Inventory & Content -->
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Inventory &amp; Content</span></li>
             <!-- Cards -->
+            <li class="menu-item">
+              <a href="<?php echo base_url(); ?>/public/Client_Product_List" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div data-i18n="Basic">Products</div>
+              </a>
+            </li>
+
             <li class="menu-item">
               <a href="<?php echo base_url(); ?>/public/Client_Post_List" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
@@ -161,7 +168,7 @@
                           </div>
                           <div class="flex-grow-1">
                             <span class="fw-semibold d-block">John Doe</span>
-                            <small class="text-muted">Relationship Manager</small>
+                            <small class="text-muted">Client</small>
                           </div>
                         </div>
                       </a>
@@ -171,7 +178,7 @@
                     </li>
                     <li>
                       <a class="dropdown-item" href="#">
-                        <i class="bx bx-user me-2"></i>
+                        <i class="bx bx-user me"></i>
                         <span class="align-middle">My Profile</span>
                       </a>
                     </li>
@@ -186,7 +193,7 @@
                     </li>
                     <li>
                       <a class="dropdown-item" href="<?php echo base_url(); ?>/public/logout">
-                        <i class="bx bx-power-off me-2"></i>
+                        <i class="bx bx-power-off me"></i>
                         <span class="align-middle">Log Out</span>
                       </a>
                     </li>

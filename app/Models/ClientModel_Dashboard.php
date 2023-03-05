@@ -31,7 +31,6 @@ class ClientModel_Dashboard extends Model
         
         $db = db_connect();
 
-
         $query1 = $db->query("SELECT (CHAR_LENGTH(user_products_ids) - CHAR_LENGTH( REPLACE ( user_products_ids,  $separator, "")) + 1) as total_optProducts 
         FROM user_profile
         WHERE user_products_ids =
@@ -40,6 +39,7 @@ class ClientModel_Dashboard extends Model
         FROM user_profile
         LEFT JOIN user_master ON user_profile._id = user_master.id
         WHERE user_master.user_type = $userType AND user_master.user_email = $userEmail)");
+
         $result1 = $query1->getRowArray();
 
         // $query1 = $db->query("SELECT COUNT(*) as total_clients FROM user_master WHERE user_type = $userType");
