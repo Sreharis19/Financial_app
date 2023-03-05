@@ -25,7 +25,7 @@ class Home extends BaseController
 				return redirect()->to('../../public/Rm_dashboard');
 
 			}else if($data->user_type == 4){
-				return redirect()->to('../../public/Rm_dashboard');
+				return redirect()->to('../../public/Client_dashboard');
 
 			}
         }

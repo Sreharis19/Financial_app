@@ -222,7 +222,8 @@ CREATE TABLE `user_master` (
 INSERT INTO `user_master` (`id`, `first_name`, `last_name`, `user_email`, `user_contact`, `user_password`, `user_type`, `user_token`, `user_status`, `user_created_date`, `user_last_updated _on`) VALUES
 (1, 'sreehari', 's', 'sreeharis19@gmail.com', '9497126857', '$2y$10$Higrot8KANwJDCZLCy.ehOSpyO0TXweP/H5SdBKia8LXHw/E1vENW', '2', '12345', '1', '2023-02-26 00:22:27', '2023-02-26 00:22:27'),
 (2, 'Kiran', 'r', 'kiran.r@mailinator.com', '8921995853', '$2y$10$LmTv2Qg4QgWNGTxvOFDddu2kiG1N7pseWMvk1aplgjJ.9xBpXZnsu', '4', '3456', '1', '2023-02-26 04:03:38', '2023-02-26 04:03:38'),
-(3, 'Amal', 'm', 'cw@gmail.com', '854216952', '$2y$10$Higrot8KANwJDCZLCy.ehOSpyO0TXweP/H5SdBKia8LXHw/E1vENW', '3', '8456', '1', '2023-02-27 05:08:43', '2023-02-27 05:08:43');
+(3, 'Amal', 'm', 'cw@gmail.com', '854216952', '$2y$10$Higrot8KANwJDCZLCy.ehOSpyO0TXweP/H5SdBKia8LXHw/E1vENW', '3', '8456', '1', '2023-02-27 05:08:43', '2023-02-27 05:08:43'),
+(4, 'Neha', 'S', 'client@gmail.com', '854216888', '$2y$16$81x5jTTM6zXJ6VW.qb5WIeW7WKmiqvALWgSrb5zIQWiEKIw26ih7S', '4', '8411', '1', '2023-02-27 05:08:43', '2023-02-27 05:08:43');
 
 -- --------------------------------------------------------
 
@@ -247,7 +248,8 @@ CREATE TABLE `user_profile` (
 INSERT INTO `user_profile` (`_id`, `user_id`, `user_products_ids`, `user_min_purchase_power`, `user_max_purchase_power`, `user_created_date`, `user_last_updated _on`) VALUES
 (1, 2, '1#2', '500', '2000', '2023-02-26 04:29:41', '2023-02-26 04:29:41'),
 (2, 1, '1#2', NULL, NULL, '2023-02-26 17:58:50', '2023-02-26 17:58:50'),
-(3, 3, '1#2', NULL, NULL, '2023-02-27 05:17:25', '2023-02-27 05:17:25');
+(3, 3, '1#2', NULL, NULL, '2023-02-27 05:17:25', '2023-02-27 05:17:25'),
+(4, 4, '1#2', '500', '2000', '2023-02-28 05:17:25', '2023-02-28 05:17:25');
 
 --
 -- Indexes for dumped tables

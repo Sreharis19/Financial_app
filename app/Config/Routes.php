@@ -60,6 +60,12 @@ $routes->get('/Cw_Support', 'Cw_Support::index');
 $routes->post('/Cw_SendSupport', 'Cw_Support::Save_Ticket');
 $routes->post('/Delete_Ticket', 'Cw_Support::Delete_Ticket');
 
+
+//client starts here
+$routes->get('/Client_dashboard', 'Client_Dashboard::index');
+
+
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
