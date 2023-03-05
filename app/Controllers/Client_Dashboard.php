@@ -30,8 +30,6 @@ class Client_Dashboard extends BaseController
                 }else if($data->user_type == 3){
                     return redirect()->to('../../public/Rm_dashboard');
     
-                }else if($data->user_type == 4){
-                    return redirect()->to('../../public/Client_dashboard');
                 }
             }
         }
@@ -43,7 +41,7 @@ class Client_Dashboard extends BaseController
             'user_email' => $data->user_email,
         ];
 
-        $RmModel = new ClientModel_Dashboard();
+        $ClientModel = new ClientModel_Dashboard();
         $result = $ClientModel->getStats($params);
 
         // Load the header view

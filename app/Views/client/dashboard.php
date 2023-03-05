@@ -16,7 +16,7 @@
                             </div>
                           </div>
                           <span class="fw-semibold d-block mb-4" style="align-items: center;">Total No: Of Opted Products</span>
-                          <h3 class="card-title mb-4" style="align-items: center;"><?= $total_optProducts ?></h3>
+                          <h3 class="card-title mb-4" style="align-items: center;"><?= $total_optedProducts ?></h3>
                         </div>
                       </div>
                     </div>

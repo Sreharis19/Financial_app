@@ -27,6 +27,7 @@ $("#admin_login_btn").click(function () {
 
                 $result = JSON.parse(result);
                 $result = $result[0];
+                console.log($result);
                 if ($result.id) {
 
                     if ($result.user_type == 1) {
