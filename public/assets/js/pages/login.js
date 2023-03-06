@@ -27,28 +27,28 @@ $("#admin_login_btn").click(function () {
 
                 $result = JSON.parse(result);
                 $result = $result[0];
+                console.log($result);
                 if ($result.id) {
 
                     if ($result.user_type == 1) {
                         setTimeout(function () {
                             window.location.href = "http://localhost/Financial_app/public/Admin_dashboard";
-                        }, 50);
+                        }, 20);
 
                     } else if ($result.user_type == 2) {
                         setTimeout(function () {
                             window.location.href = "http://localhost/Financial_app/public/Rm_dashboard";
-                        }, 50);
+                        }, 20);
 
                     } else if ($result.user_type == 3) {
                         setTimeout(function () {
                             window.location.href = "http://localhost/Financial_app/public/Cw_dashboard";
-                        }, 50);
+                        }, 20);
 
                     } else if ($result.user_type == 4) {
                         setTimeout(function () {
                             window.location.href = "http://localhost/Financial_app/public/Client_dashboard";
-                        }, 50);
-
+                        }, 20);
                     }
                 }
                 else {
