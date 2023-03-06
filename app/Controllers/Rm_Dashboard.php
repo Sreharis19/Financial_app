@@ -25,13 +25,13 @@ class Rm_Dashboard extends BaseController
 
             if($data->id !== 2 ){
                 if($data->user_type == 1){
-                    return redirect()->to('../../public/Rm_dashboard');
+                    return redirect()->to('../../public/Admin_dashboard');
     
                 }else if($data->user_type == 3){
-                    return redirect()->to('../../public/Rm_dashboard');
+                    return redirect()->to('../../public/Cw_dashboard');
     
                 }else if($data->user_type == 4){
-                    return redirect()->to('../../public/Rm_dashboard');
+                    return redirect()->to('../../public/Client_dashboard');
     
                 }
             }
