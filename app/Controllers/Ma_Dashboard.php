@@ -31,15 +31,15 @@ class Ma_Dashboard extends BaseController
         $result = $MasterAdminModel->getStats($params);
 
         // Load the header view
-        echo view('masteradmin/header');
+        echo view('ma/header');
 
         // Load the sidebar view
-        echo view('masteradmin/sidebar');
+        echo view('ma/sidebar');
 
         // Load the dashboard view
-        echo view('masteradmin/dashboard', $result);
+        echo view('ma/Ma_dashboard', $result);
 
         // Load the footer view
-        echo view('masteradmin/footer');
+        echo view('ma/footer');
     }
 }
