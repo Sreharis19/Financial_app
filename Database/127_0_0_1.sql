@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 06, 2023 at 04:20 PM
+-- Generation Time: Mar 06, 2023 at 05:27 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -111,7 +111,7 @@ INSERT INTO `cw_posts` (`_id`, `product_id`, `post_title`, `post_image`, `post_c
 CREATE TABLE `log` (
   `_id` int(11) NOT NULL,
   `activity` text NOT NULL,
-  `created_date` datetime NOT NULL
+  `created_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -195,7 +195,8 @@ CREATE TABLE `read_post` (
 
 INSERT INTO `read_post` (`_id`, `user_id`, `post_id`, `post_read_status`, `created_date`) VALUES
 (1, 1, 1, '1', '2023-03-05 16:17:12'),
-(2, 2, 1, '0', '2023-03-05 16:20:12');
+(2, 2, 1, '0', '2023-03-05 16:20:12'),
+(3, 2, 1, '0', '2023-03-06 16:26:21');
 
 -- --------------------------------------------------------
 
@@ -387,7 +388,7 @@ ALTER TABLE `product_category`
 -- AUTO_INCREMENT for table `read_post`
 --
 ALTER TABLE `read_post`
-  MODIFY `_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `rm_sentpost`
