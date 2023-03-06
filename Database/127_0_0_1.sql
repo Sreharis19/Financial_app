@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 27, 2023 at 03:55 PM
+-- Generation Time: Mar 06, 2023 at 04:20 PM
 -- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.12
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -178,6 +178,28 @@ INSERT INTO `product_category` (`category_id`, `category_name`, `category_image`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `read_post`
+--
+
+CREATE TABLE `read_post` (
+  `_id` int(20) NOT NULL,
+  `user_id` int(20) NOT NULL,
+  `post_id` int(20) NOT NULL,
+  `post_read_status` enum('0','1') CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '0 - Unread Post, 1 - Read Post',
+  `created_date` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `read_post`
+--
+
+INSERT INTO `read_post` (`_id`, `user_id`, `post_id`, `post_read_status`, `created_date`) VALUES
+(1, 1, 1, '1', '2023-03-05 16:17:12'),
+(2, 2, 1, '0', '2023-03-05 16:20:12');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `rm_sentpost`
 --
 
@@ -220,9 +242,9 @@ CREATE TABLE `user_master` (
 --
 
 INSERT INTO `user_master` (`id`, `first_name`, `last_name`, `user_email`, `user_contact`, `user_password`, `user_type`, `user_token`, `user_status`, `user_created_date`, `user_last_updated _on`) VALUES
-(1, 'sreehari', 's', 'sreeharis19@gmail.com', '9497126857', '$2y$10$Higrot8KANwJDCZLCy.ehOSpyO0TXweP/H5SdBKia8LXHw/E1vENW', '2', '12345', '1', '2023-02-26 00:22:27', '2023-02-26 00:22:27'),
-(2, 'Kiran', 'r', 'kiran.r@mailinator.com', '8921995853', '$2y$10$LmTv2Qg4QgWNGTxvOFDddu2kiG1N7pseWMvk1aplgjJ.9xBpXZnsu', '4', '3456', '1', '2023-02-26 04:03:38', '2023-02-26 04:03:38'),
-(3, 'Amal', 'm', 'cw@gmail.com', '854216952', '$2y$10$Higrot8KANwJDCZLCy.ehOSpyO0TXweP/H5SdBKia8LXHw/E1vENW', '3', '8456', '1', '2023-02-27 05:08:43', '2023-02-27 05:08:43'),
+(1, 'sreehari', 's', 'sreeharis19@gmail.com', '9497126857', '$2y$16$81x5jTTM6zXJ6VW.qb5WIeW7WKmiqvALWgSrb5zIQWiEKIw26ih7S', '4', '12345', '1', '2023-02-26 00:22:27', '2023-02-26 00:22:27'),
+(2, 'Kiran', 'r', 'kiran.r@mailinator.com', '8921995853', '$2y$16$81x5jTTM6zXJ6VW.qb5WIeW7WKmiqvALWgSrb5zIQWiEKIw26ih7S', '4', '3456', '1', '2023-02-26 04:03:38', '2023-02-26 04:03:38'),
+(3, 'Amal', 'm', 'cw@gmail.com', '854216952', '$2y$16$81x5jTTM6zXJ6VW.qb5WIeW7WKmiqvALWgSrb5zIQWiEKIw26ih7S', '3', '8456', '1', '2023-02-27 05:08:43', '2023-02-27 05:08:43'),
 (4, 'Neha', 'S', 'client@gmail.com', '854216888', '$2y$16$81x5jTTM6zXJ6VW.qb5WIeW7WKmiqvALWgSrb5zIQWiEKIw26ih7S', '4', '8411', '1', '2023-02-27 05:08:43', '2023-02-27 05:08:43');
 
 -- --------------------------------------------------------
@@ -246,10 +268,10 @@ CREATE TABLE `user_profile` (
 --
 
 INSERT INTO `user_profile` (`_id`, `user_id`, `user_products_ids`, `user_min_purchase_power`, `user_max_purchase_power`, `user_created_date`, `user_last_updated _on`) VALUES
-(1, 2, '1#2', '500', '2000', '2023-02-26 04:29:41', '2023-02-26 04:29:41'),
+(1, 2, '1#2#12#999', '500', '2000', '2023-02-26 04:29:41', '2023-02-26 04:29:41'),
 (2, 1, '1#2', NULL, NULL, '2023-02-26 17:58:50', '2023-02-26 17:58:50'),
 (3, 3, '1#2', NULL, NULL, '2023-02-27 05:17:25', '2023-02-27 05:17:25'),
-(4, 4, '1#2', '500', '2000', '2023-02-28 05:17:25', '2023-02-28 05:17:25');
+(4, 4, '1#2#12#311', '500', '2000', '2023-02-28 05:17:25', '2023-02-28 05:17:25');
 
 --
 -- Indexes for dumped tables
@@ -296,6 +318,12 @@ ALTER TABLE `products`
 --
 ALTER TABLE `product_category`
   ADD PRIMARY KEY (`category_id`);
+
+--
+-- Indexes for table `read_post`
+--
+ALTER TABLE `read_post`
+  ADD PRIMARY KEY (`_id`);
 
 --
 -- Indexes for table `rm_sentpost`
@@ -356,6 +384,12 @@ ALTER TABLE `product_category`
   MODIFY `category_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `read_post`
+--
+ALTER TABLE `read_post`
+  MODIFY `_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `rm_sentpost`
 --
 ALTER TABLE `rm_sentpost`
@@ -365,13 +399,13 @@ ALTER TABLE `rm_sentpost`
 -- AUTO_INCREMENT for table `user_master`
 --
 ALTER TABLE `user_master`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user_profile`
 --
 ALTER TABLE `user_profile`
-  MODIFY `_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
