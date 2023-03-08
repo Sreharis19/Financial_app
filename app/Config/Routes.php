@@ -64,7 +64,6 @@ $routes->get('/Admin_dashboard', 'Ma_Dashboard::index');
 //client starts here
 $routes->get('/Client_dashboard', 'Client_Dashboard::index');
 
-
 /*
  * --------------------------------------------------------------------
  * Additional Routing

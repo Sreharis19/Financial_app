@@ -46,7 +46,6 @@ class MasterAdmin_Dashboard extends Model
         $query4 = $db->query("SELECT COUNT(*) as archived_posts FROM cw_posts WHERE post_status = 0");
         $result4 = $query4->getRowArray();
 
-		
 		$query5 = $db->query("SELECT COUNT(*) as total_rm FROM user_master WHERE user_type = $userType");
         $result5 = $query5->getRowArray();
 
