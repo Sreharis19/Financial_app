@@ -59,7 +59,7 @@ $routes->get('/Cw_Post_Edit', 'Cw_Post::Update_Post_view');
 $routes->get('/Cw_Support', 'Cw_Support::index');
 $routes->post('/Cw_SendSupport', 'Cw_Support::Save_Ticket');
 $routes->post('/Delete_Ticket', 'Cw_Support::Delete_Ticket');
-
+$routes->get('/Admin_dashboard', 'Ma_Dashboard::index');
 
 //client starts here
 $routes->get('/Client_dashboard', 'Client_Dashboard::index');
