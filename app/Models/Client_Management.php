@@ -61,7 +61,7 @@ class Client_Management extends Model
 
         $query = $this->db->table('user_master')
             ->select('id, first_name, last_name, user_email, user_status, user_contact')
-            ->where('user_type', 4)
+            ->where('id', $id)
             ->get();
 
         $users = $query->getResult();
