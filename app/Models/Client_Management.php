@@ -66,10 +66,9 @@ class Client_Management extends Model
 
         $users = $query->getResult();
 
-        foreach ($users as $user) {
             $allproducts_query = $this->db->table('user_profile')
                 ->select('user_products_ids')
-                ->where('user_id', $user->id)
+                ->where('user_id', $users[0]->id)
                 ->get();
 
             $all_products = $allproducts_query->getResult();
@@ -81,11 +80,10 @@ class Client_Management extends Model
                     ->where('product_id', $product_id)
                     ->get();
 
-                $user->product[$key] = $products_query->getResult();
+                $users[0]->product[$key] = $products_query->getResult();
             }
-        }
 
-        return $user;
+        return $users[0];
     }
 
     public function addClient($data)
