@@ -43,7 +43,7 @@ class Client_Rm extends BaseController
         $id = $request->getGet('id');
 
         $RmModelObject = new Client_RM_Model();
-        $result['viewRm'] = $RmModelObject->searchRequiredRm($id);
+        $result['viewRm'] = $RmModelObject->getRmDetails($id);
 
         // Load the header view
         echo view('client/header');

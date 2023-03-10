@@ -36,27 +36,39 @@ class Client_RM_Model extends Model
             
             $productIds_list = explode('#', $user_allProductIds[0]->user_products_ids);
 
-            foreach ($productIds_list as $productId) {
+            foreach ($productIds_list as $key =>  $productId) {
                 $getProducts_query = $this->db->table('products')
                     ->select('product_name')
                     ->where('product_id', $productId)
-                    ->get();
+                    ->get();    
 
                 $data[] = $getProducts_query->getResult();
+
+
+                if (property_exists($user, 'products')) {
+                    $userProductNames = array_column($user->products, 'product_name');
+                    if (!(in_array($data[$key][0]->product_name, $userProductNames))) {
                 $user->products = array_column($data, 0, 'product_name');
 
-                foreach ($productIds_list as $item1) {
-                    if ($item1 == $productIds_list) {
-                        if (!in_array($users, $requiredArray)) array_push($requiredArray, $users);
                     }
+                } else {
+                    $user->products = array_column($data, 0, 'product_name');
                 }
             }
         }
-        return $users;
+        // Remove duplicates from product_name
+        $result = array_map(function ($user) {
+            $user->products = array_map(function ($product) {
+                return (object) ['product_name' => $product];
+            }, array_unique(array_column($user->products, 'product_name')));
+            return $user;
+        }, $users);
+
+        return $result;
     }
 
 
-    public function searchRequiredRm($id)
+    public function getRmDetails($id)
     {
 
         $query = $this->db->table('user_master')

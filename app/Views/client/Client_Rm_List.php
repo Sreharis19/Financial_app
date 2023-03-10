@@ -25,7 +25,14 @@
                                 <td><?= $key + 1 ?></td>
                                 <td><?= $rm->first_name ?></td>
                                 <td><?= $rm->user_email ?></td>
-                                <td><?php foreach ($rm->products as $product) : ?><?= $product->product_name ?><br><?php endforeach ?></td>
+                                <td><?php foreach ($rm->products as $key1 => $product) : ?>
+                                    <?php if ($key1 != count($rm->products) - 1) : ?>
+                                      <?= $product->product_name ?> , <br>
+                                      <?php else : ?>
+                                      <?= $product->product_name ?>
+                                      <?php endif; ?>
+                                      <?php endforeach ?>
+                                </td>
                                 <td>
                                     <div title="view" class="btn-group" role="group" aria-label="First group">
                                         <button type="button" onclick="location.href = '<?php echo base_url(); ?>/public/Client_Rm_View?id=<?= $rm->id ?>';" class="btn btn-outline-secondary">
