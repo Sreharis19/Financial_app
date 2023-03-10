@@ -27,7 +27,14 @@
                                 <td><?= $key + 1 ?></td>
                                 <td><?= $client->first_name ?></td>
                                 <td><?= $client->user_email ?></td>
-                                <td><?php foreach ($client->products as $product) : ?><?= $product->product_name ?>, <br><?php endforeach ?></td>
+                                <td><?php foreach ($client->products as $key3 => $product) : ?>
+                                    <?php if ($key3 != count($client->products) - 1) : ?>
+                                      <?= $product->product_name ?> , <br>
+                                      <?php else : ?>
+                                      <?= $product->product_name ?>
+                                      <?php endif; ?>
+                                      <?php endforeach ?>
+                                </td>
                                 <td><?php if ($client->user_status == 1) : ?> <?= "Active" ?> <?php else : ?> <?= "Blocked" ?> <?php endif; ?></td>
                                 <td>
                                     <div title="view" class="btn-group" role="group" aria-label="First group">

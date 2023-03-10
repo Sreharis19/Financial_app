@@ -37,22 +37,35 @@ class Client_Management extends Model
             $all_products = $allproducts_query->getResult();
 
             $product_ids = explode('#', $all_products[0]->user_products_ids);
-                foreach ($product_ids as $product_id) {
-                    $products_query = $this->db->table('products')
-                        ->select('product_name')
-                        ->where('product_id', $product_id)
-                        ->get();
+            foreach ($product_ids as $key => $product_id) {
+                $products_query = $this->db->table('products')
+                    ->select('product_name')
+                    ->where('product_id', $product_id)
+                    ->get();
 
-                    $data[] = $products_query->getResult();
-                    $user->products = array_column($data, 0, 'product_name');
-                    foreach ($product_ids as $item1) {
-                    if($item1 == $product_id){
-                        if( !in_array($users,$matchingArray)) array_push($matchingArray,$users);
+                $data[] = $products_query->getResult();
+
+                if (property_exists($user, 'products')) {
+
+                    $productNames = array_column($user->products, 'product_name');
+
+                    if (!(in_array($data[$key][0]->product_name, $productNames))) {
+                        $user->products = array_column($data, 0,  'product_name');
                     }
+                } else {
+                    $user->products = array_column($data, 0, 'product_name');
                 }
             }
         }
-        return $users;
+        // Remove duplicates from product_name
+        $result = array_map(function ($user) {
+            $user->products = array_map(function ($product) {
+                return (object) ['product_name' => $product];
+            }, array_unique(array_column($user->products, 'product_name')));
+            return $user;
+        }, $users);
+
+        return $result;
     }
 
     public function getClientById($id)
@@ -66,22 +79,22 @@ class Client_Management extends Model
 
         $users = $query->getResult();
 
-            $allproducts_query = $this->db->table('user_profile')
-                ->select('user_products_ids')
-                ->where('user_id', $users[0]->id)
+        $allproducts_query = $this->db->table('user_profile')
+            ->select('user_products_ids')
+            ->where('user_id', $users[0]->id)
+            ->get();
+
+        $all_products = $allproducts_query->getResult();
+
+        $product_ids = explode('#', $all_products[0]->user_products_ids);
+        foreach ($product_ids as $key => $product_id) {
+            $products_query = $this->db->table('products')
+                ->select('product_id, product_name')
+                ->where('product_id', $product_id)
                 ->get();
 
-            $all_products = $allproducts_query->getResult();
-
-            $product_ids = explode('#', $all_products[0]->user_products_ids);
-            foreach ($product_ids as $key => $product_id) {
-                $products_query = $this->db->table('products')
-                    ->select('product_id, product_name')
-                    ->where('product_id', $product_id)
-                    ->get();
-
-                $users[0]->product[$key] = $products_query->getResult();
-            }
+            $users[0]->product[$key] = $products_query->getResult();
+        }
 
         return $users[0];
     }
