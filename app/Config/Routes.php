@@ -59,7 +59,16 @@ $routes->get('/Cw_Post_Edit', 'Cw_Post::Update_Post_view');
 $routes->get('/Cw_Support', 'Cw_Support::index');
 $routes->post('/Cw_SendSupport', 'Cw_Support::Save_Ticket');
 $routes->post('/Delete_Ticket', 'Cw_Support::Delete_Ticket');
+
+//ma starts here
+
 $routes->get('/Admin_dashboard', 'Ma_Dashboard::index');
+$routes->get('/Ma_Client_List', 'Ma_Client::index');
+$routes->get('/Ma_Client_View', 'Ma_Client::view');
+$routes->get('/Ma_Client_Add', 'Ma_Client::Add');
+$routes->get('/Ma_Client_Edit', 'Ma_Client::edit');
+
+
 
 //client starts here
 $routes->get('/Client_dashboard', 'Client_Dashboard::index');

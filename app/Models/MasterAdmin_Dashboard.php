@@ -65,3 +65,4 @@ class MasterAdmin_Dashboard extends Model
         return $data;
     }
 }
+
