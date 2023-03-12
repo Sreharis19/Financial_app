@@ -65,6 +65,9 @@ $routes->post('/Delete_Ticket', 'Cw_Support::Delete_Ticket');
 $routes->get('/Client_dashboard', 'Client_Dashboard::index');
 $routes->get('/Client_Rm_List', 'Client_Rm::index');
 $routes->get('/Client_Rm_View', 'Client_Rm::view');
+$routes->get('/Client_Product_List', 'Client_Product::index');
+$routes->get('/Client_Post_List', 'Client_Post::index');
+$routes->get('/Client_Post_View', 'Client_Post::view');
 
 
 /*
