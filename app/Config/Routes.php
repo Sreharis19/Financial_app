@@ -72,6 +72,8 @@ $routes->get('/Ma_Client_Edit', 'Ma_Client::edit');
 
 //client starts here
 $routes->get('/Client_dashboard', 'Client_Dashboard::index');
+$routes->get('/Client_Rm_List', 'Client_Rm::index');
+$routes->get('/Client_Rm_View', 'Client_Rm::view');
 
 /*
  * --------------------------------------------------------------------
