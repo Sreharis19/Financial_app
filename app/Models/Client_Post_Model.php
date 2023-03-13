@@ -5,7 +5,7 @@ namespace App\Models;
 use CodeIgniter\Model;
 
 
-class Rm_SendPost extends Model
+class Client_Post_Model extends Model
 {
     protected $table = 'rm_sentpost';
     protected $primaryKey = 'id';

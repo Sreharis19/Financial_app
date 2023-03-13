@@ -18,7 +18,7 @@
                             <th>Product Image</th>
                             <th>Status</th>
                             <th>Show Interest</th>
-                            <th></th>
+                            <!-- <th></th> -->
                         </tr>
                     </thead>
                     <tbody>
@@ -36,17 +36,20 @@
                                 <td><?php if ($product->product_status == 1) : ?> <?= "Active" ?> <?php else : ?> <?= "Blocked" ?> <?php endif; ?></td>
 
                                 <td>
-                                    <div class="container mt-3">
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault<?= $key ?>" <?php if (array_key_exists($productList->selected_products, $productList->product_name)) : ?> value="on" ?> <?php else : ?> <?= "off" ?>
+                                            <div class="container mt-3">
+
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" role="switch"
+                                                        id="flexSwitchCheckDefault">
+                                                    <label class="form-check-label" for="flexSwitchCheckDefault">Select</label>
 
 
-                                            <label class="form-check-label" for="flexSwitchCheckDefault"></label>
-                                        <?php endif; ?>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td hidden><?= $product->product_image ?></td>
+                                                </div>
+
+
+                                            </div>
+                                        </td>
+                                <!-- <td hidden><?= $product->product_image ?></td> -->
                             </tr>
                         <?php endforeach ?>
 
