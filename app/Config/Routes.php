@@ -67,7 +67,10 @@ $routes->get('/Ma_Client_List', 'Ma_Client::index');
 $routes->get('/Ma_Client_View', 'Ma_Client::view');
 $routes->get('/Ma_Client_Add', 'Ma_Client::Add');
 $routes->get('/Ma_Client_Edit', 'Ma_Client::edit');
-
+$routes->get('/Ma_Rm_List', 'Ma_RelationManager::index');
+$routes->get('/Ma_Rm_View', 'Ma_RelationManager::view');
+$routes->get('/Ma_Rm_Add', 'Ma_RelationManager::Add');
+$routes->get('/Ma_Rm_Edit', 'Ma_RelationManager::edit');
 
 
 //client starts here

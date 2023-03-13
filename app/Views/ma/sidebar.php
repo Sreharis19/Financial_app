@@ -92,7 +92,7 @@
               </a>
             </li>
             <li class="menu-item">
-                        <a href="index.html" class="menu-link">
+                        <a href="<?php echo base_url(); ?>/public/Ma_Rm_List" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-dock-top"></i>
                             <div>Relationship Manager</div>
                         </a>
