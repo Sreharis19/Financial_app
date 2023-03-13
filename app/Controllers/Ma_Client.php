@@ -29,7 +29,7 @@ class Ma_Client extends BaseController
         echo view('ma/header');
 
         // Load the sidebar view
-        echo view('ma/clientsidebar');
+        echo view('ma/sidebar', );
 
         // Load the dashboard view
         echo view('ma/Ma_Client_List', $arr);
@@ -53,7 +53,7 @@ class Ma_Client extends BaseController
         echo view('ma/header');
 
         // Load the sidebar view
-        echo view('ma/clientsidebar');
+        echo view('ma/sidebar');
 
         // Load the dashboard view
         echo view('ma/Ma_Client_View', $result);
@@ -77,7 +77,7 @@ class Ma_Client extends BaseController
         echo view('ma/header');
 
         // Load the sidebar view
-        echo view('ma/clientsidebar');
+        echo view('ma/sidebar');
 
         // Load the dashboard view
         echo view('ma/Ma_Client_Edit', $result);
@@ -101,7 +101,7 @@ class Ma_Client extends BaseController
         echo view('ma/header');
 
         // Load the sidebar view
-        echo view('ma/clientsidebar');
+        echo view('ma/sidebar');
 
         // Load the dashboard view
         echo view('ma/Ma_Client_Add', $result);
