@@ -11,10 +11,16 @@ class Ma_Client extends BaseController
         $session = session();
 
         $data = $session->get('user');
+      
 
         $params = [
             'user_type' => 4,
             'product_id' => $data->profile->user_products_ids,
+        ];
+
+              
+       $data = [
+        'heading' => 'Client List',
         ];
 
         $MaModel = new Ma_Management();
@@ -29,7 +35,8 @@ class Ma_Client extends BaseController
         echo view('ma/header');
 
         // Load the sidebar view
-        echo view('ma/clientsidebar');
+        echo view('ma/sidebar', $data);
+       // echo view('ma/sidebar?head='+$header);
 
         // Load the dashboard view
         echo view('ma/Ma_Client_List', $arr);
@@ -46,6 +53,11 @@ class Ma_Client extends BaseController
         $request = \Config\Services::request();
         $id = $request->getGet('id');
 
+        $data = [
+            'heading' => 'Client Management',
+            ];
+    
+
         $MaModel = new Ma_Management();
         $result['client'] = $MaModel->getClientById($id);
 
@@ -53,7 +65,7 @@ class Ma_Client extends BaseController
         echo view('ma/header');
 
         // Load the sidebar view
-        echo view('ma/clientsidebar');
+        echo view('ma/sidebar', $data);
 
         // Load the dashboard view
         echo view('ma/Ma_Client_View', $result);
@@ -73,11 +85,16 @@ class Ma_Client extends BaseController
         $MaModel = new Ma_Management();
         $result['client'] = $MaModel->getClientById($id);
 
+        $data = [
+            'heading' => 'Client Management',
+            ];
+    
+
         // Load the header view
         echo view('ma/header');
 
         // Load the sidebar view
-        echo view('ma/clientsidebar');
+        echo view('ma/sidebar', $data);
 
         // Load the dashboard view
         echo view('ma/Ma_Client_Edit', $result);
@@ -97,11 +114,16 @@ class Ma_Client extends BaseController
         $MaModel = new Ma_Management();
         $result['client'] = $MaModel->getClientById($id);
 
+        $data = [
+            'heading' => 'Client Management',
+            ];
+    
+
         // Load the header view
         echo view('ma/header');
 
         // Load the sidebar view
-        echo view('ma/clientsidebar');
+        echo view('ma/sidebar',$data);
 
         // Load the dashboard view
         echo view('ma/Ma_Client_Add', $result);
@@ -110,5 +132,5 @@ class Ma_Client extends BaseController
         echo view('ma/footer');
     }
 }
-
+?>
 
