@@ -6,7 +6,7 @@
                         <div style="float: right;">
                             <button type="button" onclick="location.href = '<?php echo base_url(); ?>/public/Ma_Client_List';" class="btn btn-primary">
                                 <span class="tf-icons bx bx-arrow-back">
-                                </span>&nbsp; Back To Client List
+                                </span>&nbsp; Back To Client Lists
                             </button>
                         </div>
                         <br>
