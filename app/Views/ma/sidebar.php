@@ -1,4 +1,5 @@
  <!-- Layout wrapper -->
+ <!--?php $header = $_GET["head"]; ?-->
  <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
         <!-- Menu -->
@@ -163,7 +164,7 @@
 
             <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
               <div class="align-items-center">
-                  <h5 style="align-items: center;">ADMIN DASHBOARD</h5>
+                  <h5 style="align-items: center;"><?= $heading ?></h5>
                 </div>
               <ul class="navbar-nav flex-row align-items-center ms-auto">
                 <!-- User -->

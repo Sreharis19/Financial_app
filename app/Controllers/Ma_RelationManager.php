@@ -17,6 +17,11 @@ class Ma_RelationManager extends BaseController
             'product_id' => $data->profile->user_products_ids,
         ];
 
+        $data = [
+            'heading' => 'Relationship Manager List',
+            ];
+    
+
         $MaModel = new Ma_RmManagement();
         $result['clients'] = $MaModel->getRms($params);
 
@@ -26,7 +31,7 @@ class Ma_RelationManager extends BaseController
         echo view('ma/header');
 
         // Load the sidebar view
-        echo view('ma/sidebar');
+        echo view('ma/sidebar', $data);
 
         // Load the dashboard view
         echo view('ma/Ma_Rm_List', $arr);
@@ -46,11 +51,16 @@ class Ma_RelationManager extends BaseController
         $MaModel = new Ma_RmManagement();
         $result['client'] = $MaModel->getRmById($id);
 
+        $data = [
+            'heading' => 'RM Management',
+            ];
+    
+
         // Load the header view
         echo view('ma/header');
 
         // Load the sidebar view
-        echo view('ma/sidebar');
+        echo view('ma/sidebar', $data);
 
         // Load the dashboard view
         echo view('ma/Ma_Rm_View', $result);
@@ -70,11 +80,16 @@ class Ma_RelationManager extends BaseController
         $MaModel = new Ma_RmManagement();
         $result['client'] = $MaModel->getRmById($id);
 
+
+        $data = [
+            'heading' => 'RM Management',
+            ];
+    
         // Load the header view
         echo view('ma/header');
 
         // Load the sidebar view
-        echo view('ma/sidebar');
+        echo view('ma/sidebar', $data);
 
         // Load the dashboard view
         echo view('ma/Ma_Rm_Edit', $result);
@@ -94,11 +109,16 @@ class Ma_RelationManager extends BaseController
         $MaModel = new Ma_RmManagement();
         $result['client'] = $MaModel->getRmById($id);
 
+        $data = [
+            'heading' => 'RM Management',
+            ];
+    
+
         // Load the header view
         echo view('ma/header');
 
         // Load the sidebar view
-        echo view('ma/sidebar');
+        echo view('ma/sidebar', $data);
 
         // Load the dashboard view
         echo view('ma/Ma_Rm_Add', $result);
