@@ -72,6 +72,10 @@ $routes->get('/Ma_Rm_View', 'Ma_RelationManager::view');
 $routes->get('/Ma_Rm_Add', 'Ma_RelationManager::Add');
 $routes->get('/Ma_Rm_Edit', 'Ma_RelationManager::edit');
 
+$routes->get('/Ma_Cw_List', 'Ma_ContentWriter::index');
+$routes->get('/Ma_Cw_View', 'Ma_ContentWriter::view');
+$routes->get('/Ma_Cw_Add', 'Ma_ContentWriter::Add');
+$routes->get('/Ma_Cw_Edit', 'Ma_ContentWriter::edit');
 
 //client starts here
 $routes->get('/Client_dashboard', 'Client_Dashboard::index');
