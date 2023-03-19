@@ -38,7 +38,7 @@
                                 <td>
                                     <div class="container mt-3">
                                         <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault<?= $key ?>" <?php if (array_key_exists($productList->selected_products, $productList->product_name)) : ?> value="on" ?> <?php else : ?> <?= "off" ?>
+                                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault<?= $key ?>" <?php if (array_key_exists($product->selected_products, $productList)) : ?> value="on" ?> <?php else : ?> <?= "off" ?>
 
 
                                             <label class="form-check-label" for="flexSwitchCheckDefault"></label>

@@ -15,17 +15,9 @@ class Client_Product extends BaseController
         $id = $data->id;      
 
         $ProductModelObject = new Client_Product_Model();
-        $result['productList'] = $ProductModelObject->getProductList($id);
+        $productListResult['productList'] = $ProductModelObject->getProductList($id);
 
-        $stringItem = $result['product_name'];
-        print_r($stringItem);
-        exit;
-
-        $arr = (array) $result;
-        
-       // print_r($arr);
-
-        
+        $productArray = (array) $productListResult;
 
         // Load the header view
         echo view('client/header');
@@ -34,7 +26,7 @@ class Client_Product extends BaseController
         echo view('client/sidebar');
 
         // Load the dashboard view
-        echo view('client/Client_Product_List', $arr);
+        echo view('client/Client_Product_List', $productArray);
 
         // Load the footer view
         echo view('client/footer');
