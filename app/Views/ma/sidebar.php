@@ -116,7 +116,7 @@
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="cards-basic.html" class="menu-link">
+                        <a href="<?php echo base_url(); ?>/public/Ma_Product_List" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-collection"></i>
                             <div data-i18n="Basic">Products</div>
                         </a>
