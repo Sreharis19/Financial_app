@@ -77,6 +77,8 @@ $routes->get('/Ma_Cw_View', 'Ma_ContentWriter::view');
 $routes->get('/Ma_Cw_Add', 'Ma_ContentWriter::Add');
 $routes->get('/Ma_Cw_Edit', 'Ma_ContentWriter::edit');
 
+$routes->get('/Ma_pc_List', 'Ma_ProductCategory::index');
+
 //client starts here
 $routes->get('/Client_dashboard', 'Client_Dashboard::index');
 $routes->get('/Client_Rm_List', 'Client_Rm::index');

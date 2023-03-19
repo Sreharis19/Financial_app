@@ -21,7 +21,7 @@
                         <tr>
                             <th>Sl No.</th>
                             <th>Name</th>
-                            <th>Email</th>
+                            <th>email</th>
                             <th>Status</th>
                             <th>Action</th>
                         
@@ -33,7 +33,7 @@
                                 <td><?= $key + 1 ?></td>
                                 <td><?= $client->first_name ?></td>
                                 <td><?= $client->user_email ?></td>
-                                <td><?php foreach ($client->products as $product) : ?><?= $product->product_name ?>, <br><?php endforeach ?></td>
+                               
                                 <td><?php if ($client->user_status == 1) : ?> <?= "Active" ?> <?php else : ?> <?= "Blocked" ?> <?php endif; ?></td>
                                 
                                     <td>
