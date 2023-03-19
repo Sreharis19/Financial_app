@@ -2,9 +2,9 @@
 
 namespace App\Controllers;
 
-use App\Models\Ma_Management;
+use App\Models\Ma_CwManagement;
 
-class Ma_Client extends BaseController
+class Ma_ContentWriter extends BaseController
 {
     public function index()
     {
@@ -20,11 +20,11 @@ class Ma_Client extends BaseController
 
               
        $data = [
-        'heading' => 'Client List',
+        'heading' => 'Content Writer List',
         ];
 
-        $MaModel = new Ma_Management();
-        $result['clients'] = $MaModel->getClients($params);
+        $MaModel = new Ma_CwManagement();
+        $result['clients'] = $MaModel->getCws($params);
 
         $arr = (array) $result;
         // echo "<pre>";
@@ -39,7 +39,7 @@ class Ma_Client extends BaseController
        // echo view('ma/sidebar?head='+$header);
 
         // Load the dashboard view
-        echo view('ma/Ma_Client_List', $arr);
+        echo view('ma/Ma_Cw_List', $arr);
 
         // Load the footer view
         echo view('ma/footer');
@@ -54,12 +54,12 @@ class Ma_Client extends BaseController
         $id = $request->getGet('id');
 
         $data = [
-            'heading' => 'Client Management',
+            'heading' => 'Content Writer Management',
             ];
     
 
-        $MaModel = new Ma_Management();
-        $result['client'] = $MaModel->getClientById($id);
+        $MaModel = new Ma_CwManagement();
+        $result['client'] = $MaModel->getCwById($id);
 
         // Load the header view
         echo view('ma/header');
@@ -68,7 +68,7 @@ class Ma_Client extends BaseController
         echo view('ma/sidebar', $data);
 
         // Load the dashboard view
-        echo view('ma/Ma_Client_View', $result);
+        echo view('ma/Ma_Cw_View', $result);
 
         // Load the footer view
         echo view('ma/footer');
@@ -82,11 +82,11 @@ class Ma_Client extends BaseController
         $request = \Config\Services::request();
         $id = $request->getGet('id');
 
-        $MaModel = new Ma_Management();
-        $result['client'] = $MaModel->getClientById($id);
+        $MaModel = new Ma_CwManagement();
+        $result['client'] = $MaModel->getCwById($id);
 
         $data = [
-            'heading' => 'Client Management',
+            'heading' => 'Content Writer Management',
             ];
     
 
@@ -97,7 +97,7 @@ class Ma_Client extends BaseController
         echo view('ma/sidebar', $data);
 
         // Load the dashboard view
-        echo view('ma/Ma_Client_Edit', $result);
+        echo view('ma/Ma_Cw_Edit', $result);
 
         // Load the footer view
         echo view('ma/footer');
@@ -111,11 +111,11 @@ class Ma_Client extends BaseController
         $request = \Config\Services::request();
         $id = $request->getGet('id');
 
-        $MaModel = new Ma_Management();
-        $result['client'] = $MaModel->getClientById($id);
+        $MaModel = new Ma_CwManagement();
+        $result['client'] = $MaModel->getCwById($id);
 
         $data = [
-            'heading' => 'Client Management',
+            'heading' => 'Content Writer Management',
             ];
     
 
@@ -126,7 +126,7 @@ class Ma_Client extends BaseController
         echo view('ma/sidebar',$data);
 
         // Load the dashboard view
-        echo view('ma/Ma_Client_Add', $result);
+        echo view('ma/Ma_Cw_Add', $result);
 
         // Load the footer view
         echo view('ma/footer');
