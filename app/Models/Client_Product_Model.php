@@ -21,20 +21,20 @@ class Client_Product_Model extends Model
             ->get();
 
         $user_allProductIds = $get_UserProductIds_query->getResult();
-       
+
         //Split the IDs by # and get Product Names
 
         $individual_productIds_list = preg_split($pattern, $user_allProductIds[0]->user_products_ids);
 
-          //Get all products from Products table
-          $db = db_connect();
-    
-          $builder = $db->table('products');
-          $builder->select('products.product_name, product_category.category_name, products.product_image, products.product_status');
-          $builder->join('product_category', 'products.product_category_id = product_category.category_id', 'left');
-  
-          $query = $builder->get();
-          $allProducts = $query->getResult();
+        //Get all products from Products table
+        $db = db_connect();
+
+        $builder = $db->table('products');
+        $builder->select('products.product_id, products.product_name, product_category.category_name, products.product_image, products.product_status');
+        $builder->join('product_category', 'products.product_category_id = product_category.category_id', 'left');
+
+        $query = $builder->get();
+        $allProducts = $query->getResult();
 
 
         //foreach ($allproducts_array as &$subarray) {
@@ -45,27 +45,19 @@ class Client_Product_Model extends Model
                 ->get();
 
             $product_names[] = $getProductNames_query->getResult();
-
         }
 
-            //Check if the user has selected any product from the list of all products and then add selected products in the array
-          
-            foreach ($product_names as $key => $products ) {
-                foreach ($allProducts as $row) {
-                    
-                    if ($row->product_name == $products[0]->selected_products) {
-                        $row->selected_products = 'Matched';
-                        $row->current_product = $products[0]->selected_products;
-                    } else {
-                        $row->selected_products = 'Not Matched';
-                        $row->current_product = $products[0]->selected_products;
-                    }
-                }
+        //Check if the user has selected any product from the list of all products and then add selected products in the array
+        foreach ($allProducts as $key => $row) {
+            $matched = false;
+            foreach ($product_names as $products) {
+              if ($row->product_name == $products[0]->selected_products) {
+                $matched = true;
+                break;
+              }
             }
-
-            echo "<pre>";
-            print_r($allProducts);
-        exit;
+            $allProducts[$key]->selected_products = ($matched ? "matched" : "not matched");
+          }
         return $allProducts;
     }
 }
