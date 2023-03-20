@@ -76,6 +76,9 @@ $routes->get('/Ma_Cw_List', 'Ma_ContentWriter::index');
 $routes->get('/Ma_Cw_View', 'Ma_ContentWriter::view');
 $routes->get('/Ma_Cw_Add', 'Ma_ContentWriter::Add');
 $routes->get('/Ma_Cw_Edit', 'Ma_ContentWriter::edit');
+$routes->get('/Ma_pc_List', 'Ma_ProductCategory::index');
+$routes->get('/Ma_pc_Add', 'Ma_ProductCategory::Add');
+$routes->get('/Ma_pc_Edit', 'Ma_ProductCategory::Edit');
 
 $routes->get('/Ma_Product_List', 'Ma_Products::index');
 
