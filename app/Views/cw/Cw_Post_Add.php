@@ -37,6 +37,22 @@
                                                 </select>
                                             </div>
                                         </div>
+
+                                        
+                                        <div class="mb-3 row">
+                                            <label for="first_name" class="col-md-3 col-form-label">Minimum Investment Amount :</label>
+                                            <div class="col-md-06">
+                                                <input class="form-control" type="number" id="min" />
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3 row">
+                                            <label for="first_name" class="col-md-3 col-form-label">Maximum Investment Amount :</label>
+                                            <div class="col-md-06">
+                                                <input class="form-control" type="number" id="max" />
+                                            </div>
+                                        </div>
+
                                         <div class="mb-3 row">
                                             <label for="pc_image" class="form-label">Content Image :</label>
                                             <div class="col-md-07">
@@ -49,6 +65,7 @@
                                            <textarea cols="100" rows="18"></textarea>
                                             </div>
                                         </div>
+
                                         <br>
                                         <br>
                                         <div style="float: right;">
