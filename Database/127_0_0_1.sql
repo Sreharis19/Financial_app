@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 06, 2023 at 05:27 PM
+-- Generation Time: Mar 11, 2023 at 12:24 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -152,7 +152,8 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`product_id`, `product_category_id`, `product_name`, `product_image`, `product_amount`, `product_max_quantity`, `product_description`, `product_benefits`, `product_status`, `product_created_on`, `product_updated_on`) VALUES
 (1, 1, 'Treasury Bond', '', 5000, 50000, 'treasury bond', 'test', '1', '2023-02-26 04:32:10', '2023-02-26 04:32:10'),
-(2, 2, 'Equity', '', 100, 100000, 'Intrade', 'Intrade', '1', '2023-02-26 04:32:55', '2023-02-26 04:32:55');
+(2, 2, 'Stocks', '', 100, 100000, 'Intrade', 'Intrade', '1', '2023-02-26 04:32:55', '2023-02-26 04:32:55'),
+(3, 3, 'Tax Saver MF', '', 100, 1000, 'mutual funds', 'tax saving', '1', '2023-03-10 17:18:14', '2023-03-10 17:18:14');
 
 -- --------------------------------------------------------
 
@@ -172,8 +173,9 @@ CREATE TABLE `product_category` (
 --
 
 INSERT INTO `product_category` (`category_id`, `category_name`, `category_image`, `category_status`) VALUES
-(1, 'Equity', 'Treasury Bond', '1'),
-(2, 'Bond', NULL, '1');
+(1, 'Bond', 'Treasury Bond', '1'),
+(2, 'Equity', NULL, '1'),
+(3, 'Mutual Fund', NULL, '1');
 
 -- --------------------------------------------------------
 
@@ -243,10 +245,12 @@ CREATE TABLE `user_master` (
 --
 
 INSERT INTO `user_master` (`id`, `first_name`, `last_name`, `user_email`, `user_contact`, `user_password`, `user_type`, `user_token`, `user_status`, `user_created_date`, `user_last_updated _on`) VALUES
-(1, 'sreehari', 's', 'sreeharis19@gmail.com', '9497126857', '$2y$16$81x5jTTM6zXJ6VW.qb5WIeW7WKmiqvALWgSrb5zIQWiEKIw26ih7S', '4', '12345', '1', '2023-02-26 00:22:27', '2023-02-26 00:22:27'),
+(1, 'sreehari', 's', 'sreeharis19@gmail.com', '9497126857', '$2y$16$81x5jTTM6zXJ6VW.qb5WIeW7WKmiqvALWgSrb5zIQWiEKIw26ih7S', '2', '12345', '1', '2023-02-26 00:22:27', '2023-02-26 00:22:27'),
 (2, 'Kiran', 'r', 'kiran.r@mailinator.com', '8921995853', '$2y$16$81x5jTTM6zXJ6VW.qb5WIeW7WKmiqvALWgSrb5zIQWiEKIw26ih7S', '4', '3456', '1', '2023-02-26 04:03:38', '2023-02-26 04:03:38'),
 (3, 'Amal', 'm', 'cw@gmail.com', '854216952', '$2y$16$81x5jTTM6zXJ6VW.qb5WIeW7WKmiqvALWgSrb5zIQWiEKIw26ih7S', '3', '8456', '1', '2023-02-27 05:08:43', '2023-02-27 05:08:43'),
-(4, 'Neha', 'S', 'client@gmail.com', '854216888', '$2y$16$81x5jTTM6zXJ6VW.qb5WIeW7WKmiqvALWgSrb5zIQWiEKIw26ih7S', '4', '8411', '1', '2023-02-27 05:08:43', '2023-02-27 05:08:43');
+(4, 'Neha', 'S', 'client@gmail.com', '854216888', '$2y$16$81x5jTTM6zXJ6VW.qb5WIeW7WKmiqvALWgSrb5zIQWiEKIw26ih7S', '4', '8411', '1', '2023-02-27 05:08:43', '2023-02-27 05:08:43'),
+(5, 'Jack', 'Thomas', 'jack11@gmail.com', '07589767718', '$2y$16$PEx2WRUkdYGG6.Vblz0Kee381TiA5tC0Sr/yCSxXB59jDSk68.ujy', '2', '4332', '1', '2023-03-08 01:44:10', '2023-03-08 01:44:10'),
+(7, 'Merry', 'Watson', 'merry@gmail.com', '07689771221', '$2y$16$81x5jTTM6zXJ6VW.qb5WIeW7WKmiqvALWgSrb5zIQWiEKIw26ih7S', '2', '5322', '1', '2023-03-09 23:23:48', '2023-03-09 23:23:48');
 
 -- --------------------------------------------------------
 
@@ -269,10 +273,12 @@ CREATE TABLE `user_profile` (
 --
 
 INSERT INTO `user_profile` (`_id`, `user_id`, `user_products_ids`, `user_min_purchase_power`, `user_max_purchase_power`, `user_created_date`, `user_last_updated _on`) VALUES
-(1, 2, '1#2#12#999', '500', '2000', '2023-02-26 04:29:41', '2023-02-26 04:29:41'),
-(2, 1, '1#2', NULL, NULL, '2023-02-26 17:58:50', '2023-02-26 17:58:50'),
+(1, 2, '1#2', '500', '2000', '2023-02-26 04:29:41', '2023-02-26 04:29:41'),
+(2, 1, '1', NULL, NULL, '2023-02-26 17:58:50', '2023-02-26 17:58:50'),
 (3, 3, '1#2', NULL, NULL, '2023-02-27 05:17:25', '2023-02-27 05:17:25'),
-(4, 4, '1#2#12#311', '500', '2000', '2023-02-28 05:17:25', '2023-02-28 05:17:25');
+(4, 4, '1#3', '500', '2000', '2023-02-28 05:17:25', '2023-02-28 05:17:25'),
+(5, 5, '2', '500', '1000', '2023-03-08 01:55:24', '2023-03-08 01:55:24'),
+(6, 7, '1#3', '100', '10000', '2023-03-10 00:07:00', '2023-03-10 00:07:00');
 
 --
 -- Indexes for dumped tables
@@ -376,13 +382,13 @@ ALTER TABLE `log`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `product_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `product_category`
 --
 ALTER TABLE `product_category`
-  MODIFY `category_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `category_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `read_post`
@@ -400,13 +406,13 @@ ALTER TABLE `rm_sentpost`
 -- AUTO_INCREMENT for table `user_master`
 --
 ALTER TABLE `user_master`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user_profile`
 --
 ALTER TABLE `user_profile`
-  MODIFY `_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
