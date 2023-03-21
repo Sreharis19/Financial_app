@@ -83,6 +83,8 @@ $routes->get('/Ma_pc_Edit', 'Ma_ProductCategory::Edit');
 $routes->get('/Ma_Product_List', 'Ma_Products::index');
 
 
+$routes->get('/Ma_pc_List', 'Ma_ProductCategory::index');
+
 //client starts here
 $routes->get('/Client_dashboard', 'Client_Dashboard::index');
 $routes->get('/Client_Rm_List', 'Client_Rm::index');
