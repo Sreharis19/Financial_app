@@ -13,7 +13,7 @@ class Client_Support extends BaseController
         $data = $session->get('user');
 
         $clientSupportModel = new Client_Support_Model();
-        $getUser['userDetails'] = $clientSupportModel->getList($data->id);
+        $getUser['userDetails'] = $clientSupportModel->getQueryList($data->id);
 
         $getUserArray = (array) $getUser;
     
@@ -38,24 +38,24 @@ class Client_Support extends BaseController
         $params = $this->request->getPost();
 
         $clientSupportModel = new Client_Support_Model();
-        $result = $clientSupportModel->CreateTicket($data->id, $params['message']);
+        $queryResult = $clientSupportModel->CreateTicket($data->id, $params['message']);
 
-        echo json_encode(array($result));
+        echo json_encode(array($queryResult));
 		exit(0);
     
         
     }
 
-    public function Delete_Ticket()
+    public function Delete_Query()
     {
         $session = session();
 
         $params = $this->request->getPost();
 
         $clientSupportModel = new Client_Support_Model();
-        $client_deleteTicket = $clientSupportModel->DeleteTicket($params['id']);
+        $queryResult = $clientSupportModel->DeleteTicket($params['id']);
 
-        echo json_encode(array($client_deleteTicket));
+        echo json_encode(array($queryResult));
 		exit(0);
     
         

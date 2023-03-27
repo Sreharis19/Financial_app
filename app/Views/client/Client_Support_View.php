@@ -6,7 +6,7 @@
     <div style="float: right;">
         <button type="button" data-bs-toggle="modal" data-bs-target="#blockorunblock" class="btn btn-primary">
             <span class="tf-icons bx bx-reply">
-            </span>&nbsp; Raise New Ticket
+            </span>&nbsp; Raise a New Ticket
         </button>
     </div>
         <br>
@@ -30,7 +30,7 @@
                             <td><?= $userDetail->admin_reply ?></td>
                             <td>
                                 <div title="delete" class="btn-group" role="group" aria-label="First group">
-                                    <button type="button" onclick="deleteTicket('<?= $userDetail->id ?>')" class="btn btn-outline-secondary">
+                                    <button type="button" onclick="deleteQuery('<?= $userDetail->id ?>')" class="btn btn-outline-secondary">
                                         <i title="delete" class="tf-icons bx bxs-message-alt-x"></i>
                                     </button>
                                 </div>
@@ -51,7 +51,7 @@
                         <hr>
 
                         <div class="modal-body">
-                            <h7 class="modal-title" id="backDropModalTitle">Your Message</h7>
+                            <h7 class="modal-title" id="backDropModalTitle">Type a Message</h7>
                             <br>
                             <textarea cols="55" id="message" rows="18"></textarea>
                         </div>

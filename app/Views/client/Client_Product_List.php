@@ -1,9 +1,7 @@
 <body>
-
     <!-- Content wrapper -->
     <div class="content-wrapper">
         <!-- Content -->
-
         <div class="container-xxl flex-grow-1 container-p-y">
             <br>
             <br>
@@ -20,13 +18,10 @@
                             <th>Show Interest</th>
                             <th></th>
                         </tr>
+                        
                     </thead>
                     <tbody>
-
-
                         <?php
-
-
                         foreach ($productList as $key => $product) : ?>
                             <tr>
                                 <td><?= $key + 1 ?></td>
@@ -34,13 +29,10 @@
                                 <td><?= $product->category_name ?></td>
                                 <td><?= $product->product_image ?></td>
                                 <td><?php if ($product->product_status == 1) : ?> <?= "Active" ?> <?php else : ?> <?= "Blocked" ?> <?php endif; ?></td>
-
                                 <td>
                                     <div class="container mt-3">
                                         <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault<?= $key ?>" <?php if (array_key_exists($product->selected_products, $productList)) : ?> value="on" ?> <?php else : ?> <?= "off" ?>
-
-
+                                            <input class="form-check-input" type="checkbox" role="switch" id="<?= $product->product_id ?>" <?php if ($product->selected_products === "matched") : ?> checked ?> <?php else : ?>
                                             <label class="form-check-label" for="flexSwitchCheckDefault"></label>
                                         <?php endif; ?>
                                         </div>

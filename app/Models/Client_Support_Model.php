@@ -3,22 +3,20 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
-
-
 class Client_Support_Model extends Model
 {
     protected $table = 'contact_us';
 
     protected $allowedFields = ['id', 'user_id', 'comments', 'admin_reply', 'created_on', 'replied_on'];
 
-    public function getList($client_id)
+    public function getQueryList($client_id)
     {
-    $getUser_query = $this->db->table('contact_us')
+    $getQueryList_query = $this->db->table('contact_us')
             ->select('id, user_id, comments, admin_reply, created_on, replied_on')
             ->where('user_id', $client_id)
             ->get();
 
-        $userId = $getUser_query->getResult();
+        $userId = $getQueryList_query->getResult();
         return $userId;
     }
 
@@ -31,17 +29,17 @@ class Client_Support_Model extends Model
 		$this->insert($data);
 		$this->insertID();
 
-        $createTicketResult['message'] = "ticket raised successfully";
-        $createTicketResult['status'] = true;
-        return $createTicketResult;
+        $queryResult['message'] = "Your query is registered successfully. Our team will look into this shortly";
+        $queryResult['status'] = true;
+        return $queryResult;
     }
 
     public function DeleteTicket($client_id){
         
         $this->delete($client_id);
 
-        $deleteTicketResult['message'] = "ticket deleted successfully";
-        $deleteTicketResult['status'] = true;
-        return $deleteTicketResult;
+        $queryResult['message'] = "Your query is deleted successfully";
+        $queryResult['status'] = true;
+        return $queryResult;
     }
 }
