@@ -28,9 +28,15 @@ class BaseController extends Controller
 	 */
 	protected $helpers = ['html', 'url', 'form'];
 
+	protected $imageLib;
+
 	/**
 	 * Constructor.
 	 */
+	public function __construct()
+    {
+        $this->imageLib = \Config\Services::image();
+    }
 	public function initController(\CodeIgniter\HTTP\RequestInterface $request, \CodeIgniter\HTTP\ResponseInterface $response, \Psr\Log\LoggerInterface $logger)
 	{
 		// Do Not Edit This Line

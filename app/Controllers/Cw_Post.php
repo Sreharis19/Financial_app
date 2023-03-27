@@ -40,7 +40,7 @@ class Cw_Post extends BaseController
         $PostModel = new Posts_Management();
         $result['post'] = $PostModel->getPostBySlug($id);
 
-         // echo"<pre>";
+        // echo"<pre>";
         // print_r($post[0]);exit();
         // Load the header view
         echo view('cw/header');
@@ -55,8 +55,52 @@ class Cw_Post extends BaseController
         echo view('cw/footer');
     }
 
+
+
     public function Create_Post_view()
     {
+
+        $image = $this->request->getFile('image');
+        
+        // Check if image exists
+        if ($image->isValid() && ! $image->hasMoved())
+        {
+            // Set image name and path
+            $imageName = $image->getName();
+            $imageExt = $image->getExtension();
+            $imageNewName = date('YmdHis') . '.' . $imageExt;
+            $imagePath = WRITEPATH . 'uploads/' . $imageNewName;
+            
+            // Compress image
+            $config['image_library'] = 'gd2';
+            $config['source_image'] = $image->getPathname();
+            $config['create_thumb'] = FALSE;
+            $config['maintain_ratio'] = TRUE;
+            $config['width'] = 800;
+            $config['height'] = 600;
+            $this->imageLib->withConfig($config);
+            $this->imageLib->resize($config['width'], $config['height']);
+            
+            // Move image to destination folder
+            $image->move(WRITEPATH . 'uploads/', $imageNewName);
+            
+            // Return success response
+            $response = [
+                'success' => true,
+                'message' => 'Image uploaded successfully'
+            ];
+            return $this->response->setJSON($response);
+        }
+        else
+        {
+            // Return error response
+            $response = [
+                'success' => false,
+                'message' => 'Error uploading image'
+            ];
+            return $this->response->setJSON($response);
+        }
+
         echo view('cw/header');
 
         // Load the sidebar view
@@ -82,5 +126,4 @@ class Cw_Post extends BaseController
         // Load the footer view
         echo view('cw/footer');
     }
-
 }
