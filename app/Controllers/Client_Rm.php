@@ -17,18 +17,20 @@ class Client_Rm extends BaseController
         ];
 
         $RmModelObject = new Client_RM_Model();
-        $result['rmList'] = $RmModelObject->getRmList($params);
+        $rmListResult['rmList'] = $RmModelObject->getRmList($params);
 
-        $arr = (array) $result;
+        $resultArray = (array) $rmListResult;
+
+        $headParam = ['heading' => 'CLIENT RELATIONSHIP MANAGER LIST',];
 
         // Load the header view
         echo view('client/header');
 
         // Load the sidebar view
-        echo view('client/sidebar');
+        echo view('client/sidebar', $headParam);
 
         // Load the dashboard view
-        echo view('client/Client_Rm_List', $arr);
+        echo view('client/Client_Rm_List', $resultArray);
 
         // Load the footer view
         echo view('client/footer');
@@ -43,16 +45,18 @@ class Client_Rm extends BaseController
         $id = $request->getGet('id');
 
         $RmModelObject = new Client_RM_Model();
-        $result['viewRm'] = $RmModelObject->getRmDetails($id);
+        $viewRmResult['viewRm'] = $RmModelObject->getRmDetails($id);
+
+        $headParam = ['heading' => 'CLIENT RELATIONSHIP MANAGER',];
 
         // Load the header view
         echo view('client/header');
 
         // Load the sidebar view
-        echo view('client/sidebar');
+        echo view('client/sidebar', $headParam);
 
         // Load the dashboard view
-        echo view('client/Client_Rm_View', $result);
+        echo view('client/Client_Rm_View', $viewRmResult);
 
         // Load the footer view
         echo view('client/footer');

@@ -47,7 +47,7 @@
                                         <div class="mb-3 row">
                                             <label for="pc_image" class="form-label">Content :</label>
                                             <div class="col-md-07">
-                                           <textarea disabled cols="100" rows="18"> <?= $post->post_content ?></textarea>
+                                           <textarea disabled cols="87" rows="18"> <?= $post->post_content ?></textarea>
                                             </div>
                                         </div>
                                         <br>
