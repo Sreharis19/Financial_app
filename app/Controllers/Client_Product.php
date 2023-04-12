@@ -19,11 +19,13 @@ class Client_Product extends BaseController
 
         $productArray = (array) $productListResult;
 
+        $headParam = ['heading' => 'CLIENT PRODUCT MANAGEMENT',];
+
         // Load the header view
         echo view('client/header');
 
         // Load the sidebar view
-        echo view('client/sidebar');
+        echo view('client/sidebar', $headParam);
 
         // Load the dashboard view
         echo view('client/Client_Product_List', $productArray);

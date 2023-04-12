@@ -3,25 +3,48 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use LengthException;
 
-
-class Rm_SendPost extends Model
+class Client_Post_Model extends Model
 {
-    protected $table = 'rm_sentpost';
+    protected $table = 'cw_posts';
     protected $primaryKey = 'id';
 	protected $allowedFields = ['post_id', 'user_id'];
 
-    public function getPosts()
+    public function getPosts($data)
 
     {
+       // Set the product ID from your $data parameter
+        
+       $product_ids = explode('#', $data['product_id']);
+       $length = count($product_ids);
+
+       // Create an array to store the matching data
+       $matching_data = array();
+       
+        // Get all data from the cw_post table
+
         $query = $this->db->table('cw_posts')
-            ->select('_id, post_title, post_content, post_slug, post_status')
-            ->where('product_id', 1)
+            ->select('_id, product_id, post_title, post_content, post_slug, post_status')
+            ->where('post_status', '1')
             ->get();
 
-        $posts = $query->getResult();
+        $activePosts = $query->getResult();
 
-        return $posts;
+        // Iterate through the results and find the matching data
+
+        foreach ($activePosts as $key => $activePost) {
+            if ($key<$length && ($activePost->product_id == $product_ids[$key])) {
+
+                // Add the matching data to the array
+                $matching_data[] = $activePost;
+            }
+        }
+
+        return $matching_data;
+        // echo("<pre>");
+        // print_r($matching_data);
+        // exit;
     }
 
     public function getPostBySlug($id)
@@ -45,29 +68,29 @@ class Rm_SendPost extends Model
         return $post[0];
     }
 
-    public function rm_sentpost($data){
+    // public function rm_sentpost($data){
 
-    }
+    // }
 
-    public function sendPost($data)
-	{
-        $query = $this->db->table('cw_posts')
-            ->select('_id')
-            ->where('post_slug', $data['product_id'])
-            ->get();
+    // public function sendPost($data)
+	// {
+    //     $query = $this->db->table('cw_posts')
+    //         ->select('_id')
+    //         ->where('post_slug', $data['product_id'])
+    //         ->get();
 
-        $post = $query->getResult();
+    //     $post = $query->getResult();
 
-        foreach ($data['users'] as $value) {
-            $data = [
-                'post_id' => $post[0]->_id,
-                'user_id' => $value
-            ];
-            $this->insert($data);
-	        $this->insertID();
-        }
-        $result['message'] = "post sent successfully";
-        $result['status'] = true;
-        return $result;
-	}
+    //     foreach ($data['users'] as $value) {
+    //         $data = [
+    //             'post_id' => $post[0]->_id,
+    //             'user_id' => $value
+    //         ];
+    //         $this->insert($data);
+	//         $this->insertID();
+    //     }
+    //     $result['message'] = "post sent successfully";
+    //     $result['status'] = true;
+    //     return $result;
+	// }
 }

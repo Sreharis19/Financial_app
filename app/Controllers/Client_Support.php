@@ -17,11 +17,13 @@ class Client_Support extends BaseController
 
         $getUserArray = (array) $getUser;
     
+        $headParam = ['heading' => 'CLIENT SUPPORT MANAGEMENT',];
+    
         // Load the header view
         echo view('client/header');
 
         // Load the sidebar view
-        echo view('client/sidebar');
+        echo view('client/sidebar', $headParam);
 
         // Load the dashboard view
         echo view('client/Client_Support_View', $getUserArray);

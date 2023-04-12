@@ -42,16 +42,18 @@ class Client_Dashboard extends BaseController
         ];
 
         $ClientModel = new ClientModel_Dashboard();
-        $result = $ClientModel->getStats($params);
+        $resultArray = $ClientModel->getStats($params);
+
+        $headParam = ['heading' => 'CLIENT DASHBOARD VIEW',];
 
         // Load the header view
         echo view('client/header');
 
         // Load the sidebar view
-        echo view('client/sidebar');
+        echo view('client/sidebar', $headParam);
 
         // Load the dashboard view
-        echo view('client/dashboard', $result);
+        echo view('client/dashboard', $resultArray);
 
         // Load the footer view
         echo view('client/footer');

@@ -15,8 +15,6 @@ class Client_RM_Model extends Model
     {
         $userType = $data['user_type'];
 
-        $requiredArray = [];
-
         $productIds_list = explode('#', $data['product_id']);
 
         $query = $this->db->table('user_master')
