@@ -41,10 +41,16 @@ function appendMessage(name, img, side, text) {
     var clientid = document.getElementById('clientid').value;
     var postid = document.getElementById('postid').value;
 
+    console.log(rmid);
+
+    console.log(clientid);
+
+    console.log(postid);
+
     $.ajax({
-        'url': 'http://localhost/Financial_app/public/Save_ChatMessage',
+        'url': 'http://localhost/Financial_app/public/Save_ChatMessageForClient',
         'type': 'POST',
-        'data': { 'postid': postid, 'clientid': clientid, 'rmid': rmid, message: text },
+        'data': { 'postid': postid, 'clientid': clientid, 'RmdataId': rmid, message: text },
         success: function (result) {
             $result = JSON.parse(result);
         }

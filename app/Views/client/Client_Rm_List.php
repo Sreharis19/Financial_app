@@ -23,7 +23,7 @@
                         <?php foreach ($rmList as $key => $rm) : ?>
                             <tr>
                                 <td><?= $key + 1 ?></td>
-                                <td><?= $rm->first_name ?></td>
+                                <td><?= $rm->first_name  . ' ' . $rm->last_name?></td>
                                 <td><?= $rm->user_email ?></td>
                                 <td><?php foreach ($rm->products as $key1 => $product) : ?>
                                     <?php if ($key1 != count($rm->products) - 1) : ?>

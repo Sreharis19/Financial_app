@@ -12,12 +12,16 @@ class Client_Product extends BaseController
 
         $data = $session->get('user');
 
-        $id = $data->id;      
+        $id = $data->id;
 
         $ProductModelObject = new Client_Product_Model();
         $productListResult['productList'] = $ProductModelObject->getProductList($id);
-
+        $productListResult['user'] = $id;
         $productArray = (array) $productListResult;
+
+        // echo("<pre>");
+        // print_r($productArray);
+        // exit;
 
         $headParam = ['heading' => 'CLIENT PRODUCT MANAGEMENT',];
 
@@ -34,4 +38,14 @@ class Client_Product extends BaseController
         echo view('client/footer');
     }
 
+    public function changeSelect()
+    {
+        $data = $this->request->getPost();
+
+        $ProductModelObject = new Client_Product_Model();
+        $result = $ProductModelObject->changeUserSelected($data);
+        echo json_encode(array($result));
+		exit(0);
+        
+    }
 }

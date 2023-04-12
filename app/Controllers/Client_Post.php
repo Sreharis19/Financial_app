@@ -59,49 +59,4 @@ class Client_Post extends BaseController
         echo view('client/footer');
     }
 
-    // public function sendTo()
-    // {
-    //     $session = session();
-
-    //     $request = \Config\Services::request();
-    //     $id = $request->getGet('id');
-
-    //     $data = $session->get('user');
-
-    //     $params = [
-    //         'user_type' => 2,
-    //         'product_id' => $data->profile->user_products_ids,
-    //     ];
-
-    //     //Updated for Client
-
-    //     $RmModel = new Client_RM_Model();
-    //     $result['rmList'] = $RmModel->getClients($params);
-
-    //     $PostModel = new Posts_Management();
-    //     $result['post'] = $PostModel->getPostBySlug($id);
-
-    //     $arr = (array) $result;
-
-       
-    //     // Load the header view
-    //     echo view('client/header');
-
-    //     // Load the sidebar view
-    //     echo view('client/sidebar');
-
-    //     // Load the dashboard view
-    //     echo view('client/Client_Chat', $result);
-
-    //     // Load the footer view
-    //     echo view('client/footer');
-    // }
-
-    // public function Rm_SendPost(){
-    //     $data = $this->request->getPost();
-    //     $PostModel = new Rm_SendPost();
-    //     $result= $PostModel->sendPost($data);
-    //     echo json_encode(array($result));
-	// 	exit(0);
-    // }
 }
