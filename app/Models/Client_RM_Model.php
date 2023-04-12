@@ -9,7 +9,7 @@ class Client_RM_Model extends Model
 {
     protected $table = 'user_master';
 
-    protected $requiredFields = ['name', 'email', 'phone', 'address'];
+  //  protected $requiredFields = ['name', 'email', 'phone', 'address'];
 
     public function getRmList($data)
     {
@@ -18,7 +18,7 @@ class Client_RM_Model extends Model
         $productIds_list = explode('#', $data['product_id']);
 
         $query = $this->db->table('user_master')
-            ->select('id, first_name, user_email, user_status')
+            ->select('id, first_name, last_name, user_email, user_status')
             ->where('user_type', $userType)
             ->get();
 

@@ -53,9 +53,9 @@
                                         <br>
                                         <br>
                                         <div style="float: right;">
-                                            <button type="button" title="Send Message"
-                                                onclick="location.href = '<?php echo base_url(); ?>/public/Client_Chat?id=<?= $post->post_slug ?>';" class="btn btn-dark">
-                                                <span class="tf-icons bx bx-save">
+                                            <button type="button" title="Chat"
+                                                onclick="location.href = '<?php echo base_url(); ?>/public/client_selectRm?id=<?= $post->_id ?>';" class="btn rounded-pill btn-secondary">
+                                                <span class="tf-icons bx bxs-chat">
                                                 </span>&nbsp; Chat With Relationship Manager
                                             </button>
                                         </div>

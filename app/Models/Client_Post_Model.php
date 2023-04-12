@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
-use LengthException;
+
 
 class Client_Post_Model extends Model
 {
@@ -17,7 +17,6 @@ class Client_Post_Model extends Model
        // Set the product ID from your $data parameter
         
        $product_ids = explode('#', $data['product_id']);
-       $length = count($product_ids);
 
        // Create an array to store the matching data
        $matching_data = array();
@@ -33,11 +32,13 @@ class Client_Post_Model extends Model
 
         // Iterate through the results and find the matching data
 
-        foreach ($activePosts as $key => $activePost) {
-            if ($key<$length && ($activePost->product_id == $product_ids[$key])) {
+        foreach ($activePosts as $activePost) {
+            foreach ($product_ids as $productID) {
+                if ($activePost->product_id == $productID) {
 
-                // Add the matching data to the array
-                $matching_data[] = $activePost;
+                    // Add the matching data to the array
+                    $matching_data[] = $activePost;
+                }
             }
         }
 
@@ -68,29 +69,4 @@ class Client_Post_Model extends Model
         return $post[0];
     }
 
-    // public function rm_sentpost($data){
-
-    // }
-
-    // public function sendPost($data)
-	// {
-    //     $query = $this->db->table('cw_posts')
-    //         ->select('_id')
-    //         ->where('post_slug', $data['product_id'])
-    //         ->get();
-
-    //     $post = $query->getResult();
-
-    //     foreach ($data['users'] as $value) {
-    //         $data = [
-    //             'post_id' => $post[0]->_id,
-    //             'user_id' => $value
-    //         ];
-    //         $this->insert($data);
-	//         $this->insertID();
-    //     }
-    //     $result['message'] = "post sent successfully";
-    //     $result['status'] = true;
-    //     return $result;
-	// }
 }
