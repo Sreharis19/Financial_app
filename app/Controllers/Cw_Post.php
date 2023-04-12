@@ -12,12 +12,13 @@ class Cw_Post extends BaseController
         $session = session();
 
         $data = $session->get('user');
+        $status = $session->get('status');
 
         $PostModel = new Posts_Management();
         $result['posts'] = $PostModel->getPostsForCw($data->id);
+        $result['status'] = $status;
 
         $arr = (array) $result;
-
         // Load the header view
         echo view('cw/header');
 
@@ -60,46 +61,9 @@ class Cw_Post extends BaseController
     public function Create_Post_view()
     {
 
-        $image = $this->request->getFile('image');
-        
-        // Check if image exists
-        if ($image->isValid() && ! $image->hasMoved())
-        {
-            // Set image name and path
-            $imageName = $image->getName();
-            $imageExt = $image->getExtension();
-            $imageNewName = date('YmdHis') . '.' . $imageExt;
-            $imagePath = WRITEPATH . 'uploads/' . $imageNewName;
-            
-            // Compress image
-            $config['image_library'] = 'gd2';
-            $config['source_image'] = $image->getPathname();
-            $config['create_thumb'] = FALSE;
-            $config['maintain_ratio'] = TRUE;
-            $config['width'] = 800;
-            $config['height'] = 600;
-            $this->imageLib->withConfig($config);
-            $this->imageLib->resize($config['width'], $config['height']);
-            
-            // Move image to destination folder
-            $image->move(WRITEPATH . 'uploads/', $imageNewName);
-            
-            // Return success response
-            $response = [
-                'success' => true,
-                'message' => 'Image uploaded successfully'
-            ];
-            return $this->response->setJSON($response);
-        }
-        else
-        {
-            // Return error response
-            $response = [
-                'success' => false,
-                'message' => 'Error uploading image'
-            ];
-            return $this->response->setJSON($response);
-        }
+
+        $PostModel = new Posts_Management();
+        $result = $PostModel->getCountryAndPostList();
 
         echo view('cw/header');
 
@@ -107,10 +71,56 @@ class Cw_Post extends BaseController
         echo view('cw/sidebar');
 
         // Load the dashboard view
-        echo view('cw/Cw_Post_Add');
+        echo view('cw/Cw_Post_Add', $result);
 
         // Load the footer view
         echo view('cw/footer');
+    }
+
+    public function Add_Post()
+    {
+        $image = $this->request->getFile('image');
+
+        $data = $this->request->getPost();
+
+        $session = session();
+
+        $user = $session->get('user');
+
+        // Check if image exists
+        if ($image) {
+            // Set image name and path
+            $imageName = $image->getName();
+            $imageExt = $image->getExtension();
+            $imageNewName = date('YmdHis') . '.' . $imageExt;
+
+            // Move image to destination folder
+            $image->move(ROOTPATH.'public/assets/uploads/post', $imageNewName);
+
+            // Return success response
+            $response = [
+                'success' => true,
+                'message' => 'Image uploaded successfully'
+            ];
+
+            $params = [
+                'product_id' => $data['category'],
+                'post_title' => $data['post_title'],
+                'post_region' => $data['region'],
+                'post_image' => $imageNewName,
+                'post_content' => $data['content'],
+                'min_purchase_amount' => $data['min'],
+                'max_purchase_amount' => $data['max'],
+                'created_by' => $user->id,
+                'post_slug' => date('YmdHis'),
+                'post_status' => 0,
+            ];
+
+            $PostModel = new Posts_Management();
+            $result = $PostModel->createPost($params);
+
+            return redirect()->to('/public/Cw_Post_List')->with('status', 1);
+        } 
     }
 
     public function Update_Post_view()

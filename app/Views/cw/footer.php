@@ -56,9 +56,9 @@
   <script src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.colVis.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
 
-  
-<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
   <script src="<?php echo base_url(); ?>/public/assets/js/pages/Cwsupport.js"></script>
 
@@ -72,11 +72,17 @@
       table.buttons().container()
         .appendTo('#datatable_wrapper .col-md-6:eq(0)');
 
-        var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+      var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
         removeItemButton: true,
         searchResultLimit: 5,
         renderChoiceLimit: 5
       });
+
+      var status = document.getElementById('status').value;
+      console.log('status', status)
+      if (status == 1) {
+        alert("New Post Created Successfully");
+      }
     });
   </script>
   <!-- endbuild -->

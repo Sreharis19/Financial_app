@@ -56,6 +56,7 @@ $routes->get('/Cw_Post_List', 'Cw_Post::index');
 $routes->get('/Cw_Post_View', 'Cw_Post::view');
 $routes->get('/Cw_Add_Post', 'Cw_Post::Create_Post_view');
 $routes->get('/Cw_Post_Edit', 'Cw_Post::Update_Post_view');
+$routes->post('/Add_Post', 'Cw_Post::Add_Post');
 $routes->get('/Cw_Support', 'Cw_Support::index');
 $routes->post('/Cw_SendSupport', 'Cw_Support::Save_Ticket');
 $routes->post('/Delete_Ticket', 'Cw_Support::Delete_Ticket');

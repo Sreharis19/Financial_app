@@ -8,6 +8,7 @@ use CodeIgniter\Model;
 class Posts_Management extends Model
 {
     protected $table = 'cw_posts';
+    protected $allowedFields = ['product_id', 'post_title', 'post_image', 'post_content', 'post_region', 'min_purchase_amount', 'max_purchase_amount', 'created_by', 'post_slug', 'post_status'];
 
     public function getPosts($data)
     {
@@ -18,12 +19,11 @@ class Posts_Management extends Model
 
         foreach ($product_ids as $key => $product_id) {
 
-            if($key == 0){
+            if ($key == 0) {
                 $productId_query .= $product_id;
-            }else{
-                $productId_query .=  $AndQueryBuild.$product_id;
+            } else {
+                $productId_query .=  $AndQueryBuild . $product_id;
             }
-
         }
         $query = $this->db->table('cw_posts')
             ->select('_id, post_title, post_content, post_slug, post_status')
@@ -70,11 +70,28 @@ class Posts_Management extends Model
         return $post[0];
     }
 
-    public function createPost(){
+    public function getCountryAndPostList()
+    {
 
+        $query = $this->db->table('products')
+            ->select('product_id, product_name')
+            ->get();
+        $result['category'] = $query->getResult();
+
+        $query = $this->db->table('countries')
+            ->select('id, name')
+            ->get();
+        $result['country'] = $query->getResult();
+        return $result;
     }
 
-    public function updatePost(){
-        
+    public function createPost($data)
+    {
+        $this->insert($data);
+        return $this->insertID();
+    }
+
+    public function updatePost()
+    {
     }
 }

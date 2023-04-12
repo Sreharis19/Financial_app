@@ -1,5 +1,8 @@
 <IfModule authz_core_module>
     Require all denied
+    # Increase upload size limit
+php_value upload_max_filesize 64M
+php_value post_max_size 64M
 </IfModule>
 <IfModule !authz_core_module>
     Deny from all
