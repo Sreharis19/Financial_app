@@ -111,12 +111,6 @@
               </div>
               <div class="mb-3">
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="remember-me", name="remember-me" value="1"/>
-                  <label class="form-check-label" for="remember-me"> Remember Me </label>
-                </div>
-              </div>
-              <div class="mb-3">
-                <div class="form-check">
                   <label class="form-check-label" for="userroles"> User Type </label>
                   <div class="btn-group" role="group" id="userroles">
                     <input type="radio" class="btn-check" value="4" name="btnradio" id="btnradio1" autocomplete="off" />
