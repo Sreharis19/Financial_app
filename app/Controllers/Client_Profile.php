@@ -39,7 +39,7 @@ class Client_Profile extends BaseController
                 echo view('ma/sidebar', $headParam);
         
                 // Load the dashboard view
-                echo view('ma/Client_Profile_View', $profileArray);
+                echo view('dashboard/Client_Profile_View', $profileArray);
         
                 // Load the footer view
                 echo view('ma/footer');
@@ -52,7 +52,7 @@ class Client_Profile extends BaseController
                 echo view('rm/sidebar', $headParam);
         
                 // Load the dashboard view
-                echo view('rm/Client_Profile_View', $profileArray);
+                echo view('dashboard/Client_Profile_View', $profileArray);
         
                 // Load the footer view
                 echo view('rm/footer');
