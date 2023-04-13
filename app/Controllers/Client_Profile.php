@@ -28,16 +28,64 @@ class Client_Profile extends BaseController
 
         $headParam = ['heading' => 'CLIENT PROFILE MANAGEMENT',];
 
-        // Load the header view
-        echo view('client/header');
+        // Check if user is not logged in
+        if ($session->get('user')) {
 
-        // Load the sidebar view
-        echo view('client/sidebar', $headParam);
+			if($data->user_type == 1){
+				// Load the header view
+                echo view('ma/header');
 
-        // Load the dashboard view
-        echo view('client/Client_Profile_View', $profileArray);
+                // Load the sidebar view
+                echo view('ma/sidebar', $headParam);
+        
+                // Load the dashboard view
+                echo view('ma/Client_Profile_View', $profileArray);
+        
+                // Load the footer view
+                echo view('ma/footer');
 
-        // Load the footer view
-        echo view('client/footer');
+			}else if($data->user_type == 2){
+				// Load the header view
+                echo view('rm/header');
+
+                // Load the sidebar view
+                echo view('rm/sidebar', $headParam);
+        
+                // Load the dashboard view
+                echo view('rm/Client_Profile_View', $profileArray);
+        
+                // Load the footer view
+                echo view('rm/footer');
+
+			}else if($data->user_type == 3){
+				 // Load the header view
+                 echo view('cw/header');
+
+                 // Load the sidebar view
+                 echo view('cw/sidebar', $headParam);
+         
+                 // Load the dashboard view
+                 echo view('client/Client_Profile_View', $profileArray);
+         
+                 // Load the footer view
+                 echo view('cw/footer');
+
+			}else if($data->user_type == 4){
+				 // Load the header view
+                 echo view('client/header');
+
+                 // Load the sidebar view
+                 echo view('client/sidebar', $headParam);
+         
+                 // Load the dashboard view
+                 echo view('client/Client_Profile_View', $profileArray);
+         
+                 // Load the footer view
+                 echo view('client/footer');
+
+			}
+        }
+
+       
     }
 }

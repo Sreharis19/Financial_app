@@ -170,8 +170,8 @@
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#">
-                        <i class="bx bx-user me-2"></i>
+                    <a class="dropdown-item" href="<?php echo base_url(); ?>/public/Client_Profile_View">
+                        <i class="bx bx-user me"></i>
                         <span class="align-middle">My Profile</span>
                       </a>
                     </li>
