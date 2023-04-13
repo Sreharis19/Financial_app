@@ -86,6 +86,11 @@ $routes->get('/Ma_Product_List', 'Ma_Products::index');
 
 $routes->get('/Ma_pc_List', 'Ma_ProductCategory::index');
 
+
+$routes->post('/CreateAccount', 'Ma_Client::CreateAccount');
+$routes->post('/Ma_Client_List', 'Ma_Client::update');
+
+
 //client starts here
 $routes->get('/Client_dashboard', 'Client_Dashboard::index');
 $routes->get('/Client_Rm_List', 'Client_Rm::index');
