@@ -23,7 +23,12 @@ class Client_Product extends BaseController
         // print_r($productArray);
         // exit;
 
-        $headParam = ['heading' => 'CLIENT PRODUCT MANAGEMENT',];
+        $headParam = [
+        'heading' => 'PRODUCT LIST',
+        'username'=> $data->first_name,
+        'user_type'=> $data->user_type,
+        'user_image'=> $data->profile->image,
+        ];
 
         // Load the header view
         echo view('client/header');

@@ -20,7 +20,12 @@ class Client_Post extends BaseController
         $PostModel = new Client_Post_Model();
         $postsListResult['postsList'] = $PostModel->getPosts($params);
 
-        $headParam = ['heading' => 'CLIENT POST LIST',];
+        $headParam = [
+        'heading' => 'POST LIST',
+        'username'=> $data->first_name,
+        'user_type'=> $data->user_type,
+        'user_image'=> $data->profile->image,
+        ];
 
         // Load the header view
         echo view('client/header');
@@ -37,6 +42,9 @@ class Client_Post extends BaseController
 
     public function view()
     {
+        $session = session();
+
+        $data = $session->get('user');
 
         $request = \Config\Services::request();
         $id = $request->getGet('id');
@@ -44,7 +52,11 @@ class Client_Post extends BaseController
         $PostModel = new Client_Post_Model();
         $postResult['post'] = $PostModel->getPostBySlug($id);
 
-        $headParam = ['heading' => 'CLIENT POST VIEW',];
+        $headParam = 
+        ['heading' => 'POST DETAILS',
+        'username'=> $data->first_name,
+        'user_type'=> $data->user_type,
+        'user_image'=> $data->profile->image,];
 
         // Load the header view
         echo view('client/header');

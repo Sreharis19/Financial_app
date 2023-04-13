@@ -21,7 +21,11 @@ class Client_Rm extends BaseController
 
         $resultArray = (array) $rmListResult;
 
-        $headParam = ['heading' => 'CLIENT RELATIONSHIP MANAGER LIST',];
+        $headParam = [
+        'heading' => 'RELATIONSHIP MANAGER LIST',
+        'username'=> $data->first_name,
+        'user_type'=> $data->user_type,
+        'user_image'=> $data->profile->image,];
 
         // Load the header view
         echo view('client/header');
@@ -47,7 +51,11 @@ class Client_Rm extends BaseController
         $RmModelObject = new Client_RM_Model();
         $viewRmResult['viewRm'] = $RmModelObject->getRmDetails($id);
 
-        $headParam = ['heading' => 'CLIENT RELATIONSHIP MANAGER',];
+        $headParam = [
+            'heading' => 'RELATIONSHIP MANAGER DETAILS',
+            'username'=> $data->first_name,
+            'user_type'=> $data->user_type,
+            'user_image'=> $data->profile->image,];
 
         // Load the header view
         echo view('client/header');

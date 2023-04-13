@@ -32,7 +32,12 @@ class Client_Chat extends BaseController
         // print_r($arr);
         // exit();
 
-        $headParam = ['heading' => 'CLIENT RELATIONSHIP MANAGER LIST',];
+        $headParam = [
+            'heading' => 'SELECT RELATIONSHIP MANAGER',
+            'username'=> $data->first_name,
+            'user_type'=> $data->user_type,
+            'user_image'=> $data->profile->image,
+        ];
 
         // Load the header view
         echo view('client/header');
@@ -83,7 +88,11 @@ class Client_Chat extends BaseController
         // print_r($result);
         // exit();
 
-        $headParam = ['heading' => 'CLIENT RELATIONSHIP MANAGER LIST',];
+        $headParam = [
+        'heading' => 'CHAT ROOM',
+        'username'=> $data->first_name,
+        'user_type'=> $data->user_type,
+        'user_image'=> $data->profile->image,];
         
         // Load the header view
         echo view('client/header');

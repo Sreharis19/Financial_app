@@ -17,7 +17,11 @@ class Client_Support extends BaseController
 
         $getUserArray = (array) $getUser;
     
-        $headParam = ['heading' => 'CLIENT SUPPORT MANAGEMENT',];
+        $headParam = [
+            'heading' => 'SUPPORT',
+            'username'=> $data->first_name,
+            'user_type'=> $data->user_type,
+            'user_image'=> $data->profile->image,];
     
         // Load the header view
         echo view('client/header');

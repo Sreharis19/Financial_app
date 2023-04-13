@@ -34,6 +34,10 @@ class Client_Dashboard extends BaseController
             }
         }
 
+        // echo("<pre>");
+        // print_r($data);
+        // exit;
+
         $params = [
             'user_type' => $data->user_type,
             'product_id' => $data->profile->user_products_ids,
@@ -44,7 +48,12 @@ class Client_Dashboard extends BaseController
         $ClientModel = new ClientModel_Dashboard();
         $resultArray = $ClientModel->getStats($params);
 
-        $headParam = ['heading' => 'CLIENT DASHBOARD VIEW',];
+        $headParam = [
+            'heading' => 'CLIENT DASHBOARD',
+            'username'=> $data->first_name,
+            'user_type'=> $data->user_type,
+            'user_image'=> $data->profile->image,
+        ];
 
         // Load the header view
         echo view('client/header');

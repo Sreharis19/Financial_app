@@ -43,13 +43,14 @@ class ClientModel_Dashboard extends Model
         $query2 = $db->query("SELECT COUNT(*) as total_posts FROM cw_posts WHERE product_id = $productId_query");
         $post_count_result = $query2->getRowArray();
 
-        $query3 = $db->query("SELECT COUNT(*) as total_chats FROM chat WHERE send_by = $userId");
+        $query3 = $db->query("SELECT COUNT(*) as rm_contacted FROM chat WHERE send_by = $userId");
         $chat_count_result = $query3->getRowArray();
+
 
         $data = [
             'total_optedProducts' => count($separated_products),
             'total_posts' => $post_count_result['total_posts'],
-            'total_chats' => $chat_count_result['total_chats'],
+            'rm_contacted' => $chat_count_result['rm_contacted'],
         ];
 
         return $data;

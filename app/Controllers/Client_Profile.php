@@ -26,7 +26,11 @@ class Client_Profile extends BaseController
         // print_r($profileArray);
         // exit;
 
-        $headParam = ['heading' => 'CLIENT PROFILE MANAGEMENT',];
+        $headParam = [
+            'heading' => 'MY PROFILE',
+            'username'=> $data->first_name,
+            'user_type'=> $data->user_type,
+            'user_image'=> $data->profile->image,];
 
         // Check if user is not logged in
         if ($session->get('user')) {
