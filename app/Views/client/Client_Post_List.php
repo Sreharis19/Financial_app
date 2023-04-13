@@ -19,7 +19,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($posts as $key => $post) : ?>
+                        <?php foreach ($postsList as $key => $post) : ?>
                             <tr>
                                 <td><?= $key + 1 ?></td>
                                 <td><?= $post->post_title ?></td>

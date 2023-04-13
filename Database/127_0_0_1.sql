@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 11, 2023 at 12:24 AM
+-- Generation Time: Apr 04, 2023 at 10:48 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -74,7 +74,10 @@ CREATE TABLE `contact_us` (
 INSERT INTO `contact_us` (`id`, `user_id`, `comments`, `admin_reply`, `created_on`, `replied_on`) VALUES
 (1, 1, 'couldn\'t acess chat', 'try reloading the website', '2023-02-27 03:21:32', '2023-02-27 03:20:42'),
 (2, 1, 'testing', '', '2023-02-27 03:46:18', NULL),
-(4, 3, 'testing', '', '2023-02-27 11:02:27', NULL);
+(4, 3, 'testing', '', '2023-02-27 11:02:27', NULL),
+(6, 4, 'Unable to login', '', '2023-03-13 18:04:57', NULL),
+(9, 4, 'qwdefg', '', '2023-03-27 16:43:22', NULL),
+(10, 4, '', '', '2023-04-04 01:19:39', NULL);
 
 -- --------------------------------------------------------
 
@@ -99,8 +102,11 @@ CREATE TABLE `cw_posts` (
 --
 
 INSERT INTO `cw_posts` (`_id`, `product_id`, `post_title`, `post_image`, `post_content`, `created_by`, `post_slug`, `post_status`, `created_date`) VALUES
-(1, 1, 'test', '', 'testing', 3, 'post', '1', '2023-02-26 16:22:11'),
-(2, 1, 'test', 'testing', 'intrade trading', 3, 'intrade', '1', '2023-02-27 05:29:20');
+(1, 1, 'post title1', 'Image Content1', 'testing', 3, 'post', '1', '2023-02-26 16:22:11'),
+(2, 3, 'post title3', 'Image Content3', 'intrade trading', 3, 'intrade', '1', '2023-02-27 05:29:20'),
+(3, 4, 'post title4', 'Image Content4', 'Bitcoin', 3, 'bitcoin', '1', '2023-04-04 22:41:54'),
+(4, 5, 'post title5', 'Image Content5', 'Shares', 3, 'shares', '0', '2023-04-04 22:43:37'),
+(5, 2, 'post title2', 'Image Content2', 'Stocks', 3, 'stocks', '0', '2023-04-04 22:44:51');
 
 -- --------------------------------------------------------
 
@@ -114,6 +120,13 @@ CREATE TABLE `log` (
   `created_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `log`
+--
+
+INSERT INTO `log` (`_id`, `activity`, `created_date`) VALUES
+(1, 'Neha(client) chatted with Sreehari(RM)', '2023-03-20 17:28:24');
+
 -- --------------------------------------------------------
 
 --
@@ -125,6 +138,14 @@ CREATE TABLE `notification` (
   `user_id` int(20) NOT NULL,
   `message` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `notification`
+--
+
+INSERT INTO `notification` (`_id`, `user_id`, `message`) VALUES
+(1, 4, 'You got a new post'),
+(2, 4, 'New post');
 
 -- --------------------------------------------------------
 
@@ -151,9 +172,11 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `product_category_id`, `product_name`, `product_image`, `product_amount`, `product_max_quantity`, `product_description`, `product_benefits`, `product_status`, `product_created_on`, `product_updated_on`) VALUES
-(1, 1, 'Treasury Bond', '', 5000, 50000, 'treasury bond', 'test', '1', '2023-02-26 04:32:10', '2023-02-26 04:32:10'),
-(2, 2, 'Stocks', '', 100, 100000, 'Intrade', 'Intrade', '1', '2023-02-26 04:32:55', '2023-02-26 04:32:55'),
-(3, 3, 'Tax Saver MF', '', 100, 1000, 'mutual funds', 'tax saving', '1', '2023-03-10 17:18:14', '2023-03-10 17:18:14');
+(1, 1, 'Treasury Bond', 'Product Image1', 5000, 50000, 'treasury bond', 'treasury bond', '1', '2023-02-26 04:32:10', '2023-02-26 04:32:10'),
+(2, 2, 'Stocks', 'Product Image2', 100, 100000, 'Intrade', 'Intrade', '1', '2023-02-26 04:32:55', '2023-02-26 04:32:55'),
+(3, 3, 'Tax Saver MF', 'Product Image3', 100, 1000, 'mutual funds', 'tax saving', '1', '2023-03-10 17:18:14', '2023-03-10 17:18:14'),
+(4, 4, 'Bitcoin', 'Product Image4', 2000, 100, 'Bitcoin', 'bitcoin', '1', '2023-04-04 22:32:58', '2023-04-04 22:32:58'),
+(5, 5, 'Shares', 'Product Image5', 15000, 120, 'Shares', 'shares', '1', '2023-04-04 22:36:06', '2023-04-04 22:36:06');
 
 -- --------------------------------------------------------
 
@@ -173,9 +196,11 @@ CREATE TABLE `product_category` (
 --
 
 INSERT INTO `product_category` (`category_id`, `category_name`, `category_image`, `category_status`) VALUES
-(1, 'Bond', 'Treasury Bond', '1'),
-(2, 'Equity', NULL, '1'),
-(3, 'Mutual Fund', NULL, '1');
+(1, 'Bond', 'Content Image1', '1'),
+(2, 'Equity', 'Content Image2', '1'),
+(3, 'Mutual Fund', 'Content Image3', '1'),
+(4, 'Cryptocurrencies', 'Content Image4', '1'),
+(5, 'Real Estate Investment Trusts (REITs)', 'Content Image5', '1');
 
 -- --------------------------------------------------------
 
@@ -217,8 +242,8 @@ CREATE TABLE `rm_sentpost` (
 --
 
 INSERT INTO `rm_sentpost` (`id`, `post_id`, `user_id`) VALUES
-(1, 1, 2),
-(2, 1, 2);
+(1, 4, 4),
+(2, 5, 2);
 
 -- --------------------------------------------------------
 
@@ -245,7 +270,7 @@ CREATE TABLE `user_master` (
 --
 
 INSERT INTO `user_master` (`id`, `first_name`, `last_name`, `user_email`, `user_contact`, `user_password`, `user_type`, `user_token`, `user_status`, `user_created_date`, `user_last_updated _on`) VALUES
-(1, 'sreehari', 's', 'sreeharis19@gmail.com', '9497126857', '$2y$16$81x5jTTM6zXJ6VW.qb5WIeW7WKmiqvALWgSrb5zIQWiEKIw26ih7S', '2', '12345', '1', '2023-02-26 00:22:27', '2023-02-26 00:22:27'),
+(1, 'sreehari', 's', 'sreeharis19@gmail.com', '9497126857', '$2y$16$81x5jTTM6zXJ6VW.qb5WIeW7WKmiqvALWgSrb5zIQWiEKIw26ih7S', '1', '12345', '1', '2023-02-26 00:22:27', '2023-02-26 00:22:27'),
 (2, 'Kiran', 'r', 'kiran.r@mailinator.com', '8921995853', '$2y$16$81x5jTTM6zXJ6VW.qb5WIeW7WKmiqvALWgSrb5zIQWiEKIw26ih7S', '4', '3456', '1', '2023-02-26 04:03:38', '2023-02-26 04:03:38'),
 (3, 'Amal', 'm', 'cw@gmail.com', '854216952', '$2y$16$81x5jTTM6zXJ6VW.qb5WIeW7WKmiqvALWgSrb5zIQWiEKIw26ih7S', '3', '8456', '1', '2023-02-27 05:08:43', '2023-02-27 05:08:43'),
 (4, 'Neha', 'S', 'client@gmail.com', '854216888', '$2y$16$81x5jTTM6zXJ6VW.qb5WIeW7WKmiqvALWgSrb5zIQWiEKIw26ih7S', '4', '8411', '1', '2023-02-27 05:08:43', '2023-02-27 05:08:43'),
@@ -264,6 +289,7 @@ CREATE TABLE `user_profile` (
   `user_products_ids` varchar(225) NOT NULL,
   `user_min_purchase_power` varchar(225) DEFAULT NULL,
   `user_max_purchase_power` varchar(225) DEFAULT NULL,
+  `bio` text DEFAULT NULL,
   `user_created_date` datetime NOT NULL,
   `user_last_updated _on` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -272,13 +298,13 @@ CREATE TABLE `user_profile` (
 -- Dumping data for table `user_profile`
 --
 
-INSERT INTO `user_profile` (`_id`, `user_id`, `user_products_ids`, `user_min_purchase_power`, `user_max_purchase_power`, `user_created_date`, `user_last_updated _on`) VALUES
-(1, 2, '1#2', '500', '2000', '2023-02-26 04:29:41', '2023-02-26 04:29:41'),
-(2, 1, '1', NULL, NULL, '2023-02-26 17:58:50', '2023-02-26 17:58:50'),
-(3, 3, '1#2', NULL, NULL, '2023-02-27 05:17:25', '2023-02-27 05:17:25'),
-(4, 4, '1#3', '500', '2000', '2023-02-28 05:17:25', '2023-02-28 05:17:25'),
-(5, 5, '2', '500', '1000', '2023-03-08 01:55:24', '2023-03-08 01:55:24'),
-(6, 7, '1#3', '100', '10000', '2023-03-10 00:07:00', '2023-03-10 00:07:00');
+INSERT INTO `user_profile` (`_id`, `user_id`, `user_products_ids`, `user_min_purchase_power`, `user_max_purchase_power`, `bio`, `user_created_date`, `user_last_updated _on`) VALUES
+(1, 2, '1#2', '500', '2000', NULL, '2023-02-26 04:29:41', '2023-02-26 04:29:41'),
+(2, 1, '1', NULL, NULL, NULL, '2023-02-26 17:58:50', '2023-02-26 17:58:50'),
+(3, 3, '1#2', NULL, NULL, NULL, '2023-02-27 05:17:25', '2023-02-27 05:17:25'),
+(4, 4, '1#3', '500', '2000', NULL, '2023-02-28 05:17:25', '2023-02-28 05:17:25'),
+(5, 5, '2', '500', '1000', NULL, '2023-03-08 01:55:24', '2023-03-08 01:55:24'),
+(6, 7, '1#3', '100', '10000', NULL, '2023-03-10 00:07:00', '2023-03-10 00:07:00');
 
 --
 -- Indexes for dumped tables
@@ -364,31 +390,37 @@ ALTER TABLE `chat`
 -- AUTO_INCREMENT for table `contact_us`
 --
 ALTER TABLE `contact_us`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `cw_posts`
 --
 ALTER TABLE `cw_posts`
-  MODIFY `_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `log`
 --
 ALTER TABLE `log`
-  MODIFY `_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `notification`
+--
+ALTER TABLE `notification`
+  MODIFY `_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `product_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `product_category`
 --
 ALTER TABLE `product_category`
-  MODIFY `category_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `category_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `read_post`

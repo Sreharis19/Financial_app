@@ -17,11 +17,13 @@ class Client_Support extends BaseController
 
         $getUserArray = (array) $getUser;
     
+        $headParam = ['heading' => 'CLIENT SUPPORT MANAGEMENT',];
+    
         // Load the header view
         echo view('client/header');
 
         // Load the sidebar view
-        echo view('client/sidebar');
+        echo view('client/sidebar', $headParam);
 
         // Load the dashboard view
         echo view('client/Client_Support_View', $getUserArray);
@@ -46,14 +48,14 @@ class Client_Support extends BaseController
         
     }
 
-    public function Delete_Ticket()
+    public function Delete_Query()
     {
         $session = session();
 
         $params = $this->request->getPost();
 
         $clientSupportModel = new Client_Support_Model();
-        $client_deleteTicket = $clientSupportModel->DeleteTicket($params['id']);
+        $client_deleteTicket = $clientSupportModel->DeleteQuery($params['id']);
 
         echo json_encode(array($client_deleteTicket));
 		exit(0);

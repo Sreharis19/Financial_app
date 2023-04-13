@@ -36,7 +36,7 @@ class Client_Support_Model extends Model
         return $createTicketResult;
     }
 
-    public function DeleteTicket($client_id){
+    public function DeleteQuery($client_id){
         
         $this->delete($client_id);
 

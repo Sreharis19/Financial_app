@@ -23,7 +23,7 @@ function deleteTicket($id) {
 
     if (confirm("Do you want to delete this Ticket?")) {
         $.ajax({
-            'url': 'http://localhost/Financial_app/public/Delete_Ticket',
+            'url': 'http://localhost/Financial_app/public/Delete_Query',
             'type': 'POST',
             'data': { 'id': $id },
             success: function (result) {

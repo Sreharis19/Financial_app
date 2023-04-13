@@ -60,10 +60,10 @@
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-  <script src="<?php echo base_url(); ?>/public/assets/js/pages/send.js"></script>
-  <script src="<?php echo base_url(); ?>/public/assets/js/pages/step1.js"></script>
-  <script src="<?php echo base_url(); ?>/public/assets/js/pages/chat.js"></script>
-  <script src="<?php echo base_url(); ?>/public/assets/js/pages/support.js"></script>
+  <script src="<?php echo base_url(); ?>/public/assets/js/pages/client_selectRm.js"></script>
+  <script src="<?php echo base_url(); ?>/public/assets/js/pages/client_chatwithRm.js"></script>
+  <script src="<?php echo base_url(); ?>/public/assets/js/pages/clientSupport.js"></script>
+  <script src="<?php echo base_url(); ?>/public/assets/js/pages/SelectProductsButton.js"></script>
 
   <script>
     $(document).ready(function() {

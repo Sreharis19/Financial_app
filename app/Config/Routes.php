@@ -92,11 +92,16 @@ $routes->get('/Client_dashboard', 'Client_Dashboard::index');
 $routes->get('/Client_Rm_List', 'Client_Rm::index');
 $routes->get('/Client_Rm_View', 'Client_Rm::view');
 $routes->get('/Client_Product_List', 'Client_Product::index');
+$routes->post('/ProductAvailabilityChange', 'Client_Product::changeSelect');
 $routes->get('/Client_Post_List', 'Client_Post::index');
 $routes->get('/Client_Post_View', 'Client_Post::view');
 $routes->get('/Client_Support', 'Client_Support::index');
 $routes->post('/Client_SendSupport', 'Client_Support::Save_Ticket');
-$routes->post('/Delete_Ticket', 'Client_Support::Delete_Ticket');
+$routes->post('/Delete_Query', 'Client_Support::Delete_Query');
+$routes->get('/client_selectRm', 'Client_Chat::selectRm');
+$routes->get('/Client_ChatView', 'Client_Chat::directChat');
+$routes->post('/Save_ChatMessageForClient', 'Client_Chat::Save_ChatMessage');
+$routes->get('/Client_Profile_View', 'Client_Profile::index');
 
 /*
  * --------------------------------------------------------------------

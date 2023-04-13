@@ -147,7 +147,7 @@
 
             <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
               <div class="align-items-center">
-                  <h5 style="align-items: center;">CUSTOMER RELATION DASHBOARD</h5>
+                  <h5 style="align-items: center;"> <?= $heading ?> </h5>
                 </div>
               <ul class="navbar-nav flex-row align-items-center ms-auto">
                 <!-- User -->
@@ -177,7 +177,7 @@
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a class="dropdown-item" href="<?php echo base_url(); ?>/public/Client_Profile_View">
                         <i class="bx bx-user me"></i>
                         <span class="align-middle">My Profile</span>
                       </a>
