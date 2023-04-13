@@ -40,7 +40,7 @@
                                                   <div class="card-body">
                                                     <h5 class="card-title">Image Preview</h5>
                                                   </div>
-                                                  <img class="img-fluid" src="<?= $post->post_image ?>" alt="" />
+                                                  <img class="img-fluid" src="<?php echo base_url(); ?>/public/assets/uploads/post/<?= $post->post_image ?>" alt="" />
                                                 </div>
                                               </div>
                                         </div>

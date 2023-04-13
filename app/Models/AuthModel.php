@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
-
+use PhpParser\Node\Expr\Cast\Array_;
 
 class AuthModel extends Model
 {
@@ -17,25 +17,31 @@ class AuthModel extends Model
 	{
 		$builder = $this->db->table($this->table);
 		$builder->where('user_email', $data['email']);
-		// $builder->where('user_password', $data['password']);
+		$builder->where('user_type', $data['type']);
 		$query = $builder->get();
 
 		$user = $query->getRow();
 
-		$password_status = password_verify($data['password'], $user->user_password);
+		if ($user) {
+			$password_status = password_verify($data['password'], $user->user_password);
 
-		if ($password_status == true) {
-			$builder1 = $this->db->table('user_profile');
-			$builder1->where('user_id', $user->id);
-			$query1 = $builder1->get();
+			if ($password_status == true) {
+				$builder1 = $this->db->table('user_profile');
+				$builder1->where('user_id', $user->id);
+				$query1 = $builder1->get();
 
-			$user->profile = $query1->getRow();
+				$user->profile = $query1->getRow();
 
-			$user->status = true;
-			$user->message ="login successfull";
-		}else{
+				$user->status = true;
+				$user->message = "login successfull";
+			} else {
+				$user->status = false;
+				$user->message = "Login Failed ! Please check your email and password";
+			}
+		} else {
+			$user= (object)[];
 			$user->status = false;
-			$user->message = "Login Failed ! Please check your email and password";
+			$user->message = "Sorry ! No account associated with the given credentials or user type ";
 		}
 		return $user;
 	}

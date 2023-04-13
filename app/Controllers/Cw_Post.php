@@ -113,7 +113,7 @@ class Cw_Post extends BaseController
                 'max_purchase_amount' => $data['max'],
                 'created_by' => $user->id,
                 'post_slug' => date('YmdHis'),
-                'post_status' => 0,
+                'post_status' => $data['status'],
             ];
 
             $PostModel = new Posts_Management();
@@ -125,15 +125,57 @@ class Cw_Post extends BaseController
 
     public function Update_Post_view()
     {
+        $request = \Config\Services::request();
+        $id = $request->getGet('id');
+
+        $PostModel = new Posts_Management();
+        $result['post'] = $PostModel->getPostBySlug($id);
+        $result['select'] = $PostModel->getCountryAndPostList();
+
         echo view('cw/header');
 
         // Load the sidebar view
         echo view('cw/sidebar');
 
         // Load the dashboard view
-        echo view('cw/Cw_Post_Edit');
+        echo view('cw/Cw_Post_Edit', $result);
 
         // Load the footer view
         echo view('cw/footer');
+    }
+
+    public function Edit()
+    {
+        $image = $this->request->getFile('image');
+
+        $data = $this->request->getPost();
+
+        $session = session();
+
+        $user = $session->get('user');
+
+        // Check if image exists
+        if ($image) {
+            // Set image name and path
+            $imageName = $image->getName();
+            $imageExt = $image->getExtension();
+            $imageNewName = date('YmdHis') . '.' . $imageExt;
+
+            // Move image to destination folder
+            $image->move(ROOTPATH.'public/assets/uploads/post', $imageNewName);
+
+            // Return success response
+            $response = [
+                'success' => true,
+                'message' => 'Image uploaded successfully'
+            ];
+        }
+        else{
+            $imageNewName = '';
+        }
+            $PostModel = new Posts_Management();
+            $result = $PostModel->updatePost($data['_id'], $data, $imageNewName);
+
+            return redirect()->to('/public/Cw_Post_List')->with('status', 1);
     }
 }

@@ -74,7 +74,15 @@
                                      <textarea cols="100" id="content" name="content" rows="18"></textarea>
                                  </div>
                              </div>
-
+                             <div class="mb-3 row">
+                                 <label for="status" class="col-md-2 col-form-label">Post Status : </label>
+                                 <div class="col-md-07">
+                                 <select id="choices-multiple-remove-button" name="status" placeholder="Select Post Status">
+                                             <option value="1">Active</option>
+                                             <option value="2">Archived</option>
+                                     </select>
+                                 </div>
+                             </div>
                              <br>
                              <br>
                              <div style="float: right;">

@@ -2,15 +2,21 @@ $("#admin_login_btn").click(function () {
 
     var email = $("#email").val();
     var pass = $("#pwd").val();
-    var type = "";
-
+    var type = $("input[type='radio'][name='btnradio']:checked").val();
     var email_regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     var password_regex1 = /([a-z].*[A-Z])|([A-Z].*[a-z])([0-9])+([!,%,&,@,#,$,^,*,?,_,~])/;
     var password_regex2 = /([0-9])/;
     var password_regex3 = /([!,%,&,@,#,$,^,*,?,_,~])/;
 
+    if (type == null || type == '') {
+        alert("Please Select A User Type");
+        $('#admin_login_btn').prop('disabled', false);
+        return false;
+    }
+
     if (email_regex.test(email) == false) {
         alert("Please Enter Correct Email");
+        $('#admin_login_btn').prop('disabled', false);
         return false;
     }
     // else if (pass.length < 4 || password_regex1.test(pass) == false || password_regex2.test(pass) == false || password_regex3.test(pass) == false) {
@@ -22,7 +28,7 @@ $("#admin_login_btn").click(function () {
         $.ajax({
             'url': 'http://localhost/Financial_app/public/signInProcess',
             'type': 'POST',
-            'data': { 'email': email, 'password': pass },
+            'data': { 'email': email, 'password': pass, 'type': type },
             success: function (result) {
 
                 $result = JSON.parse(result);
@@ -52,7 +58,8 @@ $("#admin_login_btn").click(function () {
                     }
                 }
                 else {
-                    alert("Sorry! No account associated with the provided credentials");
+                    alert($result.message);
+                    $('#admin_login_btn').prop('disabled', false);
                 }
             }
         });

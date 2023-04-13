@@ -119,13 +119,13 @@
                 <div class="form-check">
                   <label class="form-check-label" for="userroles"> User Type </label>
                   <div class="btn-group" role="group" id="userroles">
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" />
+                    <input type="radio" class="btn-check" value="4" name="btnradio" id="btnradio1" autocomplete="off" />
                     <label class="btn btn-outline-primary" for="btnradio1">Client</label>
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" />
+                    <input type="radio" class="btn-check" value="1" name="btnradio" id="btnradio2" autocomplete="off" />
                     <label class="btn btn-outline-primary" for="btnradio2">Admin</label>
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" />
+                    <input type="radio" class="btn-check" value="2" name="btnradio" id="btnradio3" autocomplete="off" />
                     <label class="btn btn-outline-primary" for="btnradio3">RM</label>
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" />
+                    <input type="radio" class="btn-check" value="3" name="btnradio" id="btnradio4" autocomplete="off" />
                     <label class="btn btn-outline-primary" for="btnradio4">CW</label>
                   </div>
                 </div>

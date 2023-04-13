@@ -78,12 +78,22 @@
         renderChoiceLimit: 5
       });
 
+      
+    });
+    window.addEventListener("load", (event) => {
       var status = document.getElementById('status').value;
       console.log('status', status)
       if (status == 1) {
         alert("New Post Created Successfully");
+      } else if (status === 2) {
+        alert("Post Updated Successfully");
       }
     });
+
+    function erasImage() {
+      console.log("called")
+      $("#image1").attr('src', '<?php echo base_url(); ?>/public/assets/img/dashboard/nopreview.png');
+    }
   </script>
   <!-- endbuild -->
 
