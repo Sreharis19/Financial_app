@@ -26,7 +26,7 @@ class BaseController extends Controller
 	 *
 	 * @var array
 	 */
-	protected $helpers = ['html', 'url', 'form'];
+	protected $helpers = ['html', 'url', 'form', 'string'];
 
 	protected $imageLib;
 
