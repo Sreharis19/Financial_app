@@ -12,7 +12,12 @@ class Rm_Support extends BaseController
 
         $data = $session->get('user');
 
-        // print_r($data);exit();
+        $header = [
+            'heading' => 'Support',
+            'username'=> $data->first_name,
+            'user_type'=> $data->user_type,
+            'user_image'=> $data->profile->image,
+        ];
 
         $SupportModel = new Rm_SupportModel();
         $result['lists'] = $SupportModel->getList($data->id);
@@ -23,7 +28,7 @@ class Rm_Support extends BaseController
         echo view('rm/header');
 
         // Load the sidebar view
-        echo view('rm/sidebar');
+        echo view('rm/sidebar', $header);
 
         // Load the dashboard view
         echo view('rm/rm_support', $arr);

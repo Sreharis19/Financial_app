@@ -3,7 +3,9 @@ const msgerInput = get(".msger-input");
 const msgerChat = get(".msger-chat");
 
 // Icons made by Freepik from www.flaticon.com
-const PERSON_IMG = "https://image.flaticon.com/icons/svg/145/145867.svg";
+var PERSON_IMG = document.getElementById('user_image').value;
+var path = 'http://localhost/Financial_app/'+PERSON_IMG;
+// const PERSON_IMG = "https://image.flaticon.com/icons/svg/145/145867.svg";
 const PERSON_NAME = "Me";
 
 msgerForm.addEventListener("submit", event => {
@@ -12,7 +14,7 @@ msgerForm.addEventListener("submit", event => {
     const msgText = msgerInput.value;
     if (!msgText) return;
 
-    appendMessage(PERSON_NAME, PERSON_IMG, "right", msgText);
+    appendMessage(PERSON_NAME, path, "right", msgText);
     msgerInput.value = "";
 
 });

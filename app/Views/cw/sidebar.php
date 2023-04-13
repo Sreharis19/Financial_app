@@ -5,7 +5,7 @@
 
     <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
       <div class="app-brand demo">
-        <a href="index.html" class="app-brand-link">
+        <a href="<?php echo base_url(); ?>/public/Cw_dashboard" class="app-brand-link">
           <span class="app-brand-logo demo">
             <svg width="25" viewBox="0 0 25 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <defs>
@@ -52,38 +52,45 @@
 
       <ul class="menu-inner py-1">
         <!-- Dashboard -->
-        <li class="menu-item">
+        <?php if ($heading == 'Content Writer Dashboard') : ?>
+          <li class="menu-item active">
+          <?php else : ?>
+          <li class="menu-item">
+          <?php endif; ?>
+
           <a href="<?php echo base_url(); ?>/public/Cw_dashboard" class="menu-link">
             <i class="menu-icon tf-icons bx bx-home-circle"></i>
             <div data-i18n="Analytics">Dashboard</div>
           </a>
-        </li>
+          </li>
 
-        <!-- Layouts -->
+          <!-- Layouts -->
 
-        <!-- Inventory & Content -->
-        <li class="menu-header small text-uppercase"><span class="menu-header-text">Inventory &amp; Content</span></li>
-        <!-- Cards -->
-        <li class="menu-item">
-          <a href="<?php echo base_url(); ?>/public/Cw_Post_List" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-collection"></i>
-            <div data-i18n="Basic">Posts</div>
-          </a>
-        </li>
-        <!-- <li class="menu-item">
-              <a href="rm_chat.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Basic">Chat</div>
-              </a>
-            </li> -->
-        <!-- Misc -->
-        <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>
-        <li class="menu-item">
-          <a href="<?php echo base_url(); ?>/public/Cw_Support" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-support"></i>
-            <div data-i18n="Support">Support</div>
-          </a>
-        </li>
+          <!-- Inventory & Content -->
+          <li class="menu-header small text-uppercase"><span class="menu-header-text">Inventory &amp; Content</span></li>
+          <!-- Cards -->
+          <?php if ($heading == 'Create New Post'  || $heading == 'Update Post' || $heading == 'Post View'|| $heading == 'Post List') :?>
+          <li class="menu-item active">
+          <?php else : ?>
+          <li class="menu-item">
+          <?php endif; ?>
+            <a href="<?php echo base_url(); ?>/public/Cw_Post_List" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-collection"></i>
+              <div data-i18n="Basic">Posts</div>
+            </a>
+          </li>
+    
+          <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>
+          <?php if ($heading == 'Support Section') : ?>
+          <li class="menu-item active">
+          <?php else : ?>
+          <li class="menu-item">
+          <?php endif; ?>
+            <a href="<?php echo base_url(); ?>/public/Cw_Support" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-support"></i>
+              <div data-i18n="Support">Support</div>
+            </a>
+          </li>
       </ul>
     </aside>
     <!-- / Menu -->
@@ -101,14 +108,18 @@
 
         <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
           <div class="align-items-center">
-            <h5 style="align-items: center;">CONTENT WRITER DASHBOARD</h5>
+            <h5 style="align-items: center;"><?= $heading ?></< /h5>
           </div>
           <ul class="navbar-nav flex-row align-items-center ms-auto">
             <!-- User -->
             <li class="nav-item navbar-dropdown dropdown-user dropdown">
               <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                 <div class="avatar avatar-online">
-                  <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                  <?php if ($user_image != '') : ?>
+                    <img src="<?php echo base_url(); ?>/public/assets/uploads/users/<?= $user_image ?>" alt class="w-px-40 h-auto rounded-circle" />
+                  <?php else : ?>
+                    <img src="<?php echo base_url(); ?>/public/assets/img/dashboard/man.png" alt class="w-px-40 h-auto rounded-circle" />
+                  <?php endif; ?>
                 </div>
               </a>
               <ul class="dropdown-menu dropdown-menu-end">
@@ -117,12 +128,16 @@
                     <div class="d-flex">
                       <div class="flex-shrink-0 me-3">
                         <div class="avatar avatar-online">
-                          <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                          <?php if ($user_image != '') : ?>
+                            <img src="<?php echo base_url(); ?>/public/assets/uploads/users/<?= $user_image ?>" alt class="w-px-40 h-auto rounded-circle" />
+                          <?php else : ?>
+                            <img src="<?php echo base_url(); ?>/public/assets/img/dashboard/man.png" alt class="w-px-40 h-auto rounded-circle" />
+                          <?php endif; ?>
                         </div>
                       </div>
                       <div class="flex-grow-1">
-                        <span class="fw-semibold d-block">John Doe</span>
-                        <small class="text-muted">Relationship Manager</small>
+                        <span class="fw-semibold d-block"><?= $username ?></span>
+                        <small class="text-muted"><?php if ($user_type == 3) : ?> <?= "Content Writer" ?> <?php else : ?> <?= "UnAutherised Access" ?> <?php endif; ?></small>
                       </div>
                     </div>
                   </a>

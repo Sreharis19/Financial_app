@@ -21,15 +21,18 @@ class Rm_Client extends BaseController
         $result['clients'] = $ClientModel->getClients($params);
 
         $arr = (array) $result;
-        // echo "<pre>";
-        // print_r($arr);
-        // exit();
+        $header = [
+            'heading' => 'Client List',
+            'username'=> $data->first_name,
+            'user_type'=> $data->user_type,
+            'user_image'=> $data->profile->image,
+        ];
 
         // Load the header view
         echo view('rm/header');
 
         // Load the sidebar view
-        echo view('rm/sidebar');
+        echo view('rm/sidebar', $header);
 
         // Load the dashboard view
         echo view('rm/Rm_Client_List', $arr);
@@ -49,11 +52,19 @@ class Rm_Client extends BaseController
         $ClientModel = new Client_Management();
         $result['client'] = $ClientModel->getClientById($id);
 
+        $header = [
+            'heading' => 'Client Details - View',
+            'username'=> $data->first_name,
+            'user_type'=> $data->user_type,
+            'user_image'=> $data->profile->image,
+        ];
+
+
         // Load the header view
         echo view('rm/header');
 
         // Load the sidebar view
-        echo view('rm/sidebar');
+        echo view('rm/sidebar', $header);
 
         // Load the dashboard view
         echo view('rm/Rm_Client_View', $result);

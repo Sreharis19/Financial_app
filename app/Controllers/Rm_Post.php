@@ -24,11 +24,19 @@ class Rm_Post extends BaseController
 
         $arr = (array) $result;
 
+        $header = [
+            'heading' => 'Post List',
+            'username'=> $data->first_name,
+            'user_type'=> $data->user_type,
+            'user_image'=> $data->profile->image,
+        ];
+
+
         // Load the header view
         echo view('rm/header');
 
         // Load the sidebar view
-        echo view('rm/sidebar');
+        echo view('rm/sidebar', $header);
 
         // Load the dashboard view
         echo view('rm/Rm_Post_List', $arr);
@@ -40,19 +48,28 @@ class Rm_Post extends BaseController
     public function view()
     {
 
+        $session = session();
+
+        $data = $session->get('user');
+
         $request = \Config\Services::request();
         $id = $request->getGet('id');
 
         $PostModel = new Posts_Management();
         $result['post'] = $PostModel->getPostBySlug($id);
 
-         // echo"<pre>";
-        // print_r($post[0]);exit();
+        $header = [
+            'heading' => 'Post Detailed View',
+            'username'=> $data->first_name,
+            'user_type'=> $data->user_type,
+            'user_image'=> $data->profile->image,
+        ];
+
         // Load the header view
         echo view('rm/header');
 
         // Load the sidebar view
-        echo view('rm/sidebar');
+        echo view('rm/sidebar', $header);
 
         // Load the dashboard view
         echo view('rm/Rm_Post_View', $result);
@@ -70,6 +87,14 @@ class Rm_Post extends BaseController
 
         $data = $session->get('user');
 
+        $header = [
+            'heading' => 'Sent Post To Client',
+            'username'=> $data->first_name,
+            'user_type'=> $data->user_type,
+            'user_image'=> $data->profile->image,
+        ];
+
+
         $params = [
             'user_type' => 4,
             'product_id' => $data->profile->user_products_ids,
@@ -83,13 +108,11 @@ class Rm_Post extends BaseController
 
         $arr = (array) $result;
 
-        //  echo"<pre>";
-        // print_r($arr);exit();
         // Load the header view
         echo view('rm/header');
 
         // Load the sidebar view
-        echo view('rm/sidebar');
+        echo view('rm/sidebar', $header);
 
         // Load the dashboard view
         echo view('rm/Rm_Post_SendTo', $result);

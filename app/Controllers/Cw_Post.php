@@ -14,6 +14,13 @@ class Cw_Post extends BaseController
         $data = $session->get('user');
         $status = $session->get('status');
 
+        $header = [
+            'heading' => 'Post List',
+            'username'=> $data->first_name,
+            'user_type'=> $data->user_type,
+            'user_image'=> $data->profile->image,
+        ];
+
         $PostModel = new Posts_Management();
         $result['posts'] = $PostModel->getPostsForCw($data->id);
         $result['status'] = $status;
@@ -23,7 +30,7 @@ class Cw_Post extends BaseController
         echo view('cw/header');
 
         // Load the sidebar view
-        echo view('cw/sidebar');
+        echo view('cw/sidebar', $header);
 
         // Load the dashboard view
         echo view('cw/Cw_Post_List', $arr);
@@ -34,6 +41,17 @@ class Cw_Post extends BaseController
 
     public function view()
     {
+
+        $session = session();
+
+        $data = $session->get('user');
+
+        $header = [
+            'heading' => 'Post View',
+            'username'=> $data->first_name,
+            'user_type'=> $data->user_type,
+            'user_image'=> $data->profile->image,
+        ];
 
         $request = \Config\Services::request();
         $id = $request->getGet('id');
@@ -47,7 +65,7 @@ class Cw_Post extends BaseController
         echo view('cw/header');
 
         // Load the sidebar view
-        echo view('cw/sidebar');
+        echo view('cw/sidebar', $header);
 
         // Load the dashboard view
         echo view('cw/Cw_Post_View', $result);
@@ -61,6 +79,16 @@ class Cw_Post extends BaseController
     public function Create_Post_view()
     {
 
+        $session = session();
+
+        $user = $session->get('user');
+
+        $header = [
+            'heading' => 'Create New Post',
+            'username'=> $user->first_name,
+            'user_type'=> $user->user_type,
+            'user_image'=> $user->profile->image,
+        ];
 
         $PostModel = new Posts_Management();
         $result = $PostModel->getCountryAndPostList();
@@ -68,7 +96,7 @@ class Cw_Post extends BaseController
         echo view('cw/header');
 
         // Load the sidebar view
-        echo view('cw/sidebar');
+        echo view('cw/sidebar', $header);
 
         // Load the dashboard view
         echo view('cw/Cw_Post_Add', $result);
@@ -125,6 +153,17 @@ class Cw_Post extends BaseController
 
     public function Update_Post_view()
     {
+        $session = session();
+
+        $user = $session->get('user');
+
+        $header = [
+            'heading' => 'Update Post',
+            'username'=> $user->first_name,
+            'user_type'=> $user->user_type,
+            'user_image'=> $user->profile->image,
+        ];
+
         $request = \Config\Services::request();
         $id = $request->getGet('id');
 
@@ -135,7 +174,7 @@ class Cw_Post extends BaseController
         echo view('cw/header');
 
         // Load the sidebar view
-        echo view('cw/sidebar');
+        echo view('cw/sidebar', $header);
 
         // Load the dashboard view
         echo view('cw/Cw_Post_Edit', $result);

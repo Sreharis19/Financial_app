@@ -21,6 +21,13 @@ class Cw_Dashboard extends BaseController
 
         $data = $session->get('user');
 
+        $header = [
+            'heading' => 'Content Writer Dashboard',
+            'username'=> $data->first_name,
+            'user_type'=> $data->user_type,
+            'user_image'=> $data->profile->image,
+        ];
+
         $params = [
             'user_type' => $data->user_type,
             'product_id' => $data->profile->user_products_ids,
@@ -34,7 +41,7 @@ class Cw_Dashboard extends BaseController
         echo view('cw/header');
 
         // Load the sidebar view
-        echo view('cw/sidebar');
+        echo view('cw/sidebar', $header);
 
         // Load the dashboard view
         echo view('cw/dashboard', $result);

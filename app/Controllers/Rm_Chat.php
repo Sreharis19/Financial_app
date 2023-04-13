@@ -27,11 +27,18 @@ class Rm_Chat extends BaseController
 
         $arr = (array) $result;
 
+        $header = [
+            'heading' => 'Chat Step-1',
+            'username'=> $data->first_name,
+            'user_type'=> $data->user_type,
+            'user_image'=> $data->profile->image,
+        ];
+
         // Load the header view
         echo view('rm/header');
 
         // Load the sidebar view
-        echo view('rm/sidebar');
+        echo view('rm/sidebar', $header);
 
         // Load the dashboard view
         echo view('rm/Rm_DirectChat_Step1', $arr);
@@ -66,13 +73,28 @@ class Rm_Chat extends BaseController
 
         $result['rm_id'] = $data->id;
         $result['cw_post_id'] = $pid;
-        //  echo"<pre>";
-        // print_r($result);exit();
+
+        if($data->profile->image == ''){
+            $result['user_image'] = '/public/assets/img/dashboard/man.png';
+        }else{
+            $result['user_image'] = '/public/assets/uploads/users/'.$data->profile->image;
+        }
+
+        $result['otherUser_image'] = '/public/assets/img/dashboard/man.png';
+
+        $result['cw_post_id'] = $pid;
+        $header = [
+            'heading' => 'Chat Room',
+            'username'=> $data->first_name,
+            'user_type'=> $data->user_type,
+            'user_image'=> $data->profile->image,
+        ];
+
         // Load the header view
         echo view('rm/header');
 
         // Load the sidebar view
-        echo view('rm/sidebar');
+        echo view('rm/sidebar', $header);
 
         // Load the dashboard view
         echo view('rm/Rm_DirectChat', $result);

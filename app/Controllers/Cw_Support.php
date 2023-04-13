@@ -12,7 +12,13 @@ class Cw_Support extends BaseController
 
         $data = $session->get('user');
 
-        // print_r($data);exit();
+        $header = [
+            'heading' => 'Support Section',
+            'username'=> $data->first_name,
+            'user_type'=> $data->user_type,
+            'user_image'=> $data->profile->image,
+        ];
+
 
         $SupportModel = new Rm_SupportModel();
         $result['lists'] = $SupportModel->getList($data->id);
@@ -23,7 +29,7 @@ class Cw_Support extends BaseController
         echo view('cw/header');
 
         // Load the sidebar view
-        echo view('cw/sidebar');
+        echo view('cw/sidebar', $header);
 
         // Load the dashboard view
         echo view('cw/cw_support', $arr);

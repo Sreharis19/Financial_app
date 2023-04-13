@@ -34,7 +34,7 @@
                         <?php else : ?>
                             <div class="msg left-msg">
                             <?php endif; ?>
-                            <div class="msg-img" style="background-image: url(https://image.flaticon.com/icons/svg/327/327779.svg)"></div>
+                            <div class="msg-img" style="background-image: url(<?php echo base_url(); ?>/<?= $otherUser_image ?>)"></div>
                             <div class="msg-bubble">
                                 <div class="msg-info">
                                     <div class="msg-info-name">
@@ -54,6 +54,7 @@
                             </div>
                         <?php endforeach ?>
                         <input type="hidden" id="rmid" value="<?= $rm_id ?>"/>
+                        <input type="hidden" id="user_image" value="<?= $user_image ?>"/>
                         <input type="hidden" id="clientid" value="<?= $client->id ?>"/>
                         <input type="hidden" id="postid" value="<?= $cw_post_id ?>"/>
             </main>
