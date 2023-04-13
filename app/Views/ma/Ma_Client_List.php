@@ -57,6 +57,7 @@
 
                             </tr>
                         <?php endforeach ?>
+                     <input type="hidden" id="status" value="<? $status ?>"></input>
                     </tbody>
                 </table>
                 <!-- Modal -->

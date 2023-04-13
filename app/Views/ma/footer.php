@@ -65,6 +65,7 @@
   <script src="<?php echo base_url(); ?>/public/assets/js/pages/step1.js"></script>
   <script src="<?php echo base_url(); ?>/public/assets/js/pages/chat.js"></script>
   <script src="<?php echo base_url(); ?>/public/assets/js/pages/support.js"></script>
+  <script src="<?php echo base_url(); ?>/public/assets/js/pages/AddClient.js"></script>
 
   <script>
     $(document).ready(function() {

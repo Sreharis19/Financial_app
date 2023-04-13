@@ -9,7 +9,7 @@ class Ma_Management extends Model
 {
     protected $table = 'user_master';
 
-    protected $allowedFields = ['name', 'email', 'phone', 'address'];
+    protected $allowedFields = ['first_name', 'last_name', 'user_email', 'user_contact', 'user_password', 'user_type', 'user_token', 'user_statuss'];
 
     public function getClients($data)
     {
@@ -89,10 +89,28 @@ class Ma_Management extends Model
     }
 
     
-    public function createAccount(){
+    public function createAccount($data, $data1){
+        // $this->insert($data);
+        // $lastId = $this->insertID();
 
+        $db = db_connect(); 
+        // $builder = $db->table('user_master');
+        // $builder->insert($data);
+        // $lastId = $db->insertID();
+
+        $this->insert($data);
+        $lastId = $this->insertID();
+
+        if($lastId){
+            $data1['user_id']= $lastId;
+            $builder = $db->table('user_profile');
+            $builder->insert($data1);
+            $db->insertID();
+        }
+        
+        return true;
     }
-
+    
     public function updateAccount(){
         
     }
