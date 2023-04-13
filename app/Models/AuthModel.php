@@ -11,7 +11,7 @@ class AuthModel extends Model
 
 	protected $table = 'user_master';
 	protected $primaryKey = 'id';
-	protected $allowedFields = ['email', 'password'];
+	protected $allowedFields = ['first_name', 'last_name', 'user_email', 'user_contact', 'user_password', 'user_type', 'user_token', 'user_status'];
 
 	public function getUserByEmail($data)
 	{
@@ -39,38 +39,53 @@ class AuthModel extends Model
 				$user->message = "Login Failed ! Please check your email and password";
 			}
 		} else {
-			$user= (object)[];
+			$user = (object)[];
 			$user->status = false;
 			$user->message = "Sorry ! No account associated with the given credentials or user type ";
 		}
 		return $user;
 	}
 
-	public function createClient($data)
+	public function createClient($data, $data1)
 	{
-		$hashed_password = password_hash($data['password'], PASSWORD_DEFAULT, ['cost' => 10]);
+		$result = (object)[];
+		$builder = $this->db->table($this->table);
+		$builder->where('user_email', $data['user_email']);
+		$query = $builder->get();
+		$user = $query->getRow();
+		if (!($user)) {
+			$db = db_connect();
+			$this->insert($data);
+			$lastId = $this->insertID();
 
-		$data = [
-			'email' => $data['email'],
-			'password' => $hashed_password
-		];
+			if ($lastId) {
+				$data1['user_id'] = $lastId;
+				$builder = $db->table('user_profile');
+				$builder->insert($data1);
+				$db->insertID();
+			}
+			$result->status = true;
+			$result->message = "Account created successfully";
+		} else {
+			$result->status = false;
+			$result->message = "Account already exists with the provided email id";
+		}
 
-		$this->insert($data);
-		return $this->insertID();
+		return $result;
 	}
 
 	public function getCountryAndPostList()
-    {
+	{
 
-        $query = $this->db->table('products')
-            ->select('product_id, product_name')
-            ->get();
-        $result['category'] = $query->getResult();
+		$query = $this->db->table('products')
+			->select('product_id, product_name')
+			->get();
+		$result['category'] = $query->getResult();
 
-        $query = $this->db->table('countries')
-            ->select('id, name')
-            ->get();
-        $result['country'] = $query->getResult();
-        return $result;
-    }
+		$query = $this->db->table('countries')
+			->select('id, name')
+			->get();
+		$result['country'] = $query->getResult();
+		return $result;
+	}
 }

@@ -91,13 +91,13 @@
               </a>
             </div>
             <!-- /Logo -->
-            <form id="login_form" name="login_form" class="mb-3">
+            <form id="login_form" name="login_form" action="<?php echo base_url(); ?>/public/signupProcess" class="mb-3">
               <div id="step1">
                 <h3 class="mb-2">Create Account : Step 1</h3>
                 <p class="mb-4">Please enter the details</p>
                 <div class="mb-3">
                   <label for="first_name" class="form-label">First Name</label>
-                  <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter your First Name" autofocus required />
+                  <input type="text" class="form-control" id="first_name" name="first_name" required placeholder="Enter your First Name" autofocus required />
                 </div>
                 <div class="mb-3">
                   <label for="last_name" class="form-label">Last Name</label>
@@ -116,13 +116,13 @@
                     <label class="form-label" for="password">Password</label>
                   </div>
                   <div class="input-group input-group-merge">
-                    <input type="password" id="pwd" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" required />
+                    <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" required />
                   </div>
                 </div>
+                <span id="error" style="color:red"></span>
                 <div class="mb-3">
                   <button type="button" class="btn btn-primary d-grid w-100" id="tostep2">Next</button>
                 </div>
-                <div id="alertmessage"></div>
               </div>
               <div id="step2" style="display:none">
                 <h3 class="mb-2">Profile Building : Step 2</h3>
@@ -138,15 +138,15 @@
                   </div>
                 </div>
 
+                
                 <div class="mb-3">
-                  <label for="email" class="form-label">Country : </label>
-                  <div class="col-md-07">
-                    <select id="choices-multiple-remove-button" name="region" placeholder="Select a product category">
-                      <?php foreach ($country as $value) : ?>
-                        <option value="<?= $value->id ?>"><?= $value->name ?></option>
-                      <?php endforeach ?>
-                    </select>
-                  </div>
+                  <label for="country" class="form-label">Country : </label>
+                <div class="col-md-07">
+                  <select id="country" name="country" class="select2 form-select">
+                    <?php foreach ($country as $value) : ?>
+                      <option value="<?= $value->id ?>"><?= $value->name ?></option>
+                    <?php endforeach ?>
+                  </select>
                 </div>
                 <div class="mb-3">
                   <label for="min" class="form-label">Minimum Investing Amount</label>
@@ -165,13 +165,13 @@
                 <div class="mb-3 row">
                   <label for="pc_image" class="form-label">Short Bio :</label>
                   <div class="col-md-07">
-                    <textarea cols="39" id="content" name="bio" rows="8"></textarea>
+                    <textarea cols="39" id="bio" name="bio" rows="8"></textarea>
                   </div>
                 </div>
+                <span id="error1" style="color:red"></span>
                 <div class="mb-3">
                   <button type="button" class="btn btn-primary d-grid w-100" id="signup">Create Account</button>
                 </div>
-                <div id="alertmessage"></div>
               </div>
             </form>
 
