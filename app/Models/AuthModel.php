@@ -58,4 +58,19 @@ class AuthModel extends Model
 		$this->insert($data);
 		return $this->insertID();
 	}
+
+	public function getCountryAndPostList()
+    {
+
+        $query = $this->db->table('products')
+            ->select('product_id, product_name')
+            ->get();
+        $result['category'] = $query->getResult();
+
+        $query = $this->db->table('countries')
+            ->select('id, name')
+            ->get();
+        $result['country'] = $query->getResult();
+        return $result;
+    }
 }

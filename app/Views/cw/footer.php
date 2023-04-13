@@ -74,8 +74,8 @@
 
       var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
         removeItemButton: true,
-        searchResultLimit: 5,
-        renderChoiceLimit: 5
+        searchResultLimit: 50,
+        renderChoiceLimit: 50
       });
 
       

@@ -32,6 +32,7 @@ $routes->set404Override();
 $routes->get('/', 'Home::index');
 $routes->get('/login', 'Home::index');
 $routes->post('/signInProcess', 'Home::signInProcess');
+$routes->get('/Signup', 'Home::signupView');
 $routes->get('/logout', 'Home::logOut');
 
 // rm starts here

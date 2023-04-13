@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-  <title>Login | Financial App</title>
+  <title>SignUp | Financial App</title>
 
   <meta name="description" content="" />
 
@@ -38,6 +38,7 @@
   <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
   <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
   <script src="<?php echo base_url(); ?>/public/assets/js/config.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
 </head>
 
 <body>
@@ -90,50 +91,94 @@
               </a>
             </div>
             <!-- /Logo -->
-            <h4 class="mb-2">Welcome to FinancialApp! 👋</h4>
-            <p class="mb-4">Please sign-in to your account</p>
-
             <form id="login_form" name="login_form" class="mb-3">
-              <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="text" class="form-control" id="email" name="email-username" placeholder="Enter your email or username"  autofocus required/>
-              </div>
-              <div class="mb-3 form-password-toggle">
-                <div class="d-flex justify-content-between">
-                  <label class="form-label" for="password">Password</label>
-                  <a href="auth-forgot-password-basic.html">
-                    <small>Forgot Password?</small>
-                  </a>
+              <div id="step1">
+                <h3 class="mb-2">Create Account : Step 1</h3>
+                <p class="mb-4">Please enter the details</p>
+                <div class="mb-3">
+                  <label for="first_name" class="form-label">First Name</label>
+                  <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter your First Name" autofocus required />
                 </div>
-                <div class="input-group input-group-merge">
-                  <input type="password" id="pwd" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" required/>
+                <div class="mb-3">
+                  <label for="last_name" class="form-label">Last Name</label>
+                  <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Enter your last name" autofocus required />
                 </div>
-              </div>
-              <div class="mb-3">
-                <div class="form-check">
-                  <label class="form-check-label" for="userroles"> User Type </label>
-                  <div class="btn-group" role="group" id="userroles">
-                    <input type="radio" class="btn-check" value="4" name="btnradio" id="btnradio1" autocomplete="off" />
-                    <label class="btn btn-outline-primary" for="btnradio1">Client</label>
-                    <input type="radio" class="btn-check" value="1" name="btnradio" id="btnradio2" autocomplete="off" />
-                    <label class="btn btn-outline-primary" for="btnradio2">Admin</label>
-                    <input type="radio" class="btn-check" value="2" name="btnradio" id="btnradio3" autocomplete="off" />
-                    <label class="btn btn-outline-primary" for="btnradio3">RM</label>
-                    <input type="radio" class="btn-check" value="3" name="btnradio" id="btnradio4" autocomplete="off" />
-                    <label class="btn btn-outline-primary" for="btnradio4">CW</label>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email or username" autofocus required />
+                </div>
+                <div class="mb-3">
+                  <label for="contact" class="form-label">Contact Number</label>
+                  <input type="text" class="form-control" id="contact" name="contact" placeholder="Enter your phone number" autofocus required />
+                </div>
+                <div class="mb-3 form-password-toggle">
+                  <div class="d-flex justify-content-between">
+                    <label class="form-label" for="password">Password</label>
+                  </div>
+                  <div class="input-group input-group-merge">
+                    <input type="password" id="pwd" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" required />
                   </div>
                 </div>
+                <div class="mb-3">
+                  <button type="button" class="btn btn-primary d-grid w-100" id="tostep2">Next</button>
+                </div>
+                <div id="alertmessage"></div>
               </div>
-              <div class="mb-3">
-                <button class="btn btn-primary d-grid w-100" id="admin_login_btn">Sign in</button>
+              <div id="step2" style="display:none">
+                <h3 class="mb-2">Profile Building : Step 2</h3>
+                <p class="mb-4">Please enter the details</p>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Product : </label>
+                  <div class="col-md-07">
+                    <select id="choices-multiple-remove-button" multiple name="category" placeholder="Select a product category">
+                      <?php foreach ($category as $value) : ?>
+                        <option value="<?= $value->product_id ?>"><?= $value->product_name ?></option>
+                      <?php endforeach ?>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="email" class="form-label">Country : </label>
+                  <div class="col-md-07">
+                    <select id="choices-multiple-remove-button" name="region" placeholder="Select a product category">
+                      <?php foreach ($country as $value) : ?>
+                        <option value="<?= $value->id ?>"><?= $value->name ?></option>
+                      <?php endforeach ?>
+                    </select>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="min" class="form-label">Minimum Investing Amount</label>
+                  <input type="text" class="form-control" id="min" name="min" placeholder="Minimum Investing Amount" autofocus required />
+                </div>
+                <div class="mb-3">
+                  <label for="max" class="form-label">Maximum Investing Amount</label>
+                  <input type="text" class="form-control" id="max" name="max" placeholder="Maximum Investing Amount" autofocus required />
+                </div>
+                <div class="mb-3 row">
+                  <label for="pc_image" class="form-label">Profile Image :</label>
+                  <div class="col-md-07">
+                    <input class="form-control" required="true" type="file" id="image" name="image" />
+                  </div>
+                </div>
+                <div class="mb-3 row">
+                  <label for="pc_image" class="form-label">Short Bio :</label>
+                  <div class="col-md-07">
+                    <textarea cols="39" id="content" name="bio" rows="8"></textarea>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <button type="button" class="btn btn-primary d-grid w-100" id="signup">Create Account</button>
+                </div>
+                <div id="alertmessage"></div>
               </div>
-              <div id="alertmessage"></div>
             </form>
 
             <p class="text-center">
-              <span>New on our platform?</span>
-              <a href="<?php echo base_url(); ?>/public/Signup">
-                <span>Create an account</span>
+              <span>Want to go back?</span>
+              <a href="<?php echo base_url(); ?>/public/login">
+                <span>Login</span>
               </a>
             </p>
           </div>
@@ -150,10 +195,39 @@
 
   <!-- Core JS -->
   <!-- build:js assets/vendor/js/core.js -->
-  <script src="<?php echo base_url(); ?>/public/assets/vendor/libs/jquery/dist/jquery.min.js"></script>
-
+  <script src="<?php echo base_url(); ?>/public/assets/vendor/libs/jquery/jquery.js"></script>
   <script src="<?php echo base_url(); ?>/public/assets/vendor/libs/popper/popper.js"></script>
   <script src="<?php echo base_url(); ?>/public/assets/vendor/js/bootstrap.js"></script>
+  <script src="<?php echo base_url(); ?>/public/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+  <script src="<?php echo base_url(); ?>/public/assets/vendor/js/menu.js"></script>
+  <!-- endbuild -->
+
+  <!-- Vendors JS -->
+  <script src="<?php echo base_url(); ?>/public/assets/vendor/libs/apex-charts/apexcharts.js"></script>
+
+  <!-- Main JS -->
+  <script src="<?php echo base_url(); ?>/public/assets/js/main.js"></script>
+
+  <!-- Page JS -->
+  <script src="<?php echo base_url(); ?>/public/assets/js/dashboards-analytics.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.3.4/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.bootstrap5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.print.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.colVis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
+
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
   <!-- endbuild -->
 
@@ -162,9 +236,20 @@
   <!-- Main JS -->
   <!-- <script src="<?php echo base_url(); ?>/public/assets/js/main.js"></script> -->
 
-  <script src="<?php echo base_url(); ?>/public/assets/js/pages/login.js"></script>
+  <script src="<?php echo base_url(); ?>/public/assets/js/pages/signup.js"></script>
 
   <!-- Page JS -->
+  <script>
+    $(document).ready(function() {
+      var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+        removeItemButton: true,
+        searchResultLimit: 50,
+        renderChoiceLimit: 50
+      });
+
+
+    });
+  </script>
 </body>
 
 </html>

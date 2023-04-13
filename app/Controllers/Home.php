@@ -49,6 +49,27 @@ class Home extends BaseController
 		exit(0);
 	}
 
+	public function signupView()
+	{
+		$AuthModel = new AuthModel();
+        $result = $AuthModel->getCountryAndPostList();
+
+		$this->checkSession();
+		$data['title'] = "SignUp";
+		return view('SignUp', $result);
+	}
+	public function signupProcess()
+	{
+		$data = $this->request->getPost();
+		$AuthModel = new AuthModel();
+		$result = $AuthModel->getUserByEmail($data);
+		if($result->status == true){
+			$this->setSessionData('user', $result);
+		}
+		echo json_encode(array($result));
+		exit(0);
+	}
+
 	public function logOut()
 	{
 		 // destroy the session data
