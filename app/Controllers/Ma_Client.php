@@ -25,8 +25,12 @@ class Ma_Client extends BaseController
         'heading' => 'Client List',
         ];
 
-        $MaModel = new Ma_Management();
-        $result['clients'] = $MaModel->getClients($params);
+      $MaModel = new Ma_Management();
+     $result['clients'] = $MaModel->getClients($params);
+
+        
+        
+
 
         $arr = (array) $result;
         // echo "<pre>";
@@ -60,6 +64,8 @@ class Ma_Client extends BaseController
             ];
     
 
+        $PostModel = new Posts_Management();
+        $result = $PostModel->getCountryAndPostList();
         $MaModel = new Ma_Management();
         $result['client'] = $MaModel->getClientById($id);
 
@@ -84,8 +90,11 @@ class Ma_Client extends BaseController
         $request = \Config\Services::request();
         $id = $request->getGet('id');
 
+        $PostModel = new Posts_Management();
+        $result = $PostModel->getCountryAndPostList();
         $MaModel = new Ma_Management();
         $result['client'] = $MaModel->getClientById($id);
+
 
         $data = [
             'heading' => 'Client Management',
@@ -163,8 +172,8 @@ class Ma_Client extends BaseController
                 'user_products_ids' => $products,
             ];
 
-            $PostModel = new Ma_Management();
-            $result = $PostModel->CreateAccount($params, $params1);
+            $MaModel = new Ma_Management();
+            $result = $MaModel->CreateAccount($params, $params1);
 
             echo json_encode(array($result));
 		    exit(0);

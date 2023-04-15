@@ -45,7 +45,7 @@
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
-                                            <label for="email" class="col-md-2 col-form-label">Products : </label>
+                                            <label for="category" class="col-md-2 col-form-label">Products : </label>
                                             <div class="col-md-10">
                                             <select id="choices-multiple-remove-button" name="category" placeholder="Select a product category" multiple>
                                          <?php foreach ($category as $value) : ?>
@@ -70,15 +70,15 @@
                                             </div>
                                         </div>
 
-                                        <div class="mb-3 row">
-                                            <label for="region" class="col-md-2 col-form-label">Country:</label>
-                                            <div class="col-md-05">
-                                            <select id="choices-multiple-remove-button1" name="region" placeholder="Select a Country">
-                                            <?php foreach ($country as $value) : ?>
-                                                        <option value="<?= $value->id ?>"><?= $value->name ?></option>
-                                             <?php endforeach ?>
-                                             </select>
-                                            </div>
+                                        <div class="form-group row">
+                                            <label for="region" class="col-sm-2 col-form-label">Country:</label>
+                                                <div class="col-sm-10">
+                                                     <select id="choices-multiple-remove-button1" name="region" class="form-control">
+                                                        <?php foreach ($country as $value) : ?>
+                                                            <option value="<?= $value->id ?>"><?= $value->name ?></option>
+                                                        <?php endforeach ?>
+                                                    </select>
+                                                 </div>
                                         </div>
 
                                         <div class="mb-3 row">
