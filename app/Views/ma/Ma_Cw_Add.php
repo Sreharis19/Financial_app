@@ -12,6 +12,7 @@
                         <br>
                         <br>
                         <br>
+                    <form>
                        <div class="card" style="padding-top: 10px; padding-left: 05px; padding-right: 05px;">
                             <div class="col-xl-10" style="padding-top: 30px; padding-left: 80px; padding-right: 80px;">
                                 <!-- HTML5 Inputs -->
@@ -21,26 +22,26 @@
                                         <div class="mb-3 row">
                                             <label for="first_name" class="col-md-2 col-form-label">First Name :</label>
                                             <div class="col-md-10">
-                                                <input class="form-control" type="text" id="first_name" />
+                                                <input class="form-control" type="text" name="first_name"  id="first_name" />
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
                                             <label for="last_name" class="col-md-2 col-form-label">Last Name :</label>
                                             <div class="col-md-10">
-                                                <input class="form-control" type="text" id="last_name" />
+                                                <input class="form-control" type="text" name="last_name"  id="last_name" />
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
                                             <label for="email" class="col-md-2 col-form-label">Email : </label>
                                             <div class="col-md-10">
-                                                <input class="form-control" type="email" id="email" />
+                                                <input class="form-control" type="email" name="email"  id="email" />
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
                                             <label for="ContactNumber" class="col-md-2 col-form-label">Contact Number
                                                 :</label>
                                             <div class="col-md-10">
-                                                <input class="form-control" type="tel" id="ContactNumber" />
+                                                <input class="form-control" type="tel" name="ContactNumber" id="ContactNumber" />
                                             </div>
                                         </div>
                                         <!-- <div class="mb-3 row">
@@ -60,22 +61,23 @@
                                         <div class="mb-3 row">
                                             <label for="password" class="col-md-2 col-form-label">Password</label>
                                             <div class="col-md-10">
-                                                <input class="form-control" type="password" id="password" />
+                                                <input class="form-control" type="password" name="password" id="password" />
                                             </div>
                                         </div>
                                         <br>
                                         <br>
                                         <div style="float: right;">
-                                            <button type="button" onclick="location.href = '<?php echo base_url(); ?>/public/Ma_Cw_List';"
+                                            <button type="button" id="createContentWriter"	
                                                 class="btn btn-dark">
                                                 <span class="tf-icons bx bx-save">
-                                                </span>&nbsp; Create Account
+                                                </span>&nbsp; CreateAccount
                                             </button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                   </form> 
 					</div>
                 
                     <!-- / Content -->

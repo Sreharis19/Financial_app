@@ -88,6 +88,8 @@ $routes->get('/Ma_pc_List', 'Ma_ProductCategory::index');
 
 
 $routes->post('/CreateAccount', 'Ma_Client::CreateAccount');
+$routes->post('/CreateAccount', 'Ma_ContentWriter::CreateAccount');
+//$routes->post('/Ma_Client_List', 'Ma_Client::update');
 $routes->post('/Ma_Client_List', 'Ma_Client::update');
 
 
