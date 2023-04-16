@@ -96,7 +96,7 @@
             <form id="login_form" name="login_form" class="mb-3">
               <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="text" class="form-control" id="email" name="email-username" placeholder="Enter your email or username"  autofocus required/>
+                <input type="text" class="form-control" id="email" name="email-username" placeholder="Enter your email or username" autofocus required />
               </div>
               <div class="mb-3 form-password-toggle">
                 <div class="d-flex justify-content-between">
@@ -106,7 +106,7 @@
                   </a>
                 </div>
                 <div class="input-group input-group-merge">
-                  <input type="password" id="pwd" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" required/>
+                  <input type="password" id="pwd" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" required />
                 </div>
               </div>
               <div class="mb-3">
@@ -124,6 +124,13 @@
                   </div>
                 </div>
               </div>
+              <span id="error" style="color:red"></span>
+              <div id="loading" name="loading" class="col-md" style="position: fixed;top: 50%;left: 50%;transform: translate(-50%, -50%);display:none;">
+                <div class="text-light small fw-semibold">Loading, Please Wait</div>
+                <div class="spinner-border" role="status"></div>
+                <div class="spinner-border text-primary" role="status"></div>
+                <div class="spinner-border text-success" role="status"></div>
+              </div>
               <div class="mb-3">
                 <button class="btn btn-primary d-grid w-100" id="admin_login_btn">Sign in</button>
               </div>
@@ -137,34 +144,35 @@
               </a>
             </p>
           </div>
-        </div>
-        <!-- /Register -->
-        <!-- <div class="spinner-grow text-success" role="status">
+          <!-- /Register -->
+          <!-- <div class="spinner-grow text-success" role="status">
                           <span class="visually-hidden">Loading...</span>
                         </div> -->
+        </div>
+
       </div>
     </div>
-  </div>
 
-  <!-- / Content -->
 
-  <!-- Core JS -->
-  <!-- build:js assets/vendor/js/core.js -->
-  <script src="<?php echo base_url(); ?>/public/assets/vendor/libs/jquery/dist/jquery.min.js"></script>
+    <!-- / Content -->
 
-  <script src="<?php echo base_url(); ?>/public/assets/vendor/libs/popper/popper.js"></script>
-  <script src="<?php echo base_url(); ?>/public/assets/vendor/js/bootstrap.js"></script>
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="<?php echo base_url(); ?>/public/assets/vendor/libs/jquery/dist/jquery.min.js"></script>
 
-  <!-- endbuild -->
+    <script src="<?php echo base_url(); ?>/public/assets/vendor/libs/popper/popper.js"></script>
+    <script src="<?php echo base_url(); ?>/public/assets/vendor/js/bootstrap.js"></script>
 
-  <!-- Vendors JS -->
+    <!-- endbuild -->
 
-  <!-- Main JS -->
-  <!-- <script src="<?php echo base_url(); ?>/public/assets/js/main.js"></script> -->
+    <!-- Vendors JS -->
 
-  <script src="<?php echo base_url(); ?>/public/assets/js/pages/login.js"></script>
+    <!-- Main JS -->
+    <!-- <script src="<?php echo base_url(); ?>/public/assets/js/main.js"></script> -->
 
-  <!-- Page JS -->
+    <script src="<?php echo base_url(); ?>/public/assets/js/pages/login.js"></script>
+
+    <!-- Page JS -->
 </body>
 
 </html>

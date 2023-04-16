@@ -94,7 +94,17 @@
             <form id="login_form" name="login_form" action="<?php echo base_url(); ?>/public/signupProcess" class="mb-3">
               <div id="step1">
                 <h3 class="mb-2">Create Account : Step 1</h3>
-                <p class="mb-4">Please enter the details</p>
+                <div class="progress">
+                      <div
+                        class="progress-bar progress-bar-striped progress-bar-animated bg-info"
+                        role="progressbar"
+                        style="width: 50%"
+                        aria-valuenow="50"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                      ></div>
+                    </div>
+                <p class="mb-4">Please enter your details</p>
                 <div class="mb-3">
                   <label for="first_name" class="form-label">First Name</label>
                   <input type="text" class="form-control" id="first_name" name="first_name" required placeholder="Enter your First Name" autofocus required />
@@ -126,7 +136,17 @@
               </div>
               <div id="step2" style="display:none">
                 <h3 class="mb-2">Profile Building : Step 2</h3>
-                <p class="mb-4">Please enter the details</p>
+                <div class="progress">
+                      <div
+                        class="progress-bar progress-bar-striped progress-bar-animated bg-info"
+                        role="progressbar"
+                        style="width: 100%"
+                        aria-valuenow="100"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                      ></div>
+                    </div>
+                <p class="mb-4">Please enter your details</p>
                 <div class="mb-3">
                   <label for="email" class="form-label">Product : </label>
                   <div class="col-md-07">

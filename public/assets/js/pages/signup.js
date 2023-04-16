@@ -7,8 +7,6 @@ $("#tostep2").click(function () {
     const contact = document.getElementById('contact');
     const password = document.getElementById('password');
     var password_regex1 = /([a-z].*[A-Z])|([A-Z].*[a-z])([0-9])+([!,%,&,@,#,$,^,*,?,_,~])/;
-    var password_regex2 = /([0-9])/;
-    var password_regex3 = /([!,%,&,@,#,$,^,*,?,_,~])/;
 
     // Validate the first name
     if (firstName.value.trim() === '') {
@@ -76,7 +74,6 @@ $("#tostep2").click(function () {
 
 $("#signup").click(function () {
     console.log("reached");
-    const errorSpan = document.querySelector('#error1');
     const category = document.querySelector('[name="category"]').value;
     const region = document.querySelector('[name="country"]').value;
     const min = document.querySelector('#min').value;
@@ -130,17 +127,6 @@ $("#signup").click(function () {
 
     // create a new FormData object
     var formData = new FormData();
-
-    console.log('product', category);
-    console.log('region', region);
-    console.log('min', min);
-    console.log('max', max);
-    console.log('firstName', firstName.value);
-    console.log('lastName', lastName.value);
-    console.log('email', email.value);
-    console.log('contact', contact.value);
-    console.log('password', password.value);
-    console.log('bio', bio);
 
     var options = document.getElementById('choices-multiple-remove-button').selectedOptions;
     var values = Array.from(options).map(({ value }) => value);

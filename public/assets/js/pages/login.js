@@ -2,35 +2,46 @@ $("#admin_login_btn").click(function () {
 
     var email = $("#email").val();
     var pass = $("#pwd").val();
+    const password = document.getElementById('pwd');
     var type = $("input[type='radio'][name='btnradio']:checked").val();
-    var email_regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
     var password_regex1 = /([a-z].*[A-Z])|([A-Z].*[a-z])([0-9])+([!,%,&,@,#,$,^,*,?,_,~])/;
-    var password_regex2 = /([0-9])/;
-    var password_regex3 = /([!,%,&,@,#,$,^,*,?,_,~])/;
+    var email_regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
     if (type == null || type == '') {
         alert("Please Select A User Type");
-        $('#admin_login_btn').prop('disabled', false);
         return false;
     }
 
     if (email_regex.test(email) == false) {
-        alert("Please Enter Correct Email");
-        $('#admin_login_btn').prop('disabled', false);
+        $('#error').text('Please Enter Correct Email');
         return false;
     }
-    // else if (pass.length < 4 || password_regex1.test(pass) == false || password_regex2.test(pass) == false || password_regex3.test(pass) == false) {
-    //     alert("Please Enter Your Password");
-    //     return false;
-    // }
+
+    // Validate the password
+    if (pass.trim() === '') {
+        $('#error').text('password is required');
+        return false;
+
+    } else if (pass.length < 4) {
+        $('#error').text('password should be having minimum of four digits');
+        return false;
+    }
+    else if (password_regex1.test(password) == false) {
+        $('#error').text('password should be having alteast 1 upper, lower, numvber and a special character');
+        return false;
+    }
     else {
+        $("#loading").css("display", "block");
+        $('#error').text('');
+
         $("#admin_login_btn").attr("disabled", true);
         $.ajax({
             'url': 'http://localhost/Financial_app/public/signInProcess',
             'type': 'POST',
             'data': { 'email': email, 'password': pass, 'type': type },
             success: function (result) {
-
+                $("#loading").css("display", "none");
                 $result = JSON.parse(result);
                 $result = $result[0];
                 console.log($result);
