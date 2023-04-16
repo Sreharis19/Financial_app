@@ -46,12 +46,10 @@ $("#admin_login_btn").click(function () {
             'type': 'POST',
             'data': { 'email': email, 'password': pass, 'type': type },
             success: function (result) {
-                $("#loading").css("display", "none");
                 $result = JSON.parse(result);
                 $result = $result[0];
                 console.log($result);
                 if ($result.id) {
-
                     if ($result.user_type == 1) {
                         setTimeout(function () {
                             window.location.href = "http://localhost/Financial_app/public/Admin_dashboard";
@@ -72,8 +70,10 @@ $("#admin_login_btn").click(function () {
                             window.location.href = "http://localhost/Financial_app/public/Client_dashboard";
                         }, 20);
                     }
+                    $("#loading").css("display", "none");
                 }
                 else {
+                    $("#loading").css("display", "none");
                     alert($result.message);
                     $('#admin_login_btn').prop('disabled', false);
                 }
