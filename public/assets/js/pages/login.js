@@ -2,7 +2,6 @@ $("#admin_login_btn").click(function () {
 
     var email = $("#email").val();
     var pass = $("#pwd").val();
-    const password = document.getElementById('pwd');
     var type = $("input[type='radio'][name='btnradio']:checked").val();
 
     var password_regex1 = /([a-z].*[A-Z])|([A-Z].*[a-z])([0-9])+([!,%,&,@,#,$,^,*,?,_,~])/;
@@ -28,12 +27,12 @@ $("#admin_login_btn").click(function () {
 
     } else if (pass.length < 4) {
         $("#loading").css("display", "none");
-        $('#error').text('password should be having minimum of four digits');
+        $('#error').text('password should be having minimum of four characters');
         return false;
     }
-    else if (password_regex1.test(password) == false) {
+    else if (password_regex1.test(pass) == false) {
         $("#loading").css("display", "none");
-        $('#error').text('password should be having alteast 1 upper, lower, numvber and a special character');
+        $('#error').text('password should be having alteast 1 upper, lower, number and a special character');
         return false;
     }
     else {

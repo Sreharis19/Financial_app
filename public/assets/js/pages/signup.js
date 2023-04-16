@@ -61,7 +61,7 @@ $("#tostep2").click(function () {
         return false;
     }
     else if (password_regex1.test(password) == false) {
-        $('#error').text('password should be having alteast 1 upper, lower, numvber and a special character');
+        $('#error').text('password should be having alteast 1 upper, lower, number and a special character');
         return false;
     }
     else {
