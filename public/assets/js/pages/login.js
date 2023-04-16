@@ -9,25 +9,30 @@ $("#admin_login_btn").click(function () {
     var email_regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
     if (type == null || type == '') {
+        $("#loading").css("display", "none");
         alert("Please Select A User Type");
         return false;
     }
 
     if (email_regex.test(email) == false) {
+        $("#loading").css("display", "none");
         $('#error').text('Please Enter Correct Email');
         return false;
     }
 
     // Validate the password
     if (pass.trim() === '') {
+        $("#loading").css("display", "none");
         $('#error').text('password is required');
         return false;
 
     } else if (pass.length < 4) {
+        $("#loading").css("display", "none");
         $('#error').text('password should be having minimum of four digits');
         return false;
     }
     else if (password_regex1.test(password) == false) {
+        $("#loading").css("display", "none");
         $('#error').text('password should be having alteast 1 upper, lower, numvber and a special character');
         return false;
     }
