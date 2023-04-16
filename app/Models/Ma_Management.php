@@ -9,7 +9,7 @@ class Ma_Management extends Model
 {
     protected $table = 'user_master';
 
-    protected $allowedFields = ['first_name', 'last_name', 'user_email', 'user_contact', 'user_password', 'user_type', 'user_token', 'user_statuss'];
+    protected $allowedFields = ['first_name', 'last_name', 'user_email', 'user_contact', 'user_password', 'user_type', 'user_token', 'user_status'];
 
     public function getClients($data)
     {

@@ -21,39 +21,36 @@
                                         <div class="mb-3 row">
                                             <label for="first_name" class="col-md-2 col-form-label">First Name :</label>
                                             <div class="col-md-10">
-                                                <input class="form-control" type="text" id="first_name" value="Kevin"  />
+                                                <input class="form-control" type="text" id="first_name" value="<?= $client->first_name ?>"  />
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
                                             <label for="last_name" class="col-md-2 col-form-label">Last Name :</label>
                                             <div class="col-md-10">
-                                                <input class="form-control" type="text" id="last_name" value="perterson"  />
+                                                <input class="form-control" type="text" id="last_name" value="<?= $client->last_name ?>"  />
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
                                             <label for="email" class="col-md-2 col-form-label">Email : </label>
                                             <div class="col-md-10">
-                                                <input class="form-control" type="email" id="email" value="kevin@email.com"  />
+                                                <input class="form-control" type="email" id="email" value="<?= $client->user_email ?>"  />
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
                                             <label for="ContactNumber" class="col-md-2 col-form-label">Contact Number
                                                 :</label>
                                             <div class="col-md-10">
-                                                <input class="form-control" type="tel" id="ContactNumber" value="+447489878585" />
+                                                <input class="form-control" type="tel" id="ContactNumber" value="<?= $client->user_contact ?>" />
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
-                                            <label for="email" class="col-md-2 col-form-label">Products : </label>
+                                            <label for="category" class="col-md-2 col-form-label">Products : </label>
                                             <div class="col-md-10">
-                                                <select id="choices-multiple-remove-button"
-                                                    placeholder="Select products" multiple>
-                                                    <option  value="Stocks" onclick="filterSelection('Stocks')">Stocks
-                                                    </option>
-                                                    <option selected value="Equity">Equity</option>
-                                                    <option selected value="Bonds">Bonds</option>
-                                                    <option value="RA">RA</option>
-                                                </select>
+                                            <select id="choices-multiple-remove-button" name="category" placeholder="Select a product category" multiple>
+                                         <?php foreach ($category as $value) : ?>
+                                             <option value="<?= $value->product_id ?>"><?= $value->product_name ?></option>
+                                         <?php endforeach ?>
+                                         </select>
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
@@ -69,6 +66,16 @@
                                             <div class="col-md-10">
                                                 <input class="form-control" type="number" id="maximum" value="10000" />
                                             </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="region" class="col-sm-2 col-form-label">Country:</label>
+                                                <div class="col-sm-10">
+                                                     <select id="choices-multiple-remove-button1" name="region" class="form-control">
+                                                        <?php foreach ($country as $value) : ?>
+                                                            <option value="<?= $value->id ?>"><?= $value->name ?></option>
+                                                        <?php endforeach ?>
+                                                    </select>
+                                                 </div>
                                         </div>
                                         <br>
                                         <br>

@@ -131,6 +131,43 @@ class Ma_ContentWriter extends BaseController
         // Load the footer view
         echo view('ma/footer');
     }
+
+    public function CreateAccount()
+    {
+
+        
+        $data = $this->request->getPost();
+        $array = (array) $data['product'];
+
+        $pro = $array;
+            $products = implode('#', $pro);
+
+            $params = [
+                'first_name' => $data['first_name'],
+                'last_name' => $data['last_name'],
+                'user_email' => $data['email'],
+                'user_contact' =>$data['ContactNumber'],
+                'user_password' => password_hash($data['password'], PASSWORD_DEFAULT),
+                'user_type' => 4,
+                'user_token'=> date('YmdHis'),
+                'user_status'=>1,
+               
+            ];
+
+            $params1 = [
+               // 'user_max_purchase_power' => $data['maximum'],
+                //'user_min_purchase_power' => $data['minimum'],
+               // 'user_country' => $data['country'],
+                'bio' =>'',
+                'user_products_ids' => $products,
+            ];
+
+            $MaModel = new Ma_Management();
+            $result = $MaModel->CreateAccount($params, $params1);
+
+            echo json_encode(array($result));
+		    exit(0);
+    }
 }
 ?>
 
