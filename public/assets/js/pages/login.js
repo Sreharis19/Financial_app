@@ -1,15 +1,15 @@
 $("#admin_login_btn").click(function () {
-
+    $('#error').text('');
     var email = $("#email").val();
     var pass = $("#pwd").val();
     var type = $("input[type='radio'][name='btnradio']:checked").val();
 
-    var password_regex1 = /([a-z].*[A-Z])|([A-Z].*[a-z])([0-9])+([!,%,&,@,#,$,^,*,?,_,~])/;
+    var password_regex1 = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     var email_regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
     if (type == null || type == '') {
         $("#loading").css("display", "none");
-        alert("Please Select A User Type");
+        $('#error').text('Please Select A User Type');
         return false;
     }
 
@@ -31,6 +31,9 @@ $("#admin_login_btn").click(function () {
         return false;
     }
     else if (password_regex1.test(pass) == false) {
+
+        console.log("pass", pass);
+        console.log("password_regex1.test(pass)", password_regex1.test(pass))
         $("#loading").css("display", "none");
         $('#error').text('password should be having alteast 1 upper, lower, number and a special character');
         return false;
@@ -48,7 +51,8 @@ $("#admin_login_btn").click(function () {
                 $result = JSON.parse(result);
                 $result = $result[0];
                 console.log($result);
-                if ($result.id) {
+                $("#loading").css("display", "none");
+                if ($result.status == true) {
                     if ($result.user_type == 1) {
                         setTimeout(function () {
                             window.location.href = "http://localhost/Financial_app/public/Admin_dashboard";
@@ -69,11 +73,10 @@ $("#admin_login_btn").click(function () {
                             window.location.href = "http://localhost/Financial_app/public/Client_dashboard";
                         }, 20);
                     }
-                    $("#loading").css("display", "none");
                 }
                 else {
                     $("#loading").css("display", "none");
-                    alert($result.message);
+                    $('#error').text($result.message);
                     $('#admin_login_btn').prop('disabled', false);
                 }
             }

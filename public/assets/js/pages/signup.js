@@ -6,7 +6,7 @@ $("#tostep2").click(function () {
     const email = document.getElementById('email');
     const contact = document.getElementById('contact');
     const password = document.getElementById('password');
-    var password_regex1 = /([a-z].*[A-Z])|([A-Z].*[a-z])([0-9])+([!,%,&,@,#,$,^,*,?,_,~])/;
+    var password_regex1 = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
     // Validate the first name
     if (firstName.value.trim() === '') {
