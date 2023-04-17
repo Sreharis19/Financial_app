@@ -28,7 +28,7 @@
                                 <td><?= $key + 1 ?></td>
                                 <td><?= $product->product_name ?></td>
                                 <td><?= $product->category_name ?></td>
-                                <td><img src="<?= base_url('public/assets/img/products/' . $product->product_image) ?>"></td>
+                                <td><img src="<?= base_url('public/assets/uploads/product_cat/' . $product->product_image) ?>"></td>
                                 <td><?php if ($product->product_status == 1) : ?> <?= "Active" ?> <?php else : ?> <?= "Blocked" ?> <?php endif; ?></td>                    
 
                                 <td>
