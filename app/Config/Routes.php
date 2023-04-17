@@ -85,6 +85,16 @@ $routes->get('/Ma_pc_Add', 'Ma_ProductCategory::Add');
 $routes->get('/Ma_pc_Edit', 'Ma_ProductCategory::Edit');
 
 $routes->get('/Ma_Product_List', 'Ma_Products::index');
+$routes->get('/Ma_Product_Add', 'Ma_Products::Add');
+$routes->post('/AddData', 'Ma_Products::AddData');
+$routes->get('/Ma_Product_View', 'Ma_Products::View');
+$routes->get('/Ma_Product_Edit', 'Ma_Products::Edit');
+$routes->post('/EditData', 'Ma_Products::EditData');
+$routes->get('/Ma_Post_List', 'Ma_Post::index');
+$routes->post('/ArchivePost', 'Ma_Post::archive');
+$routes->post('/UnArchivePost', 'Ma_Post::unarchive');
+$routes->get('/Ma_Support_List', 'Ma_Support::index');
+$routes->post('/Support_reply', 'Ma_Support::reply');
 
 
 $routes->get('/Ma_pc_List', 'Ma_ProductCategory::index');
@@ -92,6 +102,9 @@ $routes->get('/Ma_pc_List', 'Ma_ProductCategory::index');
 
 $routes->post('/CreateAccount', 'Ma_Client::CreateAccount');
 $routes->post('/CreateAccount', 'Ma_ContentWriter::CreateAccount');
+$routes->post('/CreateAccountForRm', 'Ma_RelationManager::CreateAccount');
+$routes->post('/UpdateAccount', 'Ma_RelationManager::UpdateAccount');
+$routes->post('/Rm_BlockUnblock', 'Ma_RelationManager::Rm_BlockUnblockAccount');
 //$routes->post('/Ma_Client_List', 'Ma_Client::update');
 $routes->post('/Ma_Client_List', 'Ma_Client::update');
 

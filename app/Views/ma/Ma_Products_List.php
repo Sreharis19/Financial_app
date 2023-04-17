@@ -5,14 +5,14 @@
         <!-- Content -->
 
         <div class="container-xxl flex-grow-1 container-p-y">
-        <div style="float: right;">
-                            <button type="button" onclick="location.href = '<?php echo base_url(); ?>/public/Ma_Rm_Add?';" class="btn btn-primary">
-                                <span class="tf-icons bx bxs-message-alt-add">
-                                </span>&nbsp; Add New Rm
-                            </button>
-                        </div>
-                        <br>
-           <br>
+            <div style="float: right;">
+                <button type="button" onclick="location.href = '<?php echo base_url(); ?>/public/Ma_Product_Add?';" class="btn btn-primary">
+                    <span class="tf-icons bx bxs-message-alt-add">
+                    </span>&nbsp; Add New Product
+                </button>
+            </div>
+            <br>
+            <br>
             <br>
             <br>
             <div class="card" style="padding-top: 10px; padding-left: 05px; padding-right: 05px;">
@@ -28,7 +28,7 @@
                             <th>Product Category Name</th>
                             <th>Status</th>
                             <th>Action</th>
-                        
+
                         </tr>
                     </thead>
                     <tbody>
@@ -42,21 +42,17 @@
                                 <td><?= $product->product_benefits ?></td>
                                 <td><?= $product->category_name ?></td>
                                 <td><?php if ($product->product_status == 1) : ?> <?= "Active" ?> <?php else : ?> <?= "Archived" ?> <?php endif; ?></td>
-                                
-                                    <td>
-                                   
-         
-                                     <div  class="btn-group" role="group" aria-label="First group">
-                                        <button type="button" onclick="location.href = '<?php echo base_url(); ?>/public/Ma_Rm_View?id=<?= $product->product_id ?>';" class="btn btn-outline-secondary">
+
+                                <td>
+
+
+                                    <div class="btn-group" role="group" aria-label="First group">
+                                        <button type="button" onclick="location.href = '<?php echo base_url(); ?>/public/Ma_Product_View?id=<?= $product->product_id ?>';" class="btn btn-outline-secondary">
                                             <i title="view" class='tf-icons bx bx-street-view'></i>
                                         </button>
-                                   
-                                        <button type="button" onclick="location.href = '<?php echo base_url(); ?>/public/Ma_Rm_Edit?id=<?= $product->product_id ?>';" class="btn btn-outline-secondary">
-                                            <i title="Edit" class='tf-icons bx bx-edit-alt'></i>
-                                        </button>
 
-                                        <button type="button" data-bs-toggle="modal" data-bs-target="#blockorunblock" class="btn btn-outline-secondary">
-                                            <i title="block" class="tf-icons bx bx-check-shield"></i>
+                                        <button type="button" onclick="location.href = '<?php echo base_url(); ?>/public/Ma_Product_Edit?id=<?= $product->product_id ?>';" class="btn btn-outline-secondary">
+                                            <i title="Edit" class='tf-icons bx bx-edit-alt'></i>
                                         </button>
                                     </div>
                                 </td>
@@ -89,7 +85,7 @@
 
             </div>
         </div>
-	
+
 
 
         <!-- / Content -->
@@ -100,5 +96,5 @@
         <!-- build:js assets/vendor/js/core.js -->
 
 
-        </div>
+    </div>
 </body>

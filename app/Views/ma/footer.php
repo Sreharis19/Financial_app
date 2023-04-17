@@ -67,6 +67,9 @@
   <script src="<?php echo base_url(); ?>/public/assets/js/pages/support.js"></script>
   <script src="<?php echo base_url(); ?>/public/assets/js/pages/AddClient.js"></script>
   <script src="<?php echo base_url(); ?>/public/assets/js/pages/AddContentWriter.js"></script>
+  <script src="<?php echo base_url(); ?>/public/assets/js/pages/AddRm.js"></script>
+  <script src="<?php echo base_url(); ?>/public/assets/js/pages/MaPost.js"></script>
+  <script src="<?php echo base_url(); ?>/public/assets/js/pages/MaSupport.js"></script>
 
   <script>
     $(document).ready(function() {

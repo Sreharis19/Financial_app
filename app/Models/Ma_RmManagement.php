@@ -8,8 +8,7 @@ use CodeIgniter\Model;
 class Ma_RmManagement extends Model
 {
     protected $table = 'user_master';
-
-    protected $allowedFields = ['name', 'email', 'phone', 'address'];
+    protected $allowedFields = ['first_name', 'last_name', 'user_email', 'user_contact', 'user_password', 'user_type', 'user_token', 'user_status'];
 
     public function getRms($data)
     {
@@ -37,17 +36,17 @@ class Ma_RmManagement extends Model
             $all_products = $allproducts_query->getResult();
 
             $product_ids = explode('#', $all_products[0]->user_products_ids);
-                foreach ($product_ids as $product_id) {
-                    $products_query = $this->db->table('products')
-                        ->select('product_name')
-                        ->where('product_id', $product_id)
-                        ->get();
+            foreach ($product_ids as $product_id) {
+                $products_query = $this->db->table('products')
+                    ->select('product_name')
+                    ->where('product_id', $product_id)
+                    ->get();
 
-                    $data[] = $products_query->getResult();
-                    $user->products = array_column($data, 0, 'product_name');
-                    foreach ($product_ids as $item1) {
-                    if($item1 == $product_id){
-                        if( !in_array($users,$matchingArray)) array_push($matchingArray,$users);
+                $data[] = $products_query->getResult();
+                $user->products = array_column($data, 0, 'product_name');
+                foreach ($product_ids as $item1) {
+                    if ($item1 == $product_id) {
+                        if (!in_array($users, $matchingArray)) array_push($matchingArray, $users);
                     }
                 }
             }
@@ -67,7 +66,7 @@ class Ma_RmManagement extends Model
         $users = $query->getResult();
 
         $allproducts_query = $this->db->table('user_profile')
-            ->select('user_products_ids')
+            ->select('*')
             ->where('user_id', $users[0]->id)
             ->get();
 
@@ -82,17 +81,55 @@ class Ma_RmManagement extends Model
 
             $users[0]->product[$key] = $products_query->getResult();
         }
+        $users[0]->user_country = $all_products[0]->user_country;
 
         return $users[0];
     }
 
-    
-    public function createAccount(){
 
+    public function createAccount($data, $data1)
+    {
+        $db = db_connect();
+        $this->insert($data);
+        $lastId = $this->insertID();
+
+        if ($lastId) {
+            $data1['user_id'] = $lastId;
+            $builder = $db->table('user_profile');
+            $builder->insert($data1);
+            $db->insertID();
+        }
+
+        return true;
     }
 
-    public function updateAccount(){
-        
+    public function updateAccount($data, $data1, $id)
+    {
+
+        $db      = \Config\Database::connect();
+        $this->builder = $db->table('user_master');
+        $this->builder->set('first_name', $data['first_name'])
+            ->set('last_name', $data['last_name'])
+            ->set('user_email', $data['user_email'])
+            ->set('user_contact', $data['user_contact'])
+            ->where('id', $id)
+            ->update();
+
+        $this->builder = $db->table('user_profile');
+        $this->builder->set('user_products_ids', $data1['user_products_ids'])
+            ->set('user_country', $data1['user_country'])
+            ->where('user_id', $id)
+            ->update();
+        return true;
+    }
+    public function BlockUnblockAccount($data)
+    {
+
+        $db      = \Config\Database::connect();
+        $this->builder = $db->table('user_master');
+        $this->builder->set('user_status', $data['type'])
+            ->where('id', $data['id'])
+            ->update();
+        return true;
     }
 }
-

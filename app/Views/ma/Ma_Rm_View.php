@@ -57,22 +57,6 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="mb-3 row">
-                                            <label for="minimum" class="col-md-2 col-form-label">Minimum Investment
-                                                Amount</label>
-                                            <div class="col-md-10">
-                                                <input class="form-control" type="number" id="minimum" value="500"
-                                                    disabled />
-                                            </div>
-                                        </div>
-                                        <div class="mb-3 row">
-                                            <label for="maximum" class="col-md-2 col-form-label">Maximum Investment
-                                                Amount</label>
-                                            <div class="col-md-10">
-                                                <input class="form-control" type="number" id="maximum" value="10000"
-                                                    disabled />
-                                            </div>
-                                        </div>
                                         <br>
                                         <br>
                                     </div>
