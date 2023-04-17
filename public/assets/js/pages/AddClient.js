@@ -52,3 +52,84 @@ $("#createClient").click(function () {
         });
     }
 });
+
+function passValue($id) {
+    document.getElementById('user_id').value = $id;
+    document.getElementById('user_id1').value = $id;
+}
+
+function BlockUnblock() {
+
+    var type = document.getElementById("type").value;
+
+    var itemId = '';
+    var mode = '';
+    if (type == 'block') {
+        user_id = document.getElementById("user_id1").value;
+        mode = '0';
+
+    } else {
+        user_id = document.getElementById("user_id").value;
+        mode = 1;
+        console.log("reached", mode)
+
+    }
+    console.log("itemid", itemId)
+
+    $.ajax({
+        'url': 'http://localhost/Financial_app/public/Client_BlockUnblock',
+        'type': 'POST',
+        'data': { 'id': user_id, type: mode },
+        success: function (result) {
+            $result = JSON.parse(result);
+            console.log($result);
+            if ($result[0] == true) {
+                alert("Account updated Successfully");
+                window.location.reload();
+            }
+            else {
+                alert("Sorry! Something Went Wrong, please try again later");
+                window.location.reload();
+            }
+        }
+    });
+}
+
+$("#updateClient").click(function () {
+
+    console.log("reached");
+    var email = $("#email").val();
+
+    var id = $("#id").val();
+    var first_name = $("#first_name").val();
+    var last_name = $("#last_name").val();
+    var email = $("#email").val();
+    var ContactNumber = $("#ContactNumber").val();
+
+    var options = document.getElementById('choices-multiple-remove-button').selectedOptions;
+    var values = Array.from(options).map(({ value }) => value);
+
+
+    var options1 = document.getElementById('choices-multiple-remove-button1').selectedOptions;
+    var values1 = Array.from(options1).map(({ value }) => value);
+
+    var country = values1[0];
+        $("#admin_login_btn").attr("disabled", true);
+        $.ajax({
+            'url': 'http://localhost/Financial_app/public/UpdateAccount',
+            'type': 'POST',
+            'data': { 'id': id, 'email': email, 'first_name': first_name, 'last_name': last_name, 'ContactNumber': ContactNumber, 'product': values, 'country': country },
+            success: function (result) {
+
+                $result = JSON.parse(result);
+                $result = $result[0];
+                console.log($result);
+                if ($result == true) {
+                    setTimeout(function () {
+                        window.location.href = "http://localhost/Financial_app/public/Ma_Client_List";
+                    }, 20);
+
+                }
+            }
+        });
+});

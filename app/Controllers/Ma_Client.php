@@ -178,6 +178,52 @@ class Ma_Client extends BaseController
             echo json_encode(array($result));
 		    exit(0);
     }
+
+    public function Client_BlockUnblockAccount()
+    {
+        $data = $this->request->getPost();
+
+        $MaModel = new Ma_Management();
+        $result = $MaModel->BlockUnblockAccount($data);
+
+        echo json_encode(array($result));
+        exit(0);
+    }
+
+    public function UpdateAccount()
+    {
+
+
+        $data = $this->request->getPost();
+        
+        $array = (array) $data['product'];
+
+        $pro = $array;
+        $products = implode('#', $pro);
+
+        $params = [
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'user_email' => $data['email'],
+            'user_contact' => $data['ContactNumber'],
+
+        ];
+
+        $params1 = [
+            'user_country' => $data['country'],
+            'user_products_ids' => $products,
+        ];
+
+       
+        $MaModel = new Ma_Management();
+        $result['client'] = $MaModel->updateAccount($params, $params1, $data['id']);
+        // $MaModel = new Ma_Management();
+        // $result = $MaModel->updateAccount($params, $params1, $data['id']);
+
+        echo json_encode(array($result));
+        exit(0);
+    }
+
 }
 ?>
 

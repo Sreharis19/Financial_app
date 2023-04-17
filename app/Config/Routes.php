@@ -106,7 +106,10 @@ $routes->post('/CreateAccountForRm', 'Ma_RelationManager::CreateAccount');
 $routes->post('/UpdateAccount', 'Ma_RelationManager::UpdateAccount');
 $routes->post('/Rm_BlockUnblock', 'Ma_RelationManager::Rm_BlockUnblockAccount');
 //$routes->post('/Ma_Client_List', 'Ma_Client::update');
-$routes->post('/Ma_Client_List', 'Ma_Client::update');
+//$routes->post('/Ma_Client_List', 'Ma_Client::update');
+
+$routes->post('/UpdateAccount', 'Ma_Client::UpdateAccount');
+$routes->post('/Client_BlockUnblock', 'Ma_Client::Client_BlockUnblockAccount');
 
 
 //client starts here
