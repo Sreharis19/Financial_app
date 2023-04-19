@@ -28,23 +28,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($clients as $key => $client) : ?>
+                        <?php foreach ($cws as $key => $cw) : ?>
                             <tr>
                                 <td><?= $key + 1 ?></td>
-                                <td><?= $client->first_name ?></td>
-                                <td><?= $client->user_email ?></td>
+                                <td><?= $cw->first_name ?></td>
+                                <td><?= $cw->user_email ?></td>
                                
-                                <td><?php if ($client->user_status == 1) : ?> <?= "Active" ?> <?php else : ?> <?= "Blocked" ?> <?php endif; ?></td>
+                                <td><?php if ($cw->user_status == 1) : ?> <?= "Active" ?> <?php else : ?> <?= "Blocked" ?> <?php endif; ?></td>
                                 
                                     <td>
                                    
          
                                      <div  class="btn-group" role="group" aria-label="First group">
-                                        <button type="button" onclick="location.href = '<?php echo base_url(); ?>/public/Ma_Cw_View?id=<?= $client->id ?>';" class="btn btn-outline-secondary">
+                                        <button type="button" onclick="location.href = '<?php echo base_url(); ?>/public/Ma_Cw_View?id=<?= $cw->id ?>';" class="btn btn-outline-secondary">
                                             <i title="view" class='tf-icons bx bx-street-view'></i>
                                         </button>
                                    
-                                        <button type="button" onclick="location.href = '<?php echo base_url(); ?>/public/Ma_Cw_Edit?id=<?= $client->id ?>';" class="btn btn-outline-secondary">
+                                        <button type="button" onclick="location.href = '<?php echo base_url(); ?>/public/Ma_Cw_Edit?id=<?= $cw->id ?>';" class="btn btn-outline-secondary">
                                             <i title="Edit" class='tf-icons bx bx-edit-alt'></i>
                                         </button>
 

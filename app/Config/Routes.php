@@ -110,6 +110,9 @@ $routes->post('/Rm_BlockUnblock', 'Ma_RelationManager::Rm_BlockUnblockAccount');
 
 $routes->post('/UpdateAccount', 'Ma_Client::UpdateAccount');
 $routes->post('/Client_BlockUnblock', 'Ma_Client::Client_BlockUnblockAccount');
+$routes->post('/UpdateAccount', 'Ma_ContentWriter::UpdateAccount');
+$routes->post('/Client_BlockUnblock', 'Ma_ContentWriter::Cw_BlockUnblockAccount');
+
 
 
 //client starts here

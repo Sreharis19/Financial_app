@@ -21,14 +21,14 @@
                                         <div class="mb-3 row">
                                             <label for="first_name" class="col-md-2 col-form-label">First Name :</label>
                                             <div class="col-md-10">
-                                                <input class="form-control" type="text" id="first_name" value="Kevin"
+                                                <input class="form-control" type="text" id="first_name"  value="<?= $cw->first_name ?>"
                                                     disabled />
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
                                             <label for="last_name" class="col-md-2 col-form-label">Last Name :</label>
                                             <div class="col-md-10">
-                                                <input class="form-control" type="text" id="last_name" value="perterson"
+                                                <input class="form-control" type="text" id="last_name"  value="<?= $cw->last_name ?>"
                                                     disabled />
                                             </div>
                                         </div>
@@ -36,7 +36,7 @@
                                             <label for="email" class="col-md-2 col-form-label">Email : </label>
                                             <div class="col-md-10">
                                                 <input class="form-control" type="email" id="email"
-                                                    value="kevin@email.com" disabled />
+                                                     value="<?= $cw->user_email ?>" disabled />
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
@@ -44,7 +44,7 @@
                                                 :</label>
                                             <div class="col-md-10">
                                                 <input class="form-control" type="tel" id="ContactNumber"
-                                                    value="+447489878585" disabled />
+                                                     value="<?= $cw->user_contact ?>" disabled />
                                             </div>
                                         </div>
                                        

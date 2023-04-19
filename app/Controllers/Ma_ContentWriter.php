@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Models\Ma_CwManagement;
+use App\Models\Posts_Management;	
+
 
 class Ma_ContentWriter extends BaseController
 {
@@ -24,7 +26,7 @@ class Ma_ContentWriter extends BaseController
         ];
 
         $MaModel = new Ma_CwManagement();
-        $result['clients'] = $MaModel->getCws($params);
+        $result['cws'] = $MaModel->getCws($params);
 
         $arr = (array) $result;
         // echo "<pre>";
@@ -59,7 +61,7 @@ class Ma_ContentWriter extends BaseController
     
 
         $MaModel = new Ma_CwManagement();
-        $result['client'] = $MaModel->getCwById($id);
+        $result['cw'] = $MaModel->getCwById($id);
 
         // Load the header view
         echo view('ma/header');
@@ -83,7 +85,7 @@ class Ma_ContentWriter extends BaseController
         $id = $request->getGet('id');
 
         $MaModel = new Ma_CwManagement();
-        $result['client'] = $MaModel->getCwById($id);
+        $result['cw'] = $MaModel->getCwById($id);
 
         $data = [
             'heading' => 'Content Writer Management',
@@ -109,10 +111,14 @@ class Ma_ContentWriter extends BaseController
         $data = $session->get('user');
 
         $request = \Config\Services::request();
-        $id = $request->getGet('id');
+     //   $id = $request->getGet('id');
 
-        $MaModel = new Ma_CwManagement();
-        $result['client'] = $MaModel->getCwById($id);
+       // $MaModel = new Ma_CwManagement();
+        //$result['cw'] = $MaModel->getCwById($id);
+
+       $PostModel = new Posts_Management();	
+       $result = $PostModel->getCountryAndPostList();	
+
 
         $data = [
             'heading' => 'Content Writer Management',
@@ -162,12 +168,58 @@ class Ma_ContentWriter extends BaseController
                 'user_products_ids' => $products,
             ];
 
-            $MaModel = new Ma_Management();
+            $MaModel = new Ma_CwManagement();
             $result = $MaModel->CreateAccount($params, $params1);
 
             echo json_encode(array($result));
 		    exit(0);
     }
+    public function Cw_BlockUnblockAccount()
+    {
+        $data = $this->request->getPost();
+
+        $MaModel = new Ma_CwManagement();
+        $result = $MaModel->BlockUnblockAccount($data);
+
+        echo json_encode(array($result));
+        exit(0);
+    }
+
+    public function UpdateAccount()
+    {
+
+
+        $data = $this->request->getPost();
+        
+        $array = (array) $data['product'];
+
+        $pro = $array;
+        $products = implode('#', $pro);
+
+        $params = [
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'user_email' => $data['email'],
+            'user_contact' => $data['ContactNumber'],
+
+        ];
+
+        $params1 = [
+            'user_country' => $data['country'],
+            'user_products_ids' => $products,
+        ];
+
+       
+        $MaModel = new Ma_CwManagement();
+        $result = $MaModel->updateAccount($params, $params1, $data['id']);
+        // $MaModel = new Ma_Management();
+        // $result = $MaModel->updateAccount($params, $params1, $data['id']);
+
+        echo json_encode(array($result));
+        exit(0);
+    }
+
+
 }
 ?>
 
