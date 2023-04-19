@@ -91,7 +91,7 @@ class Ma_Client extends BaseController
         $id = $request->getGet('id');
 
         $PostModel = new Posts_Management();
-        $result = $PostModel->getCountryAndPostList();
+        $result['select'] = $PostModel->getCountryAndPostList();
         $MaModel = new Ma_Management();
         $result['client'] = $MaModel->getClientById($id);
 
@@ -120,7 +120,7 @@ class Ma_Client extends BaseController
         $data = $session->get('user');
 
         $request = \Config\Services::request();
-        $id = $request->getGet('id');
+       // $id = $request->getGet('id');
 
         $PostModel = new Posts_Management();
         $result = $PostModel->getCountryAndPostList();
@@ -216,7 +216,7 @@ class Ma_Client extends BaseController
 
        
         $MaModel = new Ma_Management();
-        $result['client'] = $MaModel->updateAccount($params, $params1, $data['id']);
+        $result = $MaModel->updateAccount($params, $params1, $data['id']);
         // $MaModel = new Ma_Management();
         // $result = $MaModel->updateAccount($params, $params1, $data['id']);
 
