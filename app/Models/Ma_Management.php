@@ -61,31 +61,30 @@ class Ma_Management extends Model
 
         $query = $this->db->table('user_master')
             ->select('id, first_name, last_name, user_email, user_status, user_contact')
-            ->where('user_type', 4)
+            ->where('id', $id)
             ->get();
 
         $users = $query->getResult();
 
-        foreach ($users as $user) {
-            $allproducts_query = $this->db->table('user_profile')
-                ->select('user_products_ids')
-                ->where('user_id', $user->id)
+        $allproducts_query = $this->db->table('user_profile')
+            ->select('*')
+            ->where('user_id', $users[0]->id)
+            ->get();
+
+        $all_products = $allproducts_query->getResult();
+
+        $product_ids = explode('#', $all_products[0]->user_products_ids);
+        foreach ($product_ids as $key => $product_id) {
+            $products_query = $this->db->table('products')
+                ->select('product_id, product_name')
+                ->where('product_id', $product_id)
                 ->get();
 
-            $all_products = $allproducts_query->getResult();
-
-            $product_ids = explode('#', $all_products[0]->user_products_ids);
-            foreach ($product_ids as $key => $product_id) {
-                $products_query = $this->db->table('products')
-                    ->select('product_id, product_name')
-                    ->where('product_id', $product_id)
-                    ->get();
-
-                $user->product[$key] = $products_query->getResult();
-            }
+            $users[0]->product[$key] = $products_query->getResult();
         }
+        $users[0]->user_country = $all_products[0]->user_country;
 
-        return $user;
+        return $users[0];
     }
 
     
@@ -111,8 +110,36 @@ class Ma_Management extends Model
         return true;
     }
     
-    public function updateAccount(){
-        
+    public function updateAccount($data, $data1, $id)
+    {
+        // print_r($id);
+        // exit;
+
+        $db      = \Config\Database::connect();
+        $this->builder = $db->table('user_master');
+        $this->builder->set('first_name', $data['first_name'])
+            ->set('last_name', $data['last_name'])
+            ->set('user_email', $data['user_email'])
+            ->set('user_contact', $data['user_contact'])
+            ->where('id', $id)
+            ->update();
+
+        $this->builder = $db->table('user_profile');
+        $this->builder->set('user_products_ids', $data1['user_products_ids'])
+            ->set('user_country', $data1['user_country'])
+            ->where('user_id', $id)
+            ->update();
+        return true;
+    }
+    public function BlockUnblockAccount($data)
+    {
+
+        $db      = \Config\Database::connect();
+        $this->builder = $db->table('user_master');
+        $this->builder->set('user_status', $data['type'])
+            ->where('id', $data['id'])
+            ->update();
+        return true;
     }
 }
 

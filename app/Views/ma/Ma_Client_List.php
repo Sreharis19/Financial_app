@@ -48,20 +48,25 @@
                                         <button type="button" onclick="location.href = '<?php echo base_url(); ?>/public/Ma_Client_Edit?id=<?= $client->id ?>';" class="btn btn-outline-secondary">
                                             <i title="Edit" class='tf-icons bx bx-edit-alt'></i>
                                         </button>
-
-                                        <button type="button" data-bs-toggle="modal" data-bs-target="#blockorunblock" class="btn btn-outline-secondary">
-                                            <i title="block" class="tf-icons bx bx-check-shield"></i>
-                                        </button>
+                                        <?php if ($client->user_status == 1) : ?>
+                                            <button type="button" data-bs-toggle="modal" data-id="<?= $client->id ?>" onclick="passValue(<?= $client->id ?>)" data-bs-target="#block" class="btn btn-outline-secondary">
+                                                <i title="block" class="tf-icons bx bx-check-shield"></i>
+                                            </button>
+                                        <?php else : ?>
+                                            <button type="button" data-bs-toggle="modal" data-id="<?= $client->id ?>" onclick="passValue(<?= $client->id ?>)" data-bs-target="#unblock" class="btn btn-outline-secondary">
+                                                <i title="unblock" class="tf-icons bx bx-check-shield"></i>
+                                            </button>
+                                        <?php endif; ?>
                                     </div>
                                 </td>
 
                             </tr>
                         <?php endforeach ?>
-                     <input type="hidden" id="status" value="<? $status ?>"></input>
+                    
                     </tbody>
                 </table>
                 <!-- Modal -->
-                <div class="modal fade" id="blockorunblock" data-bs-backdrop="static" tabindex="-1">
+                <div class="modal fade" id="block" data-bs-backdrop="static" tabindex="-1">
                     <div class="modal-dialog">
                         <form class="modal-content">
                             <div class="modal-header">
@@ -72,13 +77,38 @@
                                 <h4 class="modal-title" id="backDropModalTitle">Do yo want to block this
                                     Account ?</h4>
                             </div>
+                            <input type="hidden" id="user_id1">
+                            <input type="hidden" value="block" id="type">
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                                     No
                                 </button>
-                                <button type="button" class="btn btn-primary">Yes</button>
+                                <button type="button" onclick="BlockUnblock()" id="block" class="btn btn-primary">Yes</button>
                             </div>
                         </form>
+                        </div>
+                        </div>
+                        <!-- Modal -->
+                <div class="modal fade" id="unblock" data-bs-backdrop="static" tabindex="-1">
+                    <div class="modal-dialog">
+                        <form class="modal-content">
+                            <div class="modal-header">
+                                <h7 class="modal-title" id="backDropModalTitle">User Management</h7>
+                            </div>
+                            <hr>
+                            <div class="modal-body">
+                                <h4 class="modal-title" id="backDropModalTitle">Do yo want to UNBLOCK this
+                                    Account ?</h4>
+                            </div>
+                            <input type="hidden" id="user_id">
+                            <input type="hidden" value="unblock" id="type">
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                    No
+                                </button>
+                                <button type="button" onclick="BlockUnblock()" id="unblock" class="btn btn-primary">Yes</button>
+                                </div>
+                                </form>
                     </div>
                 </div>
 

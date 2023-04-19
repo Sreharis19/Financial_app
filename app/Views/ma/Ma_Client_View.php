@@ -50,12 +50,11 @@
                                         <div class="mb-3 row">
                                             <label for="category" class="col-md-2 col-form-label">Products : </label>
                                             <div class="col-md-10">
-                                            <select id="choices-multiple-remove-button" name="category" placeholder="Select a product category" multiple>
-                                         <?php foreach ($category as $value) : ?>
-                                            
-                                             <option value="<?= $value->product_id ?>" ><?= $value->product_name ?></option>
-                                         <?php endforeach ?>
-                                         </select>
+                                            <select disabled id="choices-multiple-remove-button" multiple>
+                                                <?php foreach ($client->product as $value) : ?>
+                                                    <option selected value="<?= $value[0]->product_id ?>"><?= $value[0]->product_name ?></option>
+                                                    <?php endforeach ?>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
