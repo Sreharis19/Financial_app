@@ -45,7 +45,7 @@ class Home extends BaseController
 		echo json_encode(array($result));
 		exit(0);
 	}
-
+	/* controller fun for rendering sing up page */
 	public function signupView()
 	{
 		$AuthModel = new AuthModel();
@@ -55,6 +55,8 @@ class Home extends BaseController
 		$data['title'] = "SignUp";
 		return view('SignUp', $result);
 	}
+
+	/* controller fun for inserting new user data from sign up page*/
 	public function signupProcess()
 	{
 		$data = $this->request->getPost();

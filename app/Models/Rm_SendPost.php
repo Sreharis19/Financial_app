@@ -45,10 +45,6 @@ class Rm_SendPost extends Model
         return $post[0];
     }
 
-    public function rm_sentpost($data){
-
-    }
-
     public function sendPost($data)
 	{
         $query = $this->db->table('cw_posts')

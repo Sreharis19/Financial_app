@@ -8,7 +8,7 @@ use App\Models\RelationManager_Dashboard;
 
 class Rm_Dashboard extends BaseController
 {
-
+/* Function for loading dashboard view */
     public function index()
     {
         $HomeController = new \App\Controllers\Home();

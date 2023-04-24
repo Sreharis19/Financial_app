@@ -90,7 +90,7 @@
                 <span class="app-brand-text demo text-body fw-bolder">Financial App</span>
               </a>
             </div>
-            <!-- /Logo -->
+            <!-- Step 1 Sign up -->
             <form id="login_form" name="login_form" action="<?php echo base_url(); ?>/public/signupProcess" class="mb-3">
               <div id="step1">
                 <h3 class="mb-2">Create Account : Step 1</h3>
@@ -157,8 +157,6 @@
                     </select>
                   </div>
                 </div>
-
-                
                 <div class="mb-3">
                   <label for="country" class="form-label">Country : </label>
                 <div class="col-md-07">
@@ -204,9 +202,6 @@
           </div>
         </div>
         <!-- /Register -->
-        <!-- <div class="spinner-grow text-success" role="status">
-                          <span class="visually-hidden">Loading...</span>
-                        </div> -->
       </div>
     </div>
   </div>

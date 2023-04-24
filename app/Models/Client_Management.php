@@ -68,6 +68,7 @@ class Client_Management extends Model
         return $result;
     }
 
+    /* get client details by id */
     public function getClientById($id)
     {
 

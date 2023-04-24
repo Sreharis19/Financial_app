@@ -41,6 +41,7 @@ class Rm_Client extends BaseController
         echo view('rm/footer');
     }
 
+    /* detailed view of a client for rm */
     public function view()
     {
         $session = session();

@@ -1,9 +1,7 @@
 <body>
-
     <!-- Content wrapper -->
     <div class="content-wrapper">
         <!-- Content -->
-
         <div class="container-xxl flex-grow-1 container-p-y">
             <br>
             <br>
@@ -76,14 +74,4 @@
 
             </div>
         </div>
-
-        <!-- / Content -->
-
-
-        <!-- / Layout wrapper -->
-        <!-- Core JS -->
-        <!-- build:js assets/vendor/js/core.js -->
-
-
-
 </body>

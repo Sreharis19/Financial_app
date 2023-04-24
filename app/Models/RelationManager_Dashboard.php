@@ -8,6 +8,7 @@ use CodeIgniter\Model;
 class RelationManager_Dashboard extends Model
 {
 
+    /* function for getting count for rm */
     public function getStats($data)
     {
         $productId_query = "";
