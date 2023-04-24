@@ -61,15 +61,15 @@ class Ma_CwManagement extends Model
 
         $query = $this->db->table('user_master')
             ->select('id, first_name, last_name, user_email, user_status, user_contact')
-            ->where('user_type', 4)
+            ->where('id', $id) 
             ->get();
 
         $users = $query->getResult();
 
-        foreach ($users as $user) {
+      //  foreach ($users as $user) {
             $allproducts_query = $this->db->table('user_profile')
-                ->select('user_products_ids')
-                ->where('user_id', $user->id)
+                ->select('*')
+                ->where('user_id', $users[0]->id)
                 ->get();
 
             $all_products = $allproducts_query->getResult();
@@ -81,11 +81,11 @@ class Ma_CwManagement extends Model
                     ->where('product_id', $product_id)
                     ->get();
 
-                $user->product[$key] = $products_query->getResult();
+                $users[0]->product[$key] = $products_query->getResult();
             }
-        }
+      //  }
 
-        return $user;
+        return $users[0];
     }
 
     
@@ -112,8 +112,36 @@ class Ma_CwManagement extends Model
     }
 
 
-    public function updateAccount(){
-        
+    public function updateAccount($data, $data1, $id)
+    {
+        // print_r($id);
+        // exit;
+
+        $db      = \Config\Database::connect();
+        $this->builder = $db->table('user_master');
+        $this->builder->set('first_name', $data['first_name'])
+            ->set('last_name', $data['last_name'])
+            ->set('user_email', $data['user_email'])
+            ->set('user_contact', $data['user_contact'])
+            ->where('id', $id)
+            ->update();
+
+        $this->builder = $db->table('user_profile');
+        $this->builder->set('user_products_ids', $data1['user_products_ids'])
+            ->set('user_country', $data1['user_country'])
+            ->where('user_id', $id)
+            ->update();
+        return true;
+    }
+    public function BlockUnblockAccount($data)
+    {
+
+        $db      = \Config\Database::connect();
+        $this->builder = $db->table('user_master');
+        $this->builder->set('user_status', $data['type'])
+            ->where('id', $data['id'])
+            ->update();
+        return true;
     }
 }
 ?>
