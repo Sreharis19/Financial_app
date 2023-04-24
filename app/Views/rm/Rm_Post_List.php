@@ -36,11 +36,6 @@
                                         </button>
                                     </div>
                                 </td>
-                                <!-- <td>
-                                    <button title="chat" type="button" class="btn rounded-pill btn-secondary">
-                                        <span class="tf-icons bx bxs-chat"></span>&nbsp; Chat
-                                    </button>
-                                </td> -->
                             </tr>
                         <?php endforeach ?>
                     </tbody>

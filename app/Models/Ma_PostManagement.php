@@ -12,22 +12,9 @@ class Ma_PostManagement extends Model
 
     public function getPosts($data)
     {
-        $productId_query = "";
-        $AndQueryBuild = " OR product_id =";
-
-        $product_ids = explode('#', $data['product_id']);
-
-        foreach ($product_ids as $key => $product_id) {
-
-            if ($key == 0) {
-                $productId_query .= $product_id;
-            } else {
-                $productId_query .=  $AndQueryBuild . $product_id;
-            }
-        }
+    
         $query = $this->db->table('cw_posts')
             ->select('_id, post_title, post_content, post_slug, post_status')
-            ->where('product_id', $productId_query)
             ->orderBy('_id', 'DESC')
             ->get();
 

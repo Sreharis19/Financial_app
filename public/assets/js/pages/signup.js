@@ -1,3 +1,20 @@
+// Function to validate name
+function isValidName(name) {
+    const regex = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
+    return regex.test(name);
+}
+
+// Function to validate email
+function isValidEmail(email) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+}
+
+// Function to validate contact number
+function isValidContact(contact) {
+    const regex = /^[0-9]{11}$/;
+    return regex.test(contact);
+}
 
 $("#tostep2").click(function () {
     // Get the input elements
@@ -52,7 +69,7 @@ $("#tostep2").click(function () {
         $('#error').text('');
     }
 
-    // Validate the password
+    //Validate the password
     if (password.value.trim() === '') {
         $('#error').text('password is required');
         return false;
@@ -173,20 +190,3 @@ $("#signup").click(function () {
 });
 
 
-// Function to validate name
-function isValidName(name) {
-    const regex = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
-    return regex.test(name);
-}
-
-// Function to validate email
-function isValidEmail(email) {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-}
-
-// Function to validate contact number
-function isValidContact(contact) {
-    const regex = /^[0-9]{11}$/;
-    return regex.test(contact);
-}

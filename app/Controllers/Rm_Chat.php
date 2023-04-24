@@ -9,6 +9,7 @@ use App\Models\Rm_ChatModel;
 
 class Rm_Chat extends BaseController
 {
+    /* option to select post for chat */
     public function step1()
     {
         $session = session();
