@@ -7,50 +7,6 @@ This appplication is having three dashboards
 3) Client
 4) Content Writer
 
-Rm User Stories
-
-The master admin will be creating a new Rm
-While creating Rm, admin will select the product in which Rm is specialized in, this select will be a multi select.
-Rm will  be able to login using the login page
-They will be redirecting to the dashboard
-The Dashboard will be having various counts of users, chats and posts
-The side bar will be having the following  sections
-Dashboard
-Clients
-Post 
-Support
-The top right corner there will be user image when clicking on that following options will be showed
-My profile 
-Notification
-Sign Out
-The Client section will be having list of all clients and search option will be there also option to export with client list into various formats
-Rm will be able to chat with the client for this , the Rm needs to click on the Chat option that is available to the corresponding user, It redirects another page where Rm needs to select the topic (post topic), and clicking on start chat the chat screen appears.
-In client list There will be a option to view the client details
-There will be support section in which Rm will able to raise concerns to admin and admin reply will be also listed
-My profile enable the user to update the profile details
-Notification lists all the notifications.
-
-
-
-Content Writer User Stories
-
-The master admin will be creating a new Content Writer
-While creating CW, admin will select the product in which Rm is specialized in, this select will be a multi select.
-Rm will  be able to login using the login page
-They will be redirecting to the dashboard
-The dashboard will be having a count of Total no of post poster by this content writer and also count of total no of active and archive post
-The sidebar will be having following options
-Dashboard
-Post
-Support
-The top right corner there will be user image when clicking on that following options will be showed
-My profile 
-Notification
-Sign Out
-Post section enable content writer to add, list, view and archive/unarchive post
-There will be support section in which content writer will able to raise concerns to admin and admin reply will be also listed
-My profile enable the user to update the profile details
-Notification lists all the notifications.
 
 
 Client User Stories
